@@ -1,0 +1,43 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/CMakeFiles/PioasmBuild"
+		},
+		{
+			"file" : "/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/CMakeFiles/PioasmBuild.rule"
+		},
+		{
+			"file" : "/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/CMakeFiles/PioasmBuild-complete.rule"
+		},
+		{
+			"file" : "/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-build.rule"
+		},
+		{
+			"file" : "/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-configure.rule"
+		},
+		{
+			"file" : "/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-download.rule"
+		},
+		{
+			"file" : "/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-install.rule"
+		},
+		{
+			"file" : "/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-mkdir.rule"
+		},
+		{
+			"file" : "/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-patch.rule"
+		},
+		{
+			"file" : "/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"PioasmBuild"
+		],
+		"name" : "PioasmBuild"
+	}
+}

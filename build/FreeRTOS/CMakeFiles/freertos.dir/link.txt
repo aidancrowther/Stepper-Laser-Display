@@ -1,0 +1,2 @@
+/usr/bin/arm-none-eabi-ar qc libfreertos.a "CMakeFiles/freertos.dir/FreeRTOS-Kernel/event_groups.c.obj" "CMakeFiles/freertos.dir/FreeRTOS-Kernel/list.c.obj" "CMakeFiles/freertos.dir/FreeRTOS-Kernel/queue.c.obj" "CMakeFiles/freertos.dir/FreeRTOS-Kernel/stream_buffer.c.obj" "CMakeFiles/freertos.dir/FreeRTOS-Kernel/tasks.c.obj" "CMakeFiles/freertos.dir/FreeRTOS-Kernel/timers.c.obj" "CMakeFiles/freertos.dir/FreeRTOS-Kernel/portable/MemMang/heap_3.c.obj" "CMakeFiles/freertos.dir/FreeRTOS-Kernel/portable/GCC/ARM_CM0/port.c.obj"
+/usr/bin/arm-none-eabi-ranlib libfreertos.a
