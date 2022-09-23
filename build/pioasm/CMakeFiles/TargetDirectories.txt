@@ -1,3 +1,0 @@
-/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/pioasm/CMakeFiles/pioasm.dir
-/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/pioasm/CMakeFiles/edit_cache.dir
-/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/pioasm/CMakeFiles/rebuild_cache.dir
