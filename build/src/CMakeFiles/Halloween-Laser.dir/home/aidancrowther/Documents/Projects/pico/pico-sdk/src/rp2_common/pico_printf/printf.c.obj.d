@@ -1,7 +1,7 @@
 src/CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj: \
  /home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c \
- /usr/lib/gcc/arm-none-eabi/12.1.0/include/stdbool.h \
- /usr/lib/gcc/arm-none-eabi/12.1.0/include/stdint.h \
+ /usr/lib/gcc/arm-none-eabi/12.2.0/include/stdbool.h \
+ /usr/lib/gcc/arm-none-eabi/12.2.0/include/stdint.h \
  /usr/arm-none-eabi/include/stdint.h \
  /usr/arm-none-eabi/include/machine/_default_types.h \
  /usr/arm-none-eabi/include/sys/features.h \
@@ -13,8 +13,8 @@ src/CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pi
  /usr/arm-none-eabi/include/sys/config.h \
  /usr/arm-none-eabi/include/machine/ieeefp.h \
  /usr/arm-none-eabi/include/sys/cdefs.h \
- /usr/lib/gcc/arm-none-eabi/12.1.0/include/stddef.h \
- /usr/lib/gcc/arm-none-eabi/12.1.0/include/stdarg.h \
+ /usr/lib/gcc/arm-none-eabi/12.2.0/include/stddef.h \
+ /usr/lib/gcc/arm-none-eabi/12.2.0/include/stdarg.h \
  /usr/arm-none-eabi/include/sys/reent.h \
  /usr/arm-none-eabi/include/_ansi.h \
  /usr/arm-none-eabi/include/sys/_types.h \
@@ -45,4 +45,4 @@ src/CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pi
  /home/aidancrowther/Documents/Projects/pico/Halloween\ Lasers/build/generated/pico_base/pico/config_autogen.h \
  /home/aidancrowther/Documents/Projects/pico/pico-sdk/src/boards/include/boards/pico.h \
  /home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_base/include/pico/error.h \
- /usr/lib/gcc/arm-none-eabi/12.1.0/include/float.h
+ /usr/lib/gcc/arm-none-eabi/12.2.0/include/float.h

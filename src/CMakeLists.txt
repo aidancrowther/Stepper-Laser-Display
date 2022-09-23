@@ -35,7 +35,7 @@ target_link_libraries(Halloween-Laser PRIVATE
         pico_stdlib
         hardware_pio
         hardware_dma
-        freertos
+        hardware_pwm
         pico_multicore
 )
 
@@ -52,3 +52,4 @@ pico_enable_stdio_usb(Halloween-Laser 1)
 pico_add_extra_outputs(Halloween-Laser)
 pico_generate_pio_header(Halloween-Laser ${CMAKE_CURRENT_LIST_DIR}/../../PicoStepper/src/picostepper/driver/four_wire.pio)
 pico_generate_pio_header(Halloween-Laser ${CMAKE_CURRENT_LIST_DIR}/../../PicoStepper/src/picostepper/driver/two_wire.pio)
+pico_generate_pio_header(Halloween-Laser ${CMAKE_CURRENT_LIST_DIR}/clocked_input.pio)

@@ -137,14 +137,12 @@
 /home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/pico-sdk/src/rp2040/hardware_structs/CMakeFiles/rebuild_cache.dir
 /home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/pico-sdk/docs/CMakeFiles/edit_cache.dir
 /home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/pico-sdk/docs/CMakeFiles/rebuild_cache.dir
-/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/FreeRTOS/CMakeFiles/freertos.dir
-/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/FreeRTOS/CMakeFiles/edit_cache.dir
-/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/FreeRTOS/CMakeFiles/rebuild_cache.dir
 /home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/CMakeFiles/Halloween-Laser.dir
 /home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/CMakeFiles/ELF2UF2Build.dir
 /home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/CMakeFiles/PioasmBuild.dir
 /home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/CMakeFiles/Halloween-Laser_four_wire_pio_h.dir
 /home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/CMakeFiles/Halloween-Laser_two_wire_pio_h.dir
+/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/CMakeFiles/Halloween-Laser_clocked_input_pio_h.dir
 /home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/CMakeFiles/edit_cache.dir
 /home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/CMakeFiles/rebuild_cache.dir
 /home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/pico-sdk/CMakeFiles/edit_cache.dir

@@ -9,12 +9,10 @@
 #include "pico/time.h"
 #include "hardware/irq.h"
 #include "hardware/pwm.h"
+#include "hardware/dma.h"
 
 #include "picostepper.h"
-
-#include <FreeRTOS.h>
-#include <task.h>
-#include <semphr.h>
+#include "clocked_input.pio.h"
 
 int main();
 void init_steppers();
@@ -22,5 +20,9 @@ void init_gpio();
 void home_steppers();
 void homing_sequence(PicoStepper device);
 void set_stepper_values();
+void serialReceiver();
+void dma_handler();
+bool checksum(uint message);
+bool checksum(uint message);
 
 #endif

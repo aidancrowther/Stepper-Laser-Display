@@ -1,18 +1,18 @@
 src/CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj: \
  /home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c \
- /usr/lib/gcc/arm-none-eabi/12.1.0/include-fixed/limits.h \
- /usr/lib/gcc/arm-none-eabi/12.1.0/include-fixed/syslimits.h \
+ /usr/lib/gcc/arm-none-eabi/12.2.0/include-fixed/limits.h \
+ /usr/lib/gcc/arm-none-eabi/12.2.0/include-fixed/syslimits.h \
  /usr/arm-none-eabi/include/limits.h /usr/arm-none-eabi/include/newlib.h \
  /usr/arm-none-eabi/include/_newlib_version.h \
  /usr/arm-none-eabi/include/sys/cdefs.h \
  /usr/arm-none-eabi/include/machine/_default_types.h \
  /usr/arm-none-eabi/include/sys/features.h \
- /usr/lib/gcc/arm-none-eabi/12.1.0/include/stddef.h \
+ /usr/lib/gcc/arm-none-eabi/12.2.0/include/stddef.h \
  /usr/arm-none-eabi/include/sys/syslimits.h \
  /usr/arm-none-eabi/include/stdio.h /usr/arm-none-eabi/include/_ansi.h \
  /usr/arm-none-eabi/include/sys/config.h \
  /usr/arm-none-eabi/include/machine/ieeefp.h \
- /usr/lib/gcc/arm-none-eabi/12.1.0/include/stdarg.h \
+ /usr/lib/gcc/arm-none-eabi/12.2.0/include/stdarg.h \
  /usr/arm-none-eabi/include/sys/reent.h \
  /usr/arm-none-eabi/include/_ansi.h \
  /usr/arm-none-eabi/include/sys/_types.h \
@@ -37,9 +37,9 @@ src/CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pi
  /home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_base/include/pico.h \
  /home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_base/include/pico/types.h \
  /home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_base/include/pico/assert.h \
- /usr/lib/gcc/arm-none-eabi/12.1.0/include/stdbool.h \
+ /usr/lib/gcc/arm-none-eabi/12.2.0/include/stdbool.h \
  /usr/arm-none-eabi/include/assert.h \
- /usr/lib/gcc/arm-none-eabi/12.1.0/include/stdint.h \
+ /usr/lib/gcc/arm-none-eabi/12.2.0/include/stdint.h \
  /usr/arm-none-eabi/include/stdint.h \
  /usr/arm-none-eabi/include/sys/_intsup.h \
  /home/aidancrowther/Documents/Projects/pico/Halloween\ Lasers/build/generated/pico_base/pico/version.h \

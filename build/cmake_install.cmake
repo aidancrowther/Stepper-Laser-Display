@@ -40,7 +40,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/pico-sdk/cmake_install.cmake")
-  include("/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/FreeRTOS/cmake_install.cmake")
   include("/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/src/cmake_install.cmake")
 
 endif()

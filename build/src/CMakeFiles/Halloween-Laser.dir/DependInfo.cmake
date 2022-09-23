@@ -50,11 +50,11 @@ set(CMAKE_TARGET_DEFINITIONS_ASM
 
 # The include file search paths:
 set(CMAKE_ASM_TARGET_INCLUDE_PATH
-  "../src/."
-  "../src/../../PicoStepper/src"
-  "../src/../../PicoStepper/src/libraries"
-  "../src/../../PicoStepper/src/picostepper"
-  "../src/../../PicoStepper/src/picostepper/driver"
+  "/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/src/."
+  "/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/src/../../PicoStepper/src"
+  "/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/src/../../PicoStepper/src/libraries"
+  "/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/src/../../PicoStepper/src/picostepper"
+  "/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/src/../../PicoStepper/src/picostepper/driver"
   "src"
   "/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_stdlib/include"
   "/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_gpio/include"
@@ -100,9 +100,7 @@ set(CMAKE_ASM_TARGET_INCLUDE_PATH
   "/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_fix/rp2040_usb_device_enumeration/include"
   "/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_pio/include"
   "/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_dma/include"
-  "../FreeRTOS/."
-  "../FreeRTOS/FreeRTOS-Kernel/include"
-  "../FreeRTOS/FreeRTOS-Kernel/portable/GCC/ARM_CM0"
+  "/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_pwm/include"
   "/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_multicore/include"
   )
 
@@ -171,7 +169,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/build/FreeRTOS/CMakeFiles/freertos.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

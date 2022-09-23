@@ -6,7 +6,7 @@ src/CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pi
  /usr/arm-none-eabi/include/_newlib_version.h \
  /usr/arm-none-eabi/include/sys/config.h \
  /usr/arm-none-eabi/include/sys/features.h \
- /usr/lib/gcc/arm-none-eabi/12.1.0/include/stddef.h \
+ /usr/lib/gcc/arm-none-eabi/12.2.0/include/stddef.h \
  /usr/arm-none-eabi/include/sys/reent.h \
  /usr/arm-none-eabi/include/_ansi.h \
  /usr/arm-none-eabi/include/sys/_types.h \
@@ -18,8 +18,8 @@ src/CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pi
  /usr/arm-none-eabi/include/alloca.h \
  /home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.h \
  /home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/common/tusb_common.h \
- /usr/lib/gcc/arm-none-eabi/12.1.0/include/stdbool.h \
- /usr/lib/gcc/arm-none-eabi/12.1.0/include/stdint.h \
+ /usr/lib/gcc/arm-none-eabi/12.2.0/include/stdbool.h \
+ /usr/lib/gcc/arm-none-eabi/12.2.0/include/stdint.h \
  /usr/arm-none-eabi/include/stdint.h \
  /usr/arm-none-eabi/include/sys/_intsup.h \
  /usr/arm-none-eabi/include/sys/_stdint.h \
@@ -28,7 +28,7 @@ src/CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pi
  /usr/arm-none-eabi/include/strings.h \
  /usr/arm-none-eabi/include/sys/string.h \
  /usr/arm-none-eabi/include/stdio.h \
- /usr/lib/gcc/arm-none-eabi/12.1.0/include/stdarg.h \
+ /usr/lib/gcc/arm-none-eabi/12.2.0/include/stdarg.h \
  /usr/arm-none-eabi/include/sys/types.h \
  /usr/arm-none-eabi/include/machine/endian.h \
  /usr/arm-none-eabi/include/machine/_endian.h \

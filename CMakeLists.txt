@@ -10,5 +10,4 @@ project(Halloween-Laser)
 
 pico_sdk_init()
 
-add_subdirectory(FreeRTOS)
 add_subdirectory(src)

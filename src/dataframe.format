@@ -1,0 +1,12 @@
+n = TRANSFER_SIZE
+
+frame # | Bits & Definition
+0       | 0xF0000000 = Projector ID
+        | 0x0FF00000 = Point Count
+        | 0x00000001 = Checksum
+n-1     | 0xFF800000 = X coordinate
+        | 0x007FC000 = Y coordinate
+        | 0x00003800 = Red 3-bit colour
+        | 0x00000700 = Green 3-bit colour
+        | 0x000000E0 = Blue 3-bit colour
+        | 0x00000001 = Checksum
