@@ -106,17 +106,29 @@ Discarded input sections
  .text          0x0000000000000000        0x0 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
  .data          0x0000000000000000        0x0 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
  .bss           0x0000000000000000        0x0 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+ .text.homing_sequence
+                0x0000000000000000       0x20 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+ .text.slow_home
+                0x0000000000000000       0x20 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
  .text.checksum
                 0x0000000000000000       0x1c CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
- .text.draw     0x0000000000000000        0xc CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+ .text.retrieve
+                0x0000000000000000        0x8 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+ .text.lasers_off
+                0x0000000000000000       0x44 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+ .text.set_red_pwm
+                0x0000000000000000       0x34 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+ .text.set_green_pwm
+                0x0000000000000000       0x34 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+ .text.set_blue_pwm
+                0x0000000000000000       0x34 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+ .text.home_steppers
+                0x0000000000000000      0x1e0 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
  .rodata.set_home.str1.4
                 0x0000000000000000       0x42 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
  .text.set_home
                 0x0000000000000000       0xa0 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
- .bss.receivedBits
-                0x0000000000000000        0x4 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
- .bss.receiving
-                0x0000000000000000        0x1 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+ .data.first    0x0000000000000000        0x1 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
  .text          0x0000000000000000        0x0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/libraries/stack.c.obj
  .data          0x0000000000000000        0x0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/libraries/stack.c.obj
  .bss           0x0000000000000000        0x0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/libraries/stack.c.obj
@@ -126,10 +138,24 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
  .text.picostepper_init
                 0x0000000000000000      0x208 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+ .text.picostepper_move_blocking
+                0x0000000000000000       0xc0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+ .text.picostepper_set_async_direction
+                0x0000000000000000       0x28 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+ .text.picostepper_get_async_enabled
+                0x0000000000000000       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
  .text.picostepper_set_async_delay
                 0x0000000000000000       0x20 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+ .text.picostepper_set_async_speed
+                0x0000000000000000       0x68 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+ .text.picostepper_set_position
+                0x0000000000000000       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+ .text.picostepper_convert_speed_to_delay
+                0x0000000000000000       0x40 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
  .text.picostepper_convert_delay_to_speed
                 0x0000000000000000       0x34 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+ .text.picostepper_move_async
+                0x0000000000000000       0xf4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
  .text.picostepper_move_to_position
                 0x0000000000000000      0x240 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
  .rodata.picostepper_four_wire_program
@@ -160,6 +186,8 @@ Discarded input sections
  .text.gpio_get_function
                 0x0000000000000000       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
  .text.gpio_set_inover
+                0x0000000000000000       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+ .text.gpio_set_outover
                 0x0000000000000000       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
  .text.gpio_set_oeover
                 0x0000000000000000       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
@@ -1127,9 +1155,9 @@ Discarded input sections
                 0x0000000000000000        0x1 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
  .bss.lockout_mutex
                 0x0000000000000000        0x8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
- .text          0x0000000000000000        0x0 /tmp/ccHc9BRw.o
- .data          0x0000000000000000        0x0 /tmp/ccHc9BRw.o
- .bss           0x0000000000000000        0x0 /tmp/ccHc9BRw.o
+ .text          0x0000000000000000        0x0 /tmp/ccKbXCsW.o
+ .data          0x0000000000000000        0x0 /tmp/ccKbXCsW.o
+ .bss           0x0000000000000000        0x0 /tmp/ccKbXCsW.o
  .data          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/12.2.0/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .bss           0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/12.2.0/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .text          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-atexit.o)
@@ -1708,11 +1736,11 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/
 .boot2          0x0000000010000000      0x100
                 0x0000000010000000                __boot2_start__ = .
  *(.boot2)
- .boot2         0x0000000010000000      0x100 /tmp/ccHc9BRw.o
+ .boot2         0x0000000010000000      0x100 /tmp/ccKbXCsW.o
                 0x0000000010000100                __boot2_end__ = .
                 0x0000000000000001                ASSERT (((__boot2_end__ - __boot2_start__) == 0x100), ERROR: Pico second stage bootloader must be 256 bytes in size)
 
-.text           0x0000000010000100     0x8cd0
+.text           0x0000000010000100     0x89a0
                 0x0000000010000100                __logical_binary_start = .
  *(.vectors)
  .vectors       0x0000000010000100       0xd4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
@@ -1772,710 +1800,678 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/
  *(EXCLUDE_FILE(*libm.a: *libc.a:*lib_a-mem*.o *libgcc.a:) .text*)
  .text.frame_dummy
                 0x00000000100002c4       0x20 /usr/lib/gcc/arm-none-eabi/12.2.0/thumb/v6-m/nofp/crtbegin.o
+ .text.draw     0x00000000100002e4      0x210 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+                0x00000000100002e4                draw
  .text.dma_handler
-                0x00000000100002e4      0x130 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
-                0x00000000100002e4                dma_handler
- .text.homing_sequence
-                0x0000000010000414       0x20 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
-                0x0000000010000414                homing_sequence
- .text.slow_home
-                0x0000000010000434       0x20 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
-                0x0000000010000434                slow_home
+                0x00000000100004f4      0x140 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+                0x00000000100004f4                dma_handler
  .text.serialReceiver
-                0x0000000010000454      0x1e4 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
-                0x0000000010000454                serialReceiver
+                0x0000000010000634      0x234 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+                0x0000000010000634                serialReceiver
  .text.init_gpio
-                0x0000000010000638       0xa4 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
-                0x0000000010000638                init_gpio
+                0x0000000010000868       0x80 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+                0x0000000010000868                init_gpio
  .text.init_steppers
-                0x00000000100006dc       0x34 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
-                0x00000000100006dc                init_steppers
+                0x00000000100008e8       0x34 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+                0x00000000100008e8                init_steppers
  .text.set_stepper_values
-                0x0000000010000710       0x4c CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
-                0x0000000010000710                set_stepper_values
- .text.home_steppers
-                0x000000001000075c      0x1e0 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
-                0x000000001000075c                home_steppers
+                0x000000001000091c       0x4c CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+                0x000000001000091c                set_stepper_values
  .text.startup.main
-                0x000000001000093c       0xf4 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
-                0x000000001000093c                main
- .text.push     0x0000000010000a30       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/libraries/stack.c.obj
-                0x0000000010000a30                push
- .text.pop      0x0000000010000a48       0x20 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/libraries/stack.c.obj
-                0x0000000010000a48                pop
+                0x0000000010000968       0x6c CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+                0x0000000010000968                main
+ .text.push     0x00000000100009d4       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/libraries/stack.c.obj
+                0x00000000100009d4                push
+ .text.pop      0x00000000100009ec       0x20 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/libraries/stack.c.obj
+                0x00000000100009ec                pop
  .text.picostepper_async_handler
-                0x0000000010000a68       0x5c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+                0x0000000010000a0c       0x5c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
  .text.picostepper_init_unclaimed_device
-                0x0000000010000ac4      0x2e4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+                0x0000000010000a68      0x2e4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
  .text.picostepper_accelerate
-                0x0000000010000da8      0x204 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
-                0x0000000010000da8                picostepper_accelerate
+                0x0000000010000d4c      0x204 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+                0x0000000010000d4c                picostepper_accelerate
  .text.picostepper_move_async.part.0
-                0x0000000010000fac       0xdc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+                0x0000000010000f50       0xdc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
  .text.picostepper_pindef_init
-                0x0000000010001088      0x1e4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
-                0x0000000010001088                picostepper_pindef_init
- .text.picostepper_move_blocking
-                0x000000001000126c       0xc0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
-                0x000000001000126c                picostepper_move_blocking
- .text.picostepper_set_async_direction
-                0x000000001000132c       0x28 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
-                0x000000001000132c                picostepper_set_async_direction
+                0x000000001000102c      0x1e4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+                0x000000001000102c                picostepper_pindef_init
  .text.picostepper_set_async_enabled
-                0x0000000010001354       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
-                0x0000000010001354                picostepper_set_async_enabled
- .text.picostepper_get_async_enabled
-                0x0000000010001378       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
-                0x0000000010001378                picostepper_get_async_enabled
- .text.picostepper_set_async_speed
-                0x000000001000138c       0x68 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
-                0x000000001000138c                picostepper_set_async_speed
+                0x0000000010001210       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+                0x0000000010001210                picostepper_set_async_enabled
  .text.picostepper_set_acceleration
-                0x00000000100013f4       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
-                0x00000000100013f4                picostepper_set_acceleration
- .text.picostepper_set_position
-                0x0000000010001408       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
-                0x0000000010001408                picostepper_set_position
+                0x0000000010001234       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+                0x0000000010001234                picostepper_set_acceleration
  .text.picostepper_set_max_speed
-                0x000000001000141c       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
-                0x000000001000141c                picostepper_set_max_speed
+                0x0000000010001248       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+                0x0000000010001248                picostepper_set_max_speed
  .text.picostepper_set_min_speed
-                0x0000000010001430       0x6c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
-                0x0000000010001430                picostepper_set_min_speed
- .text.picostepper_convert_speed_to_delay
-                0x000000001000149c       0x40 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
-                0x000000001000149c                picostepper_convert_speed_to_delay
- .text.picostepper_move_async
-                0x00000000100014dc       0xf4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
-                0x00000000100014dc                picostepper_move_async
+                0x000000001000125c       0x6c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+                0x000000001000125c                picostepper_set_min_speed
  .text.picostepper_move_to_positions
-                0x00000000100015d0      0x3c4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
-                0x00000000100015d0                picostepper_move_to_positions
+                0x00000000100012c8      0x3c4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+                0x00000000100012c8                picostepper_move_to_positions
  .text.gpio_set_function
-                0x0000000010001994       0x30 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x0000000010001994                gpio_set_function
+                0x000000001000168c       0x30 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x000000001000168c                gpio_set_function
  .text.gpio_set_pulls
-                0x00000000100019c4       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x00000000100019c4                gpio_set_pulls
- .text.gpio_set_outover
-                0x00000000100019e8       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x00000000100019e8                gpio_set_outover
+                0x00000000100016bc       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x00000000100016bc                gpio_set_pulls
  .text.gpio_init
-                0x0000000010001a0c       0x3c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x0000000010001a0c                gpio_init
+                0x00000000100016e0       0x3c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x00000000100016e0                gpio_init
  .text.hw_claim_lock
-                0x0000000010001a48       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
-                0x0000000010001a48                hw_claim_lock
+                0x000000001000171c       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
+                0x000000001000171c                hw_claim_lock
  .text.hw_claim_unlock
-                0x0000000010001a60       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
-                0x0000000010001a60                hw_claim_unlock
+                0x0000000010001734       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
+                0x0000000010001734                hw_claim_unlock
  .text.hw_claim_or_assert
-                0x0000000010001a74       0x58 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
-                0x0000000010001a74                hw_claim_or_assert
+                0x0000000010001748       0x58 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
+                0x0000000010001748                hw_claim_or_assert
  .text.hw_claim_unused_from_range
-                0x0000000010001acc       0x9c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
-                0x0000000010001acc                hw_claim_unused_from_range
+                0x00000000100017a0       0x9c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_claim/claim.c.obj
+                0x00000000100017a0                hw_claim_unused_from_range
  .text.spin_locks_reset
-                0x0000000010001b68       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
-                0x0000000010001b68                spin_locks_reset
+                0x000000001000183c       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x000000001000183c                spin_locks_reset
  .text.next_striped_spin_lock_num
-                0x0000000010001b84       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
-                0x0000000010001b84                next_striped_spin_lock_num
+                0x0000000010001858       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x0000000010001858                next_striped_spin_lock_num
  .text.spin_lock_claim_unused
-                0x0000000010001b9c       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
-                0x0000000010001b9c                spin_lock_claim_unused
+                0x0000000010001870       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x0000000010001870                spin_lock_claim_unused
  .text.running_on_fpga
-                0x0000000010001bc0       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
-                0x0000000010001bc0                running_on_fpga
+                0x0000000010001894       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_platform/platform.c.obj
+                0x0000000010001894                running_on_fpga
  .text.uart_init
-                0x0000000010001bd0       0xe0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
-                0x0000000010001bd0                uart_init
+                0x00000000100018a4       0xe0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_uart/uart.c.obj
+                0x00000000100018a4                uart_init
  .text.timer_pool_entry_comparator
-                0x0000000010001cb0       0x34 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
-                0x0000000010001cb0                timer_pool_entry_comparator
+                0x0000000010001984       0x34 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010001984                timer_pool_entry_comparator
  .text.sev_callback
-                0x0000000010001ce4        0x8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x00000000100019b8        0x8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
  .text.add_alarm_under_lock.isra.0
-                0x0000000010001cec       0xf8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x00000000100019c0       0xf8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
  .text.alarm_pool_alarm_callback
-                0x0000000010001de4      0x1c4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010001ab8      0x1c4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
  .text.alarm_pool_add_alarm_at.constprop.0
-                0x0000000010001fa8      0x114 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010001c7c      0x114 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
  .text.alarm_pool_init_default
-                0x00000000100020bc       0x58 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
-                0x00000000100020bc                alarm_pool_init_default
+                0x0000000010001d90       0x58 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010001d90                alarm_pool_init_default
  .text.alarm_pool_get_default
-                0x0000000010002114        0x8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
-                0x0000000010002114                alarm_pool_get_default
+                0x0000000010001de8        0x8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010001de8                alarm_pool_get_default
  .text.alarm_pool_add_alarm_at
-                0x000000001000211c      0x194 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
-                0x000000001000211c                alarm_pool_add_alarm_at
+                0x0000000010001df0      0x194 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010001df0                alarm_pool_add_alarm_at
  .text.sleep_ms
-                0x00000000100022b0       0xa0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
-                0x00000000100022b0                sleep_ms
+                0x0000000010001f84       0xa0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010001f84                sleep_ms
  .text.best_effort_wfe_or_timeout
-                0x0000000010002350       0xb0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
-                0x0000000010002350                best_effort_wfe_or_timeout
+                0x0000000010002024       0xb0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000010002024                best_effort_wfe_or_timeout
  .text.hardware_alarm_irq_handler
-                0x0000000010002400       0xb8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x00000000100020d4       0xb8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .text.hardware_alarm_claim
-                0x00000000100024b8       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x00000000100024b8                hardware_alarm_claim
+                0x000000001000218c       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x000000001000218c                hardware_alarm_claim
  .text.time_us_64
-                0x00000000100024d0       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x00000000100024d0                time_us_64
+                0x00000000100021a4       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x00000000100021a4                time_us_64
  .text.busy_wait_until
-                0x00000000100024e4       0x20 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x00000000100024e4                busy_wait_until
+                0x00000000100021b8       0x20 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x00000000100021b8                busy_wait_until
  .text.hardware_alarm_set_callback
-                0x0000000010002504       0x8c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x0000000010002504                hardware_alarm_set_callback
+                0x00000000100021d8       0x8c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x00000000100021d8                hardware_alarm_set_callback
  .text.hardware_alarm_set_target
-                0x0000000010002590       0xdc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x0000000010002590                hardware_alarm_set_target
+                0x0000000010002264       0xdc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010002264                hardware_alarm_set_target
  .text.hardware_alarm_cancel
-                0x000000001000266c       0x3c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
-                0x000000001000266c                hardware_alarm_cancel
+                0x0000000010002340       0x3c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010002340                hardware_alarm_cancel
  .text.lock_init
-                0x00000000100026a8       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_sync/lock_core.c.obj
-                0x00000000100026a8                lock_init
+                0x000000001000237c       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_sync/lock_core.c.obj
+                0x000000001000237c                lock_init
  .text.mutex_init
-                0x00000000100026b8       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_sync/mutex.c.obj
-                0x00000000100026b8                mutex_init
+                0x000000001000238c       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_sync/mutex.c.obj
+                0x000000001000238c                mutex_init
  .text.critical_section_init
-                0x00000000100026d4       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_sync/critical_section.c.obj
-                0x00000000100026d4                critical_section_init
+                0x00000000100023a8       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_sync/critical_section.c.obj
+                0x00000000100023a8                critical_section_init
  .text.ph_merge_nodes
-                0x00000000100026ec       0x58 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x00000000100023c0       0x58 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_util/pheap.c.obj
  .text.ph_post_alloc_init
-                0x0000000010002744       0x3c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x0000000010002744                ph_post_alloc_init
+                0x0000000010002418       0x3c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x0000000010002418                ph_post_alloc_init
  .text.ph_merge_two_pass
-                0x0000000010002780       0x8c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x0000000010002780                ph_merge_two_pass
+                0x0000000010002454       0x8c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x0000000010002454                ph_merge_two_pass
  .text.ph_remove_any_head
-                0x000000001000280c      0x12c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x00000000100024e0      0x12c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_util/pheap.c.obj
  .text.ph_remove_head
-                0x0000000010002938      0x130 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x0000000010002938                ph_remove_head
+                0x000000001000260c      0x130 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x000000001000260c                ph_remove_head
  .text.ph_remove_and_free_node
-                0x0000000010002a68       0x78 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_util/pheap.c.obj
-                0x0000000010002a68                ph_remove_and_free_node
+                0x000000001000273c       0x78 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_util/pheap.c.obj
+                0x000000001000273c                ph_remove_and_free_node
  .text.runtime_init
-                0x0000000010002ae0       0xec CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x0000000010002ae0                runtime_init
- .text._sbrk    0x0000000010002bcc       0x34 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x0000000010002bcc                _sbrk
- .text.exit     0x0000000010002c00        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x0000000010002c00                exit
- .text.panic    0x0000000010002c04       0x30 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x0000000010002c04                panic
+                0x00000000100027b4       0xec CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x00000000100027b4                runtime_init
+ .text._sbrk    0x00000000100028a0       0x34 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x00000000100028a0                _sbrk
+ .text.exit     0x00000000100028d4        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x00000000100028d4                exit
+ .text.panic    0x00000000100028d8       0x30 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x00000000100028d8                panic
  .text.hard_assertion_failure
-                0x0000000010002c34        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
-                0x0000000010002c34                hard_assertion_failure
+                0x0000000010002908        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x0000000010002908                hard_assertion_failure
  .text.clocks_init
-                0x0000000010002c40      0x2d8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
-                0x0000000010002c40                clocks_init
+                0x0000000010002914      0x2d8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x0000000010002914                clocks_init
  .text.clock_get_hz
-                0x0000000010002f18        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
-                0x0000000010002f18                clock_get_hz
+                0x0000000010002bec        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x0000000010002bec                clock_get_hz
  .text.watchdog_start_tick
-                0x0000000010002f24       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
-                0x0000000010002f24                watchdog_start_tick
+                0x0000000010002bf8       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+                0x0000000010002bf8                watchdog_start_tick
  .text.watchdog_reboot
-                0x0000000010002f34       0x9c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
-                0x0000000010002f34                watchdog_reboot
+                0x0000000010002c08       0x9c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+                0x0000000010002c08                watchdog_reboot
  .text.xosc_init
-                0x0000000010002fd0       0x28 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
-                0x0000000010002fd0                xosc_init
+                0x0000000010002ca4       0x28 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_xosc/xosc.c.obj
+                0x0000000010002ca4                xosc_init
  .text.pll_init
-                0x0000000010002ff8       0x54 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
-                0x0000000010002ff8                pll_init
+                0x0000000010002ccc       0x54 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_pll/pll.c.obj
+                0x0000000010002ccc                pll_init
  .text.irq_set_enabled
-                0x000000001000304c       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x000000001000304c                irq_set_enabled
+                0x0000000010002d20       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000010002d20                irq_set_enabled
  .text.irq_set_pending
-                0x0000000010003070       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x0000000010003070                irq_set_pending
+                0x0000000010002d44       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000010002d44                irq_set_pending
  .text.irq_get_vtable_handler
-                0x0000000010003080       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x0000000010003080                irq_get_vtable_handler
+                0x0000000010002d54       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000010002d54                irq_get_vtable_handler
  .text.irq_set_exclusive_handler
-                0x0000000010003090       0x54 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x0000000010003090                irq_set_exclusive_handler
+                0x0000000010002d64       0x54 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000010002d64                irq_set_exclusive_handler
  .text.irq_remove_handler
-                0x00000000100030e4      0x1c0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x00000000100030e4                irq_remove_handler
+                0x0000000010002db8      0x1c0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000010002db8                irq_remove_handler
  .text.irq_add_tail_to_free_list
-                0x00000000100032a4       0xb4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x00000000100032a4                irq_add_tail_to_free_list
+                0x0000000010002f78       0xb4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000010002f78                irq_add_tail_to_free_list
  .text.irq_init_priorities
-                0x0000000010003358       0x38 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
-                0x0000000010003358                irq_init_priorities
+                0x000000001000302c       0x38 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_irq/irq.c.obj
+                0x000000001000302c                irq_init_priorities
  .text._out_null
-                0x0000000010003390        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010003064        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._out_rev
-                0x0000000010003394       0x90 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010003068       0x90 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._ntoa_format
-                0x0000000010003424      0x208 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x00000000100030f8      0x208 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._out_char
-                0x000000001000362c       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010003300       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._out_fct
-                0x000000001000363c       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- .text._etoa    0x000000001000364c      0x464 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- .text._ftoa    0x0000000010003ab0      0x3c4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010003310       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ .text._etoa    0x0000000010003320      0x464 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ .text._ftoa    0x0000000010003784      0x3c4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text._vsnprintf
-                0x0000000010003e74      0xc18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010003b48      0xc18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .text.vfctprintf
-                0x0000000010004a8c       0x20 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
-                0x0000000010004a8c                vfctprintf
+                0x0000000010004760       0x20 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010004760                vfctprintf
  .text.weak_raw_vprintf
-                0x0000000010004aac       0x30 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
-                0x0000000010004aac                weak_raw_vprintf
- .text          0x0000000010004adc       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+                0x0000000010004780       0x30 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010004780                weak_raw_vprintf
+ .text          0x00000000100047b0       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
  .text.rom_func_lookup
-                0x0000000010004aec       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x0000000010004aec                rom_func_lookup
+                0x00000000100047c0       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x00000000100047c0                rom_func_lookup
  .text.rom_data_lookup
-                0x0000000010004afc       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x0000000010004afc                rom_data_lookup
+                0x00000000100047d0       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x00000000100047d0                rom_data_lookup
  .text.rom_funcs_lookup
-                0x0000000010004b0c       0x44 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x0000000010004b0c                rom_funcs_lookup
+                0x00000000100047e0       0x44 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x00000000100047e0                rom_funcs_lookup
  .text.__wrap___aeabi_idiv
-                0x0000000010004b50       0x58 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
-                0x0000000010004b50                __wrap___aeabi_idivmod
-                0x0000000010004b50                divmod_s32s32
-                0x0000000010004b50                div_s32s32
-                0x0000000010004b50                __wrap___aeabi_idiv
-                0x0000000010004b58                divmod_s32s32_unsafe
-                0x0000000010004b84                divmod_s32s32_savestate
+                0x0000000010004824       0x58 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+                0x0000000010004824                __wrap___aeabi_idivmod
+                0x0000000010004824                divmod_s32s32
+                0x0000000010004824                div_s32s32
+                0x0000000010004824                __wrap___aeabi_idiv
+                0x000000001000482c                divmod_s32s32_unsafe
+                0x0000000010004858                divmod_s32s32_savestate
  .text.__wrap___aeabi_uidiv
-                0x0000000010004ba8       0x54 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
-                0x0000000010004ba8                __wrap___aeabi_uidiv
-                0x0000000010004ba8                __wrap___aeabi_uidivmod
-                0x0000000010004ba8                div_u32u32
-                0x0000000010004ba8                divmod_u32u32
-                0x0000000010004bb0                divmod_u32u32_unsafe
-                0x0000000010004bd8                divmod_u32u32_savestate
+                0x000000001000487c       0x54 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+                0x000000001000487c                __wrap___aeabi_uidiv
+                0x000000001000487c                __wrap___aeabi_uidivmod
+                0x000000001000487c                div_u32u32
+                0x000000001000487c                divmod_u32u32
+                0x0000000010004884                divmod_u32u32_unsafe
+                0x00000000100048ac                divmod_u32u32_savestate
  .text.__wrap___aeabi_ldiv
-                0x0000000010004bfc      0x430 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
-                0x0000000010004bfc                div_s64s64
-                0x0000000010004bfc                divmod_s64s64
-                0x0000000010004bfc                __wrap___aeabi_ldivmod
-                0x0000000010004c34                div_u64u64
-                0x0000000010004c34                divmod_u64u64
-                0x0000000010004c34                __wrap___aeabi_uldivmod
-                0x0000000010004c44                divmod_u64u64_savestate
-                0x0000000010004c6c                divmod_s64s64_unsafe
-                0x0000000010004cf4                divmod_u64u64_unsafe
+                0x00000000100048d0      0x430 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_divider/divider.S.obj
+                0x00000000100048d0                div_s64s64
+                0x00000000100048d0                divmod_s64s64
+                0x00000000100048d0                __wrap___aeabi_ldivmod
+                0x0000000010004908                div_u64u64
+                0x0000000010004908                divmod_u64u64
+                0x0000000010004908                __wrap___aeabi_uldivmod
+                0x0000000010004918                divmod_u64u64_savestate
+                0x0000000010004940                divmod_s64s64_unsafe
+                0x00000000100049c8                divmod_u64u64_unsafe
  .text.__wrap___aeabi_darithmetic
-                0x000000001000502c       0x54 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x000000001000502c                __wrap___aeabi_drsub
-                0x0000000010005032                __wrap___aeabi_dsub
-                0x0000000010005044                __wrap___aeabi_dadd
-                0x0000000010005056                __wrap___aeabi_ddiv
-                0x0000000010005068                __wrap___aeabi_dmul
+                0x0000000010004d00       0x54 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x0000000010004d00                __wrap___aeabi_drsub
+                0x0000000010004d06                __wrap___aeabi_dsub
+                0x0000000010004d18                __wrap___aeabi_dadd
+                0x0000000010004d2a                __wrap___aeabi_ddiv
+                0x0000000010004d3c                __wrap___aeabi_dmul
  .text.__wrap___aeabi_cdcmple
-                0x0000000010005080       0x6c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x0000000010005080                __wrap___aeabi_cdrcmple
-                0x0000000010005090                __wrap___aeabi_cdcmple
-                0x0000000010005090                __wrap___aeabi_cdcmpeq
+                0x0000000010004d54       0x6c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x0000000010004d54                __wrap___aeabi_cdrcmple
+                0x0000000010004d64                __wrap___aeabi_cdcmple
+                0x0000000010004d64                __wrap___aeabi_cdcmpeq
  .text.__wrap___aeabi_dcmplt
-                0x00000000100050ec        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x00000000100050ec                __wrap___aeabi_dcmplt
+                0x0000000010004dc0        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x0000000010004dc0                __wrap___aeabi_dcmplt
  .text.__wrap___aeabi_dcmpge
-                0x00000000100050f8       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x00000000100050f8                __wrap___aeabi_dcmpge
+                0x0000000010004dcc       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x0000000010004dcc                __wrap___aeabi_dcmpge
  .text.__wrap___aeabi_dcmpgt
-                0x0000000010005108        0xa CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x0000000010005108                __wrap___aeabi_dcmpgt
+                0x0000000010004ddc        0xa CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x0000000010004ddc                __wrap___aeabi_dcmpgt
  .text.__wrap___aeabi_dcmpun
-                0x0000000010005112       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x0000000010005112                __wrap___aeabi_dcmpun
- *fill*         0x000000001000512e        0x2 
+                0x0000000010004de6       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x0000000010004de6                __wrap___aeabi_dcmpun
+ *fill*         0x0000000010004e02        0x2 
  .text.__wrap___aeabi_i2d
-                0x0000000010005130       0x38 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x0000000010005130                __wrap___aeabi_ui2d
-                0x0000000010005138                __wrap___aeabi_i2d
+                0x0000000010004e04       0x38 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x0000000010004e04                __wrap___aeabi_ui2d
+                0x0000000010004e0c                __wrap___aeabi_i2d
  .text.__wrap___aeabi_d2iz
-                0x0000000010005168       0x48 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x0000000010005168                __wrap___aeabi_d2iz
-                0x0000000010005168                double2int_z
+                0x0000000010004e3c       0x48 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x0000000010004e3c                __wrap___aeabi_d2iz
+                0x0000000010004e3c                double2int_z
  .text.__wrap___aeabi_d2uiz
-                0x00000000100051b0       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
-                0x00000000100051b0                double2uint
-                0x00000000100051b0                __wrap___aeabi_d2uiz
+                0x0000000010004e84       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_aeabi.S.obj
+                0x0000000010004e84                double2uint
+                0x0000000010004e84                __wrap___aeabi_d2uiz
  .text.__aeabi_double_init
-                0x00000000100051c8       0x88 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
-                0x00000000100051c8                __aeabi_double_init
+                0x0000000010004e9c       0x88 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
+                0x0000000010004e9c                __aeabi_double_init
  .text.double_table_shim_on_use_helper
-                0x0000000010005250       0x2c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x0000000010005250                double_table_shim_on_use_helper
+                0x0000000010004f24       0x2c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x0000000010004f24                double_table_shim_on_use_helper
  .text.__wrap___aeabi_dsub
-                0x000000001000527c       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x000000001000527c                drsub_shim
-                0x0000000010005282                dsub_shim
+                0x0000000010004f50       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x0000000010004f50                drsub_shim
+                0x0000000010004f56                dsub_shim
  .text.dadd_shim
-                0x000000001000528c      0x15c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x000000001000528c                dadd_shim
+                0x0000000010004f60      0x15c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x0000000010004f60                dadd_shim
  .text.dmul_shim
-                0x00000000100053e8      0x15c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x00000000100053e8                dmul_shim
+                0x00000000100050bc      0x15c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x00000000100050bc                dmul_shim
  .text.ddiv_shim
-                0x0000000010005544      0x1b0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x0000000010005544                ddiv_shim
+                0x0000000010005218      0x1b0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x0000000010005218                ddiv_shim
  .text.dcordic_rot_step
-                0x00000000100056f4       0x7c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x00000000100056f4                dcordic_rot_step
+                0x00000000100053c8       0x7c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x00000000100053c8                dcordic_rot_step
  .text.double2uint_shim
-                0x0000000010005770        0xe CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x0000000010005770                double2uint_shim
-                0x0000000010005772                double2ufix_shim
- *fill*         0x000000001000577e        0x2 
+                0x0000000010005444        0xe CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x0000000010005444                double2uint_shim
+                0x0000000010005446                double2ufix_shim
+ *fill*         0x0000000010005452        0x2 
  .text.double2uint64_shim
-                0x0000000010005780       0x6c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x0000000010005780                double2uint64_shim
-                0x0000000010005782                double2ufix64_shim
-                0x000000001000579c                d2fix_a
+                0x0000000010005454       0x6c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x0000000010005454                double2uint64_shim
+                0x0000000010005456                double2ufix64_shim
+                0x0000000010005470                d2fix_a
  .text.dunpacks
-                0x00000000100057ec       0x3c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
-                0x00000000100057ec                dunpacks
+                0x00000000100054c0       0x3c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_v1_rom_shim.S.obj
+                0x00000000100054c0                dunpacks
  .text.__aeabi_lmul
-                0x0000000010005828       0x32 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
-                0x0000000010005828                __wrap___aeabi_lmul
+                0x00000000100054fc       0x32 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+                0x00000000100054fc                __wrap___aeabi_lmul
  .text.__wrap___aeabi_ui2f
-                0x000000001000585a        0xa CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
-                0x000000001000585a                __wrap___aeabi_ui2f
+                0x000000001000552e        0xa CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
+                0x000000001000552e                __wrap___aeabi_ui2f
  .text.__wrap___aeabi_i2f
-                0x0000000010005864       0x44 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
-                0x0000000010005864                __wrap___aeabi_i2f
+                0x0000000010005538       0x44 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
+                0x0000000010005538                __wrap___aeabi_i2f
  .text.__wrap___aeabi_f2d
-                0x00000000100058a8       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
-                0x00000000100058a8                __wrap___aeabi_f2d
+                0x000000001000557c       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_float/float_aeabi.S.obj
+                0x000000001000557c                __wrap___aeabi_f2d
  .text.__aeabi_float_init
-                0x00000000100058bc       0x64 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
-                0x00000000100058bc                __aeabi_float_init
+                0x0000000010005590       0x64 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
+                0x0000000010005590                __aeabi_float_init
  .text.float_table_shim_on_use_helper
-                0x0000000010005920       0x2c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
-                0x0000000010005920                float_table_shim_on_use_helper
+                0x00000000100055f4       0x2c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
+                0x00000000100055f4                float_table_shim_on_use_helper
  .text.float2double_shim
-                0x000000001000594c       0x30 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
-                0x000000001000594c                float2double_shim
+                0x0000000010005620       0x30 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_float/float_v1_rom_shim.S.obj
+                0x0000000010005620                float2double_shim
  .text.__wrap_malloc
-                0x000000001000597c       0x3c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj
-                0x000000001000597c                __wrap_malloc
+                0x0000000010005650       0x3c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj
+                0x0000000010005650                __wrap_malloc
  .text.__wrap_free
-                0x00000000100059b8       0x20 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj
-                0x00000000100059b8                __wrap_free
- .text          0x00000000100059d8       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x00000000100059d8                __aeabi_mem_init
- .text.memset   0x00000000100059e8        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x00000000100059e8                __wrap_memset
- .text.memcpy   0x00000000100059f4        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x00000000100059f4                __wrap___aeabi_memcpy
-                0x00000000100059f4                __wrap_memcpy
+                0x000000001000568c       0x20 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj
+                0x000000001000568c                __wrap_free
+ .text          0x00000000100056ac       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x00000000100056ac                __aeabi_mem_init
+ .text.memset   0x00000000100056bc        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x00000000100056bc                __wrap_memset
+ .text.memcpy   0x00000000100056c8        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x00000000100056c8                __wrap___aeabi_memcpy
+                0x00000000100056c8                __wrap_memcpy
  .text.stdio_out_chars_crlf.part.0
-                0x0000000010005a00       0x80 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x00000000100056d4       0x80 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.stdio_buffered_printer
-                0x0000000010005a80       0x78 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000000010005754       0x78 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .text.__wrap_putchar
-                0x0000000010005af8       0xb0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010005af8                __wrap_putchar
+                0x00000000100057cc       0xb0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x00000000100057cc                __wrap_putchar
  .text.__wrap_puts
-                0x0000000010005ba8      0x12c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010005ba8                __wrap_puts
+                0x000000001000587c      0x12c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x000000001000587c                __wrap_puts
  .text.stdio_set_driver_enabled
-                0x0000000010005cd4       0x3c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010005cd4                stdio_set_driver_enabled
+                0x00000000100059a8       0x3c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x00000000100059a8                stdio_set_driver_enabled
  .text.__wrap_vprintf
-                0x0000000010005d10       0xe8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010005d10                __wrap_vprintf
+                0x00000000100059e4       0xe8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x00000000100059e4                __wrap_vprintf
  .text.__wrap_printf
-                0x0000000010005df8       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010005df8                __wrap_printf
+                0x0000000010005acc       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000000010005acc                __wrap_printf
  .text.stdio_init_all
-                0x0000000010005e10        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010005e10                stdio_init_all
+                0x0000000010005ae4        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000000010005ae4                stdio_init_all
  .text.stdio_uart_out_chars
-                0x0000000010005e1c       0x4c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000010005af0       0x4c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .text.stdio_uart_in_chars
-                0x0000000010005e68       0x38 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
-                0x0000000010005e68                stdio_uart_in_chars
+                0x0000000010005b3c       0x38 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000010005b3c                stdio_uart_in_chars
  .text.stdio_uart_init
-                0x0000000010005ea0       0x48 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
-                0x0000000010005ea0                stdio_uart_init
+                0x0000000010005b74       0x48 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000010005b74                stdio_uart_init
  .text.resetd_init
-                0x0000000010005ee8        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x0000000010005bbc        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.resetd_reset
-                0x0000000010005eec        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x0000000010005bc0        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.resetd_open
-                0x0000000010005ef8       0x28 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x0000000010005bcc       0x28 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.resetd_control_complete_cb
-                0x0000000010005f20        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x0000000010005bf4        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.resetd_xfer_cb
-                0x0000000010005f24        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x0000000010005bf8        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.resetd_control_request_cb
-                0x0000000010005f28       0x5c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x0000000010005bfc       0x5c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .text.usbd_app_driver_get_cb
-                0x0000000010005f84        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
-                0x0000000010005f84                usbd_app_driver_get_cb
+                0x0000000010005c58        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x0000000010005c58                usbd_app_driver_get_cb
  .text.tud_cdc_line_coding_cb
-                0x0000000010005f90       0x34 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
-                0x0000000010005f90                tud_cdc_line_coding_cb
+                0x0000000010005c64       0x34 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x0000000010005c64                tud_cdc_line_coding_cb
  .text.stdio_usb_in_chars
-                0x0000000010005fc4       0x68 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
-                0x0000000010005fc4                stdio_usb_in_chars
+                0x0000000010005c98       0x68 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x0000000010005c98                stdio_usb_in_chars
  .text.stdio_usb_out_chars
-                0x000000001000602c       0xe8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x0000000010005d00       0xe8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .text.timer_task
-                0x0000000010006114       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x0000000010005de8       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .text.low_priority_worker_irq
-                0x0000000010006124       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x0000000010005df8       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .text.stdio_usb_init
-                0x0000000010006148       0x90 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
-                0x0000000010006148                stdio_usb_init
+                0x0000000010005e1c       0x90 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x0000000010005e1c                stdio_usb_init
  .text.tud_descriptor_device_cb
-                0x00000000100061d8        0x8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
-                0x00000000100061d8                tud_descriptor_device_cb
+                0x0000000010005eac        0x8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x0000000010005eac                tud_descriptor_device_cb
  .text.tud_descriptor_configuration_cb
-                0x00000000100061e0        0x8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
-                0x00000000100061e0                tud_descriptor_configuration_cb
+                0x0000000010005eb4        0x8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x0000000010005eb4                tud_descriptor_configuration_cb
  .text.tud_descriptor_string_cb
-                0x00000000100061e8       0x60 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
-                0x00000000100061e8                tud_descriptor_string_cb
+                0x0000000010005ebc       0x60 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x0000000010005ebc                tud_descriptor_string_cb
  .text.dcd_rp2040_irq
-                0x0000000010006248      0x130 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x0000000010005f1c      0x130 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  .text.dcd_int_enable
-                0x0000000010006378        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x0000000010006378                dcd_int_enable
+                0x000000001000604c        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x000000001000604c                dcd_int_enable
  .text.dcd_set_address
-                0x0000000010006384       0x30 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x0000000010006384                dcd_set_address
+                0x0000000010006058       0x30 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x0000000010006058                dcd_set_address
  .text.dcd_connect
-                0x00000000100063b4       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x00000000100063b4                dcd_connect
+                0x0000000010006088       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x0000000010006088                dcd_connect
  .text.dcd_init
-                0x00000000100063c4       0xa4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x00000000100063c4                dcd_init
+                0x0000000010006098       0xa4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x0000000010006098                dcd_init
  .text.dcd_edpt0_status_complete
-                0x0000000010006468       0x38 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x0000000010006468                dcd_edpt0_status_complete
+                0x000000001000613c       0x38 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x000000001000613c                dcd_edpt0_status_complete
  .text.dcd_edpt_open
-                0x00000000100064a0      0x148 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x00000000100064a0                dcd_edpt_open
+                0x0000000010006174      0x148 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x0000000010006174                dcd_edpt_open
  .text.dcd_edpt_xfer
-                0x00000000100065e8       0x2c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x00000000100065e8                dcd_edpt_xfer
+                0x00000000100062bc       0x2c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x00000000100062bc                dcd_edpt_xfer
  .text.dcd_edpt_stall
-                0x0000000010006614       0x50 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x0000000010006614                dcd_edpt_stall
+                0x00000000100062e8       0x50 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x00000000100062e8                dcd_edpt_stall
  .text.dcd_edpt_clear_stall
-                0x0000000010006664       0x4c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
-                0x0000000010006664                dcd_edpt_clear_stall
+                0x0000000010006338       0x4c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x0000000010006338                dcd_edpt_clear_stall
  .text._hw_endpoint_buffer_control_update32.part.0.isra.0
-                0x00000000100066b0       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x0000000010006384       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
  .text.rp2040_usb_init
-                0x00000000100066c8       0x50 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x00000000100066c8                rp2040_usb_init
+                0x000000001000639c       0x50 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x000000001000639c                rp2040_usb_init
  .text.hw_endpoint_reset_transfer
-                0x0000000010006718       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x0000000010006718                hw_endpoint_reset_transfer
+                0x00000000100063ec       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x00000000100063ec                hw_endpoint_reset_transfer
  .text._hw_endpoint_buffer_control_update32
-                0x000000001000672c       0x44 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x000000001000672c                _hw_endpoint_buffer_control_update32
+                0x0000000010006400       0x44 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x0000000010006400                _hw_endpoint_buffer_control_update32
  .text._hw_endpoint_xfer_continue
-                0x0000000010006770      0x104 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x0000000010006770                _hw_endpoint_xfer_continue
+                0x0000000010006444      0x104 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x0000000010006444                _hw_endpoint_xfer_continue
  .text._hw_endpoint_xfer
-                0x0000000010006874       0xb0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
-                0x0000000010006874                _hw_endpoint_xfer
+                0x0000000010006548       0xb0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x0000000010006548                _hw_endpoint_xfer
  .text.tud_mounted
-                0x0000000010006924       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x0000000010006924                tud_mounted
+                0x00000000100065f8       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x00000000100065f8                tud_mounted
  .text.tud_suspended
-                0x0000000010006934       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x0000000010006934                tud_suspended
+                0x0000000010006608       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x0000000010006608                tud_suspended
  .text.tud_init
-                0x0000000010006944       0xb8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x0000000010006944                tud_init
+                0x0000000010006618       0xb8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x0000000010006618                tud_init
  .text.tud_task
-                0x00000000100069fc      0x854 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x00000000100069fc                tud_task
+                0x00000000100066d0      0x854 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x00000000100066d0                tud_task
  .text.dcd_event_bus_signal
-                0x0000000010007250       0xe4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x0000000010007250                dcd_event_bus_signal
+                0x0000000010006f24       0xe4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x0000000010006f24                dcd_event_bus_signal
  .text.dcd_event_setup_received
-                0x0000000010007334       0x50 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x0000000010007334                dcd_event_setup_received
+                0x0000000010007008       0x50 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x0000000010007008                dcd_event_setup_received
  .text.dcd_event_xfer_complete
-                0x0000000010007384       0x68 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x0000000010007384                dcd_event_xfer_complete
+                0x0000000010007058       0x68 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x0000000010007058                dcd_event_xfer_complete
  .text.usbd_open_edpt_pair
-                0x00000000100073ec       0x68 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x00000000100073ec                usbd_open_edpt_pair
+                0x00000000100070c0       0x68 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x00000000100070c0                usbd_open_edpt_pair
  .text.usbd_edpt_open
-                0x0000000010007454        0x8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x0000000010007454                usbd_edpt_open
+                0x0000000010007128        0x8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x0000000010007128                usbd_edpt_open
  .text.usbd_edpt_claim
-                0x000000001000745c       0x64 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x000000001000745c                usbd_edpt_claim
+                0x0000000010007130       0x64 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x0000000010007130                usbd_edpt_claim
  .text.usbd_edpt_release
-                0x00000000100074c0       0x4c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x00000000100074c0                usbd_edpt_release
+                0x0000000010007194       0x4c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x0000000010007194                usbd_edpt_release
  .text.usbd_edpt_xfer
-                0x000000001000750c       0x44 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x000000001000750c                usbd_edpt_xfer
+                0x00000000100071e0       0x44 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x00000000100071e0                usbd_edpt_xfer
  .text.tud_control_status
-                0x0000000010007550       0x2c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x0000000010007550                tud_control_status
+                0x0000000010007224       0x2c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x0000000010007224                tud_control_status
  .text.tud_control_xfer
-                0x000000001000757c       0xac CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x000000001000757c                tud_control_xfer
+                0x0000000010007250       0xac CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x0000000010007250                tud_control_xfer
  .text.usbd_control_reset
-                0x0000000010007628       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x0000000010007628                usbd_control_reset
+                0x00000000100072fc       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x00000000100072fc                usbd_control_reset
  .text.usbd_control_set_complete_callback
-                0x000000001000763c        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x000000001000763c                usbd_control_set_complete_callback
+                0x0000000010007310        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x0000000010007310                usbd_control_set_complete_callback
  .text.usbd_control_set_request
-                0x0000000010007648       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x0000000010007648                usbd_control_set_request
+                0x000000001000731c       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x000000001000731c                usbd_control_set_request
  .text.usbd_control_xfer_cb
-                0x0000000010007664       0xe4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
-                0x0000000010007664                usbd_control_xfer_cb
+                0x0000000010007338       0xe4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x0000000010007338                usbd_control_xfer_cb
  .text.tud_cdc_n_connected
-                0x0000000010007748       0x34 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x0000000010007748                tud_cdc_n_connected
+                0x000000001000741c       0x34 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x000000001000741c                tud_cdc_n_connected
  .text.tud_cdc_n_available
-                0x000000001000777c       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x000000001000777c                tud_cdc_n_available
+                0x0000000010007450       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x0000000010007450                tud_cdc_n_available
  .text.tud_cdc_n_read
-                0x0000000010007798       0x74 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x0000000010007798                tud_cdc_n_read
+                0x000000001000746c       0x74 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x000000001000746c                tud_cdc_n_read
  .text.tud_cdc_n_write_flush
-                0x000000001000780c       0xa0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x000000001000780c                tud_cdc_n_write_flush
+                0x00000000100074e0       0xa0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x00000000100074e0                tud_cdc_n_write_flush
  .text.tud_cdc_n_write
-                0x00000000100078ac       0x38 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x00000000100078ac                tud_cdc_n_write
+                0x0000000010007580       0x38 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x0000000010007580                tud_cdc_n_write
  .text.tud_cdc_n_write_available
-                0x00000000100078e4       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x00000000100078e4                tud_cdc_n_write_available
+                0x00000000100075b8       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x00000000100075b8                tud_cdc_n_write_available
  .text.cdcd_init
-                0x0000000010007900       0x78 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x0000000010007900                cdcd_init
+                0x00000000100075d4       0x78 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x00000000100075d4                cdcd_init
  .text.cdcd_reset
-                0x0000000010007978       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x0000000010007978                cdcd_reset
+                0x000000001000764c       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x000000001000764c                cdcd_reset
  .text.cdcd_open
-                0x000000001000799c       0xe8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x000000001000799c                cdcd_open
+                0x0000000010007670       0xe8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x0000000010007670                cdcd_open
  .text.cdcd_control_complete
-                0x0000000010007a84       0x40 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x0000000010007a84                cdcd_control_complete
+                0x0000000010007758       0x40 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x0000000010007758                cdcd_control_complete
  .text.cdcd_control_request
-                0x0000000010007ac4       0x6c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x0000000010007ac4                cdcd_control_request
+                0x0000000010007798       0x6c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x0000000010007798                cdcd_control_request
  .text.cdcd_xfer_cb
-                0x0000000010007b30      0x14c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
-                0x0000000010007b30                cdcd_xfer_cb
+                0x0000000010007804      0x14c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x0000000010007804                cdcd_xfer_cb
  .text.tusb_init
-                0x0000000010007c7c       0x20 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x0000000010007c7c                tusb_init
+                0x0000000010007950       0x20 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x0000000010007950                tusb_init
  .text.tusb_inited
-                0x0000000010007c9c        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/tusb.c.obj
-                0x0000000010007c9c                tusb_inited
+                0x0000000010007970        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/tusb.c.obj
+                0x0000000010007970                tusb_inited
  .text.tu_fifo_config
-                0x0000000010007ca8       0x78 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x0000000010007ca8                tu_fifo_config
+                0x000000001000797c       0x78 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x000000001000797c                tu_fifo_config
  .text.tu_fifo_count
-                0x0000000010007d20       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x0000000010007d20                tu_fifo_count
+                0x00000000100079f4       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x00000000100079f4                tu_fifo_count
  .text.tu_fifo_remaining
-                0x0000000010007d38       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x0000000010007d38                tu_fifo_remaining
+                0x0000000010007a0c       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x0000000010007a0c                tu_fifo_remaining
  .text.tu_fifo_read
-                0x0000000010007d54       0xa8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x0000000010007d54                tu_fifo_read
+                0x0000000010007a28       0xa8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x0000000010007a28                tu_fifo_read
  .text.tu_fifo_read_n
-                0x0000000010007dfc       0xe8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x0000000010007dfc                tu_fifo_read_n
+                0x0000000010007ad0       0xe8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x0000000010007ad0                tu_fifo_read_n
  .text.tu_fifo_write
-                0x0000000010007ee4       0x84 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x0000000010007ee4                tu_fifo_write
+                0x0000000010007bb8       0x84 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x0000000010007bb8                tu_fifo_write
  .text.tu_fifo_write_n
-                0x0000000010007f68       0xf4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x0000000010007f68                tu_fifo_write_n
+                0x0000000010007c3c       0xf4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x0000000010007c3c                tu_fifo_write_n
  .text.tu_fifo_clear
-                0x000000001000805c       0x2c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
-                0x000000001000805c                tu_fifo_clear
+                0x0000000010007d30       0x2c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/common/tusb_fifo.c.obj
+                0x0000000010007d30                tu_fifo_clear
  .text.pio_claim_unused_sm
-                0x0000000010008088       0x3c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
-                0x0000000010008088                pio_claim_unused_sm
+                0x0000000010007d5c       0x3c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
+                0x0000000010007d5c                pio_claim_unused_sm
  .text.pio_add_program
-                0x00000000100080c4       0xf0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
-                0x00000000100080c4                pio_add_program
+                0x0000000010007d98       0xf0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
+                0x0000000010007d98                pio_add_program
  .text.pio_sm_set_consecutive_pindirs
-                0x00000000100081b4       0x84 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
-                0x00000000100081b4                pio_sm_set_consecutive_pindirs
+                0x0000000010007e88       0x84 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
+                0x0000000010007e88                pio_sm_set_consecutive_pindirs
  .text.pio_sm_init
-                0x0000000010008238       0x9c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
-                0x0000000010008238                pio_sm_init
+                0x0000000010007f0c       0x9c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
+                0x0000000010007f0c                pio_sm_init
  .text.dma_claim_unused_channel
-                0x00000000100082d4       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
-                0x00000000100082d4                dma_claim_unused_channel
+                0x0000000010007fa8       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
+                0x0000000010007fa8                dma_claim_unused_channel
  .text.core1_trampoline
-                0x00000000100082f8        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
+                0x0000000010007fcc        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
  .text.core1_wrapper
-                0x00000000100082fc        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
-                0x00000000100082fc                core1_wrapper
+                0x0000000010007fd0        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
+                0x0000000010007fd0                core1_wrapper
  .text.multicore_launch_core1
-                0x0000000010008308       0xb0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
-                0x0000000010008308                multicore_launch_core1
- .text.atexit   0x00000000100083b8       0x10 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-atexit.o)
-                0x00000000100083b8                atexit
+                0x0000000010007fdc       0xb0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
+                0x0000000010007fdc                multicore_launch_core1
+ .text.atexit   0x000000001000808c       0x10 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-atexit.o)
+                0x000000001000808c                atexit
  .text.__libc_fini_array
-                0x00000000100083c8       0x28 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-fini.o)
-                0x00000000100083c8                __libc_fini_array
+                0x000000001000809c       0x28 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-fini.o)
+                0x000000001000809c                __libc_fini_array
  .text.__retarget_lock_acquire_recursive
-                0x00000000100083f0        0x4 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-lock.o)
-                0x00000000100083f0                __retarget_lock_acquire_recursive
+                0x00000000100080c4        0x4 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-lock.o)
+                0x00000000100080c4                __retarget_lock_acquire_recursive
  .text.__retarget_lock_release_recursive
-                0x00000000100083f4        0x4 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-lock.o)
-                0x00000000100083f4                __retarget_lock_release_recursive
- .text.malloc   0x00000000100083f8       0x14 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-malloc.o)
-                0x00000000100083f8                malloc
- .text.free     0x000000001000840c       0x14 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-malloc.o)
-                0x000000001000840c                free
+                0x00000000100080c8        0x4 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-lock.o)
+                0x00000000100080c8                __retarget_lock_release_recursive
+ .text.malloc   0x00000000100080cc       0x14 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-malloc.o)
+                0x00000000100080cc                malloc
+ .text.free     0x00000000100080e0       0x14 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-malloc.o)
+                0x00000000100080e0                free
  .text._malloc_r
-                0x0000000010008420      0x574 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-mallocr.o)
-                0x0000000010008420                _malloc_r
+                0x00000000100080f4      0x574 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-mallocr.o)
+                0x00000000100080f4                _malloc_r
  .text.__malloc_lock
-                0x0000000010008994       0x10 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-mlock.o)
-                0x0000000010008994                __malloc_lock
+                0x0000000010008668       0x10 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-mlock.o)
+                0x0000000010008668                __malloc_lock
  .text.__malloc_unlock
-                0x00000000100089a4       0x10 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-mlock.o)
-                0x00000000100089a4                __malloc_unlock
- .text._sbrk_r  0x00000000100089b4       0x24 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-sbrkr.o)
-                0x00000000100089b4                _sbrk_r
- .text.strlen   0x00000000100089d8       0x5c /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-strlen-stub.o)
-                0x00000000100089d8                strlen
+                0x0000000010008678       0x10 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-mlock.o)
+                0x0000000010008678                __malloc_unlock
+ .text._sbrk_r  0x0000000010008688       0x24 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-sbrkr.o)
+                0x0000000010008688                _sbrk_r
+ .text.strlen   0x00000000100086ac       0x5c /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-strlen-stub.o)
+                0x00000000100086ac                strlen
  .text.__register_exitproc
-                0x0000000010008a34       0xac /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-__atexit.o)
-                0x0000000010008a34                __register_exitproc
+                0x0000000010008708       0xac /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-__atexit.o)
+                0x0000000010008708                __register_exitproc
  .text.startup.register_fini
-                0x0000000010008ae0       0x18 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-__call_atexit.o)
+                0x00000000100087b4       0x18 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-__call_atexit.o)
  .text._malloc_trim_r
-                0x0000000010008af8       0x9c /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-freer.o)
-                0x0000000010008af8                _malloc_trim_r
- .text._free_r  0x0000000010008b94      0x1d4 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-freer.o)
-                0x0000000010008b94                _free_r
+                0x00000000100087cc       0x9c /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-freer.o)
+                0x00000000100087cc                _malloc_trim_r
+ .text._free_r  0x0000000010008868      0x1d4 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-freer.o)
+                0x0000000010008868                _free_r
  *(.fini)
- .fini          0x0000000010008d68        0x4 /usr/lib/gcc/arm-none-eabi/12.2.0/thumb/v6-m/nofp/crti.o
-                0x0000000010008d68                _fini
- *fill*         0x0000000010008d6c        0x4 
- .fini.__stub   0x0000000010008d70       0x60 linker stubs
+ .fini          0x0000000010008a3c        0x4 /usr/lib/gcc/arm-none-eabi/12.2.0/thumb/v6-m/nofp/crti.o
+                0x0000000010008a3c                _fini
+ .fini.__stub   0x0000000010008a40       0x60 linker stubs
  *crtbegin.o(.ctors)
  *crtbegin?.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
@@ -2487,175 +2483,178 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
  *(.eh_frame*)
- .eh_frame      0x0000000010008dd0        0x0 /usr/lib/gcc/arm-none-eabi/12.2.0/thumb/v6-m/nofp/crtbegin.o
-                0x0000000010008dd0                . = ALIGN (0x4)
+ .eh_frame      0x0000000010008aa0        0x0 /usr/lib/gcc/arm-none-eabi/12.2.0/thumb/v6-m/nofp/crtbegin.o
+                0x0000000010008aa0                . = ALIGN (0x4)
 
-.glue_7         0x0000000010008dd0        0x0
- .glue_7        0x0000000010008dd0        0x0 linker stubs
+.glue_7         0x0000000010008aa0        0x0
+ .glue_7        0x0000000010008aa0        0x0 linker stubs
 
-.glue_7t        0x0000000010008dd0        0x0
- .glue_7t       0x0000000010008dd0        0x0 linker stubs
+.glue_7t        0x0000000010008aa0        0x0
+ .glue_7t       0x0000000010008aa0        0x0 linker stubs
 
-.vfp11_veneer   0x0000000010008dd0        0x0
- .vfp11_veneer  0x0000000010008dd0        0x0 linker stubs
+.vfp11_veneer   0x0000000010008aa0        0x0
+ .vfp11_veneer  0x0000000010008aa0        0x0 linker stubs
 
-.v4_bx          0x0000000010008dd0        0x0
- .v4_bx         0x0000000010008dd0        0x0 linker stubs
+.v4_bx          0x0000000010008aa0        0x0
+ .v4_bx         0x0000000010008aa0        0x0 linker stubs
 
-.iplt           0x0000000010008dd0        0x0
- .iplt          0x0000000010008dd0        0x0 /usr/lib/gcc/arm-none-eabi/12.2.0/thumb/v6-m/nofp/crtbegin.o
+.iplt           0x0000000010008aa0        0x0
+ .iplt          0x0000000010008aa0        0x0 /usr/lib/gcc/arm-none-eabi/12.2.0/thumb/v6-m/nofp/crtbegin.o
 
-.rodata         0x0000000010008dd0      0x764
+.rodata         0x0000000010008aa0      0x794
  *(EXCLUDE_FILE(*libm.a: *libc.a:*lib_a-mem*.o *libgcc.a:) .rodata*)
+ .rodata.draw.str1.4
+                0x0000000010008aa0       0x1f CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+ *fill*         0x0000000010008abf        0x1 
  .rodata.dma_handler.str1.4
-                0x0000000010008dd0       0x42 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
- *fill*         0x0000000010008e12        0x2 
+                0x0000000010008ac0       0x42 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+ *fill*         0x0000000010008b02        0x2 
  .rodata.serialReceiver.str1.4
-                0x0000000010008e14       0xe8 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+                0x0000000010008b04       0xf8 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
  .rodata.main.str1.4
-                0x0000000010008efc       0x14 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+                0x0000000010008bfc       0x14 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
  .rodata.clocked_input_program
-                0x0000000010008f10        0x6 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
- *fill*         0x0000000010008f16        0x2 
+                0x0000000010008c10        0x6 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+ *fill*         0x0000000010008c16        0x2 
  .rodata.clocked_input_program_instructions
-                0x0000000010008f18        0x6 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
- *fill*         0x0000000010008f1e        0x2 
+                0x0000000010008c18        0x6 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+ *fill*         0x0000000010008c1e        0x2 
  .rodata.picostepper_two_wire_reversed_program
-                0x0000000010008f20        0x6 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
- *fill*         0x0000000010008f26        0x2 
+                0x0000000010008c20        0x6 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+ *fill*         0x0000000010008c26        0x2 
  .rodata.picostepper_two_wire_reversed_program_instructions
-                0x0000000010008f28       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+                0x0000000010008c28       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
  .rodata.picostepper_two_wire_program
-                0x0000000010008f44        0x6 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
- *fill*         0x0000000010008f4a        0x2 
+                0x0000000010008c44        0x6 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+ *fill*         0x0000000010008c4a        0x2 
  .rodata.picostepper_two_wire_program_instructions
-                0x0000000010008f4c       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
+                0x0000000010008c4c       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
  .rodata.spin_lock_claim_unused.str1.4
-                0x0000000010008f68       0x1b CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
- *fill*         0x0000000010008f83        0x1 
+                0x0000000010008c68       0x1b CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+ *fill*         0x0000000010008c83        0x1 
  .rodata.hardware_alarm_claim.str1.4
-                0x0000000010008f84       0x22 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
- *fill*         0x0000000010008fa6        0x2 
+                0x0000000010008c84       0x22 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+ *fill*         0x0000000010008ca6        0x2 
  .rodata.panic.str1.4
-                0x0000000010008fa8       0x12 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
- *fill*         0x0000000010008fba        0x2 
+                0x0000000010008ca8       0x12 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+ *fill*         0x0000000010008cba        0x2 
  .rodata.hard_assertion_failure.str1.4
-                0x0000000010008fbc        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x0000000010008cbc        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
  .rodata._ftoa.str1.4
-                0x0000000010008fc8       0x15 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- *fill*         0x0000000010008fdd        0x3 
+                0x0000000010008cc8       0x15 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ *fill*         0x0000000010008cdd        0x3 
  .rodata._vsnprintf
-                0x0000000010008fe0      0x19c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
- *fill*         0x000000001000917c        0x4 
+                0x0000000010008ce0      0x19c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+ *fill*         0x0000000010008e7c        0x4 
  .rodata.pow10.0
-                0x0000000010009180       0x50 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010008e80       0x50 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .rodata.__wrap_malloc.str1.4
-                0x00000000100091d0        0xe CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj
- *fill*         0x00000000100091de        0x2 
+                0x0000000010008ed0        0xe CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_malloc/pico_malloc.c.obj
+ *fill*         0x0000000010008ede        0x2 
  .rodata.str1.4
-                0x00000000100091e0       0x44 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010008ee0       0x44 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_81
-                0x0000000010009224        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010008f24        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_75
-                0x0000000010009230        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010008f30        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.__bi_44
-                0x000000001000923c        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010008f3c        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .rodata.crlf_str.0
-                0x0000000010009248        0x2 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
- *fill*         0x000000001000924a        0x2 
+                0x0000000010008f48        0x2 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+ *fill*         0x0000000010008f4a        0x2 
  .rodata.str1.4
-                0x000000001000924c       0x2c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000010008f4c       0x2c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .rodata.__bi_28.4
-                0x0000000010009278        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000010008f78        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .rodata.__bi_29.5
-                0x0000000010009284        0x8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000010008f84        0x8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .rodata._resetd_driver
-                0x000000001000928c       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
+                0x0000000010008f8c       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/reset_interface.c.obj
  .rodata.str1.4
-                0x00000000100092a8       0x13 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
- *fill*         0x00000000100092bb        0x1 
+                0x0000000010008fa8       0x13 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+ *fill*         0x0000000010008fbb        0x1 
  .rodata.__bi_93.0
-                0x00000000100092bc        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x0000000010008fbc        0xc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
  .rodata.str1.4
-                0x00000000100092c8       0x3a CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
- *fill*         0x0000000010009302        0x2 
+                0x0000000010008fc8       0x3a CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+ *fill*         0x0000000010009002        0x2 
  .rodata.usbd_desc_str
-                0x0000000010009304       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x0000000010009004       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
  .rodata.usbd_desc_cfg
-                0x000000001000931c       0x54 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+                0x000000001000901c       0x54 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
  .rodata.usbd_desc_device
-                0x0000000010009370       0x12 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
- *fill*         0x0000000010009382        0x2 
+                0x0000000010009070       0x12 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+ *fill*         0x0000000010009082        0x2 
  .rodata.dcd_rp2040_irq.str1.4
-                0x0000000010009384       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x0000000010009084       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  .rodata.dcd_edpt_open.str1.4
-                0x0000000010009398       0x28 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x0000000010009098       0x28 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  .rodata._hw_endpoint_buffer_control_update32.part.0.isra.0.str1.4
-                0x00000000100093c0       0x1f CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
- *fill*         0x00000000100093df        0x1 
+                0x00000000100090c0       0x1f CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+ *fill*         0x00000000100090df        0x1 
  .rodata._hw_endpoint_xfer_continue.str1.4
-                0x00000000100093e0       0x50 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x00000000100090e0       0x50 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
  .rodata.str1.4
-                0x0000000010009430       0x50 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
+                0x0000000010009130       0x50 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/rp2040_usb.c.obj
                                           0x7 (size before relaxing)
  .rodata.tud_task
-                0x0000000010009430       0x8c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x0000000010009130       0x8c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .rodata._usbd_driver
-                0x00000000100094bc       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x00000000100091bc       0x1c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .rodata.pio_claim_unused_sm.str1.4
-                0x00000000100094d8       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
+                0x00000000100091d8       0x24 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
  .rodata.pio_add_program.str1.4
-                0x00000000100094fc       0x11 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
- *fill*         0x000000001000950d        0x3 
+                0x00000000100091fc       0x11 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
+ *fill*         0x000000001000920d        0x3 
  .rodata.dma_claim_unused_channel.str1.4
-                0x0000000010009510       0x1e CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
- *fill*         0x000000001000952e        0x2 
+                0x0000000010009210       0x1e CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
+ *fill*         0x000000001000922e        0x2 
  .rodata._global_impure_ptr
-                0x0000000010009530        0x4 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-impure.o)
-                0x0000000010009530                _global_impure_ptr
-                0x0000000010009534                . = ALIGN (0x4)
+                0x0000000010009230        0x4 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-impure.o)
+                0x0000000010009230                _global_impure_ptr
+                0x0000000010009234                . = ALIGN (0x4)
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.flashdata*)))
-                0x0000000010009534                . = ALIGN (0x4)
+                0x0000000010009234                . = ALIGN (0x4)
 
-.rel.dyn        0x0000000010009534        0x0
- .rel.iplt      0x0000000010009534        0x0 /usr/lib/gcc/arm-none-eabi/12.2.0/thumb/v6-m/nofp/crtbegin.o
+.rel.dyn        0x0000000010009234        0x0
+ .rel.iplt      0x0000000010009234        0x0 /usr/lib/gcc/arm-none-eabi/12.2.0/thumb/v6-m/nofp/crtbegin.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0000000010009534                __exidx_start = .
+                0x0000000010009234                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x0000000010009534                __exidx_end = .
-                0x0000000010009534                . = ALIGN (0x4)
-                0x0000000010009534                __binary_info_start = .
+                0x0000000010009234                __exidx_end = .
+                0x0000000010009234                . = ALIGN (0x4)
+                0x0000000010009234                __binary_info_start = .
 
-.binary_info    0x0000000010009534       0x28
+.binary_info    0x0000000010009234       0x28
  *(.binary_info.keep.*)
  .binary_info.keep.__bi_ptr81
-                0x0000000010009534        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010009234        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr75
-                0x0000000010009538        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010009238        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr50
-                0x000000001000953c        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x000000001000923c        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr44
-                0x0000000010009540        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010009240        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr38
-                0x0000000010009544        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010009244        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr30
-                0x0000000010009548        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x0000000010009248        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  .binary_info.keep.__bi_ptr22
-                0x000000001000954c        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
+                0x000000001000924c        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/binary_info.c.obj
  *(.binary_info.*)
  .binary_info.__bi_ptr29
-                0x0000000010009550        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000010009250        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .binary_info.__bi_ptr28
-                0x0000000010009554        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
+                0x0000000010009254        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_uart/stdio_uart.c.obj
  .binary_info.__bi_ptr93
-                0x0000000010009558        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
-                0x000000001000955c                __binary_info_end = .
-                0x000000001000955c                . = ALIGN (0x4)
-                0x000000001000955c                __etext = .
+                0x0000000010009258        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
+                0x000000001000925c                __binary_info_end = .
+                0x000000001000925c                . = ALIGN (0x4)
+                0x000000001000925c                __etext = .
 
 .ram_vector_table
                 0x0000000020000000       0xc0
@@ -2664,7 +2663,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/
                 0x0000000020000000       0xc0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
                 0x0000000020000000                ram_vector_table
 
-.data           0x00000000200000c0      0xacc load address 0x000000001000955c
+.data           0x00000000200000c0      0xacc load address 0x000000001000925c
                 0x00000000200000c0                __data_start__ = .
  *(vtable)
  *(.time_critical*)
@@ -2689,11 +2688,9 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/
  *(.rodata*)
                 0x0000000020000238                . = ALIGN (0x4)
  *(.data*)
- .data.first    0x0000000020000238        0x1 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
-                0x0000000020000238                first
  .data.striped_spin_lock_num
-                0x0000000020000239        0x1 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
- *fill*         0x000000002000023a        0x2 
+                0x0000000020000238        0x1 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+ *fill*         0x0000000020000239        0x3 
  .data.default_alarm_pool
                 0x000000002000023c       0x18 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
  .data.default_alarm_pool_heap
@@ -2780,27 +2777,27 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/
                 0x0000000020000b8c                . = ALIGN (0x4)
                 0x0000000020000b8c                __data_end__ = .
 
-.igot.plt       0x0000000020000b8c        0x0 load address 0x000000001000a028
+.igot.plt       0x0000000020000b8c        0x0 load address 0x0000000010009d28
  .igot.plt      0x0000000020000b8c        0x0 /usr/lib/gcc/arm-none-eabi/12.2.0/thumb/v6-m/nofp/crtbegin.o
 
 .uninitialized_data
-                0x0000000020000b8c        0x0 load address 0x000000001000a028
+                0x0000000020000b8c        0x0 load address 0x0000000010009d28
                 0x0000000020000b8c                . = ALIGN (0x4)
  *(.uninitialized_data*)
 
-.scratch_x      0x0000000020040000        0x0 load address 0x000000001000a028
+.scratch_x      0x0000000020040000        0x0 load address 0x0000000010009d28
                 0x0000000020040000                __scratch_x_start__ = .
  *(.scratch_x.*)
                 0x0000000020040000                . = ALIGN (0x4)
                 0x0000000020040000                __scratch_x_end__ = .
-                0x000000001000a028                __scratch_x_source__ = LOADADDR (.scratch_x)
+                0x0000000010009d28                __scratch_x_source__ = LOADADDR (.scratch_x)
 
-.scratch_y      0x0000000020041000        0x0 load address 0x000000001000a028
+.scratch_y      0x0000000020041000        0x0 load address 0x0000000010009d28
                 0x0000000020041000                __scratch_y_start__ = .
  *(.scratch_y.*)
                 0x0000000020041000                . = ALIGN (0x4)
                 0x0000000020041000                __scratch_y_end__ = .
-                0x000000001000a028                __scratch_y_source__ = LOADADDR (.scratch_y)
+                0x0000000010009d28                __scratch_y_source__ = LOADADDR (.scratch_y)
 
 .bss            0x0000000020000b90     0x121c
                 0x0000000020000b90                . = ALIGN (0x4)
@@ -2812,95 +2809,95 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/
                 0x0000000020000bb8      0x100 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
  .bss.last_avail_time.1
                 0x0000000020000cb8        0x8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb.c.obj
- .bss.positions
-                0x0000000020000cc0        0x8 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
-                0x0000000020000cc0                positions
- .bss.sd_table  0x0000000020000cc8      0x100 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
-                0x0000000020000cc8                sd_table
- .bss.sf_table  0x0000000020000dc8      0x100 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
-                0x0000000020000dc8                sf_table
- .bss.XAxis     0x0000000020000ec8        0x4 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
-                0x0000000020000ec8                XAxis
- .bss.YAxis     0x0000000020000ecc        0x4 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
-                0x0000000020000ecc                YAxis
+ .bss.sd_table  0x0000000020000cc0      0x100 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_double/double_init_rom.c.obj
+                0x0000000020000cc0                sd_table
+ .bss.sf_table  0x0000000020000dc0      0x100 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_float/float_init_rom.c.obj
+                0x0000000020000dc0                sf_table
+ .bss.XAxis     0x0000000020000ec0        0x4 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+                0x0000000020000ec0                XAxis
+ .bss.YAxis     0x0000000020000ec4        0x4 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+                0x0000000020000ec4                YAxis
  .bss.__lock___atexit_recursive_mutex
-                0x0000000020000ed0        0x1 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-lock.o)
-                0x0000000020000ed0                __lock___atexit_recursive_mutex
- *fill*         0x0000000020000ed1        0x3 
+                0x0000000020000ec8        0x1 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-lock.o)
+                0x0000000020000ec8                __lock___atexit_recursive_mutex
+ *fill*         0x0000000020000ec9        0x3 
  .bss.__lock___malloc_recursive_mutex
-                0x0000000020000ed4        0x1 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-lock.o)
-                0x0000000020000ed4                __lock___malloc_recursive_mutex
- *fill*         0x0000000020000ed5        0x3 
+                0x0000000020000ecc        0x1 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-lock.o)
+                0x0000000020000ecc                __lock___malloc_recursive_mutex
+ *fill*         0x0000000020000ecd        0x3 
  .bss.__malloc_current_mallinfo
-                0x0000000020000ed8       0x28 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-mallocr.o)
-                0x0000000020000ed8                __malloc_current_mallinfo
+                0x0000000020000ed0       0x28 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-mallocr.o)
+                0x0000000020000ed0                __malloc_current_mallinfo
  .bss.__malloc_max_sbrked_mem
-                0x0000000020000f00        0x4 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-mallocr.o)
-                0x0000000020000f00                __malloc_max_sbrked_mem
+                0x0000000020000ef8        0x4 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-mallocr.o)
+                0x0000000020000ef8                __malloc_max_sbrked_mem
  .bss.__malloc_max_total_mem
-                0x0000000020000f04        0x4 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-mallocr.o)
-                0x0000000020000f04                __malloc_max_total_mem
+                0x0000000020000efc        0x4 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-mallocr.o)
+                0x0000000020000efc                __malloc_max_total_mem
  .bss.__malloc_top_pad
-                0x0000000020000f08        0x4 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-mallocr.o)
-                0x0000000020000f08                __malloc_top_pad
+                0x0000000020000f00        0x4 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-mallocr.o)
+                0x0000000020000f00                __malloc_top_pad
  .bss._app_driver
-                0x0000000020000f0c        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x0000000020000f04        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .bss._cdcd_itf
-                0x0000000020000f10      0x2d0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
+                0x0000000020000f08      0x2d0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/class/cdc/cdc_device.c.obj
  .bss._ctrl_xfer
-                0x00000000200011e0       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x00000000200011d8       0x14 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
  .bss._ubsd_mutexdef
-                0x00000000200011f4        0x8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x00000000200011ec        0x8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .bss._usbd_ctrl_buf
-                0x00000000200011fc       0x40 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
+                0x00000000200011f4       0x40 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd_control.c.obj
  .bss._usbd_dev
-                0x000000002000123c       0x37 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- *fill*         0x0000000020001273        0x1 
+                0x0000000020001234       0x37 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ *fill*         0x000000002000126b        0x1 
  .bss._usbd_mutex
-                0x0000000020001274        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
- .bss._usbd_q   0x0000000020001278        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x000000002000126c        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+ .bss._usbd_q   0x0000000020001270        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
  .bss._usbd_qdef_buf
-                0x000000002000127c       0xc0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
-                0x000000002000127c                _usbd_qdef_buf
+                0x0000000020001274       0xc0 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/device/usbd.c.obj
+                0x0000000020001274                _usbd_qdef_buf
  .bss._used_instruction_space
-                0x000000002000133c        0x8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
+                0x0000000020001334        0x8 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
  .bss.alarm_callbacks
-                0x0000000020001344       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
+                0x000000002000133c       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_timer/timer.c.obj
  .bss.buffer_one
-                0x0000000020001354        0xc CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
-                0x0000000020001354                buffer_one
+                0x000000002000134c        0xc CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+                0x000000002000134c                buffer_one
  .bss.buffer_two
-                0x0000000020001360        0xc CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
-                0x0000000020001360                buffer_two
- .bss.claimed   0x000000002000136c        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
+                0x0000000020001358        0xc CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+                0x0000000020001358                buffer_two
+ .bss.claimed   0x0000000020001364        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_sync/sync.c.obj
  .bss.default_alarm_pool_entry_ids_high
-                0x0000000020001370       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000020001368       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
  .bss.default_alarm_pool_heap_nodes
-                0x0000000020001380       0x30 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000020001378       0x30 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
  .bss.desc_str.0
-                0x00000000200013b0       0x28 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
- .bss.devices   0x00000000200013d8        0x8 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
-                0x00000000200013d8                devices
- .bss.dma_chan  0x00000000200013e0        0x4 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
-                0x00000000200013e0                dma_chan
- .bss.drivers   0x00000000200013e4        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
- .bss.errno     0x00000000200013e8        0x4 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-reent.o)
-                0x00000000200013e8                errno
- .bss.filter    0x00000000200013ec        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+                0x00000000200013a8       0x28 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio_usb/stdio_usb_descriptors.c.obj
+ .bss.devices   0x00000000200013d0        0x8 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+                0x00000000200013d0                devices
+ .bss.dma_chan  0x00000000200013d8        0x4 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+                0x00000000200013d8                dma_chan
+ .bss.drivers   0x00000000200013dc        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
+ .bss.errno     0x00000000200013e0        0x4 /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libc.a(lib_a-reent.o)
+                0x00000000200013e0                errno
+ .bss.filter    0x00000000200013e4        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_stdio/stdio.c.obj
  .bss.heap_end.0
-                0x00000000200013f0        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
+                0x00000000200013e8        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_runtime/runtime.c.obj
  .bss.hw_endpoints
-                0x00000000200013f4      0x680 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+                0x00000000200013ec      0x680 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
  .bss.lazy_vsnprintf
-                0x0000000020001a74        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000020001a6c        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_printf/printf.c.obj
  .bss.load_value
-                0x0000000020001a78        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
+                0x0000000020001a70        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_watchdog/watchdog.c.obj
  .bss.next_buffer_ptr
-                0x0000000020001a7c        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
- .bss.object.0  0x0000000020001a80       0x18 /usr/lib/gcc/arm-none-eabi/12.2.0/thumb/v6-m/nofp/crtbegin.o
- .bss.pio       0x0000000020001a98        0x4 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
-                0x0000000020001a98                pio
- .bss.pools     0x0000000020001a9c       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
+                0x0000000020001a74        0x4 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/lib/tinyusb/src/portable/raspberrypi/rp2040/dcd_rp2040.c.obj
+ .bss.object.0  0x0000000020001a78       0x18 /usr/lib/gcc/arm-none-eabi/12.2.0/thumb/v6-m/nofp/crtbegin.o
+ .bss.pio       0x0000000020001a90        0x4 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+                0x0000000020001a90                pio
+ .bss.pools     0x0000000020001a94       0x10 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/common/pico_time/time.c.obj
+ .bss.positions
+                0x0000000020001aa4        0x8 CMakeFiles/Halloween-Laser.dir/Halloween-Laser.c.obj
+                0x0000000020001aa4                positions
  .bss.psc       0x0000000020001aac      0x2cc CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/PicoStepper/src/picostepper/picostepper.c.obj
                 0x0000000020001aac                psc
  .bss.sf_clz_func
@@ -2956,8 +2953,8 @@ LOAD /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/
  *(.stack*)
  .stack         0x0000000020041000      0x800 CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_standard_link/crt0.S.obj
 
-.flash_end      0x000000001000a028        0x0
-                0x000000001000a028                __flash_binary_end = .
+.flash_end      0x0000000010009d28        0x0
+                0x0000000010009d28                __flash_binary_end = .
                 0x0000000020040000                __StackLimit = (ORIGIN (RAM) + LENGTH (RAM))
                 0x0000000020041000                __StackOneTop = (ORIGIN (SCRATCH_X) + LENGTH (SCRATCH_X))
                 0x0000000020042000                __StackTop = (ORIGIN (SCRATCH_Y) + LENGTH (SCRATCH_Y))
@@ -3036,7 +3033,7 @@ LOAD CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/p
 LOAD CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_pio/pio.c.obj
 LOAD CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/hardware_dma/dma.c.obj
 LOAD CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
-LOAD /tmp/ccHc9BRw.o
+LOAD /tmp/ccKbXCsW.o
 LOAD /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libstdc++.a
 LOAD /usr/lib/gcc/arm-none-eabi/12.2.0/../../../../arm-none-eabi/lib/thumb/v6-m/nofp/libm.a
 START GROUP
@@ -3162,7 +3159,7 @@ LOAD linker stubs
  .ARM.attributes
                 0x000000000000087e       0x2c CMakeFiles/Halloween-Laser.dir/home/aidancrowther/Documents/Projects/pico/pico-sdk/src/rp2_common/pico_multicore/multicore.c.obj
  .ARM.attributes
-                0x00000000000008aa       0x22 /tmp/ccHc9BRw.o
+                0x00000000000008aa       0x22 /tmp/ccKbXCsW.o
  .ARM.attributes
                 0x00000000000008cc       0x1e /usr/lib/gcc/arm-none-eabi/12.2.0/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .ARM.attributes

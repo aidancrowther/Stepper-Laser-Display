@@ -1,31 +1,4 @@
-#define delay sleep_ms
-#define MAXSPEED 60000
-#define MINSPEED 15000
-#define HOMINGSPEED 2000
-#define SLOWHOMESPEED 500
-#define ACCELERATION 200000
-#define MAX_X 300
-#define MAX_Y 300
-#define TRANSFER_SIZE 3
-#define PROJECTOR_ID 1
-
-#define CLOCK 1
-#define DATA 0
-#define BLUE 11
-#define GREEN 12
-#define RED 13
-#define HOME_Y 14
-#define HOME_X 15
-#define ENABLE 16
-#define DIR_X 18
-#define DIR_Y 21
-#define STEP_X 19
-#define STEP_Y 20
-
 #include "Halloween-Laser.h"
-
-volatile bool receiving = false;
-volatile uint receivedBits = 0;
 
 PicoStepper devices[2];
 int positions[2];
@@ -54,11 +27,72 @@ bool checksum(uint message){
     return sum;
 }
 
+uint16_t retrieve(uint32_t frame, uint32_t mask, uint32_t shift){
+    return (frame & mask) >> shift;
+}
+
 void draw(){
 
     volatile uint32_t *buffer;
 
-    buffer = buffer_id ? buffer_two : buffer_one;
+    buffer = buffer_id ? buffer_one : buffer_two;
+
+    sleep_ms(2000);
+
+    if(checksum(buffer[0])) return;
+    if(retrieve(buffer[0], ID_MASK, ID_SHIFT) != PROJECTOR_ID) return;
+
+    uint8_t pointCount = retrieve(buffer[0], COUNT_MASK, COUNT_SHIFT);
+
+    for(uint8_t idx = 0; idx < pointCount; idx++){
+
+        bool sum = checksum(buffer[idx+1]);
+
+        uint16_t xPos = retrieve(buffer[idx+1], X_MASK, X_SHIFT);
+        uint16_t yPos = retrieve(buffer[idx+1], Y_MASK, Y_SHIFT);
+        uint8_t red = retrieve(buffer[idx+1], RED_MASK, RED_SHIFT);
+        uint8_t green = retrieve(buffer[idx+1], RED_MASK, RED_SHIFT);
+        uint8_t blue = retrieve(buffer[idx+1], RED_MASK, RED_SHIFT);
+
+        if(sum){
+            lasers_off();
+            continue;
+        }
+
+        set_red_pwm(red);
+        set_green_pwm(green);
+        set_blue_pwm(blue);
+
+        positions[0] = xPos > MAX_X ? MAX_X : xPos;
+        positions[1] = yPos > MAX_Y ? MAX_Y : yPos;
+        picostepper_move_to_positions(devices, positions, 2);
+
+        printf("R: %X\nG: %X\nB: %X\nX: %X\nY: %X\n", red, green, blue, xPos, yPos);
+
+        sleep_ms(1000);
+
+    }
+
+    lasers_off();
+
+}
+
+void lasers_off(){
+    set_red_pwm(0);
+    set_green_pwm(0);
+    set_blue_pwm(0);
+}
+
+void set_red_pwm(uint8_t pwm){
+    pwm_set_chan_level(RED_SLICE, RED_CHANNEL, PWM_DEPTH - ((pwm % COLOUR_DEPTH) * COLOUR_MULTIPLIER));
+}
+
+void set_green_pwm(uint8_t pwm){
+    pwm_set_chan_level(GREEN_SLICE, GREEN_CHANNEL, PWM_DEPTH - ((pwm % COLOUR_DEPTH) * COLOUR_MULTIPLIER));
+}
+
+void set_blue_pwm(uint8_t pwm){
+    pwm_set_chan_level(BLUE_SLICE, BLUE_CHANNEL, PWM_DEPTH - ((pwm % COLOUR_DEPTH) * COLOUR_MULTIPLIER));
 }
 
 void homing_sequence(PicoStepper device){
@@ -79,15 +113,11 @@ void init_gpio(){
 
     gpio_set_dir(HOME_X, false);
     gpio_set_dir(HOME_Y, false);
-
-    gpio_set_dir(RED, true);
-    gpio_set_dir(GREEN, true);
-    gpio_set_dir(BLUE, true);
     gpio_set_dir(ENABLE, true);
 
-    gpio_set_outover(RED, GPIO_OVERRIDE_INVERT);
-    gpio_set_outover(GREEN, GPIO_OVERRIDE_INVERT);
-    gpio_set_outover(BLUE, GPIO_OVERRIDE_INVERT);
+    gpio_set_function(RED, GPIO_FUNC_PWM);
+    gpio_set_function(GREEN, GPIO_FUNC_PWM);
+    gpio_set_function(BLUE, GPIO_FUNC_PWM);
 
     gpio_pull_up(HOME_X);
     gpio_pull_up(HOME_Y);
@@ -95,9 +125,6 @@ void init_gpio(){
     gpio_pull_down(CLOCK);
     gpio_pull_down(DATA);
 
-    gpio_put(RED, true);
-    gpio_put(GREEN, true);
-    gpio_put(BLUE, true);
     gpio_put(ENABLE, true ^ DRIVER);
 }
 
@@ -232,35 +259,37 @@ volatile bool first = true;
 
 void dma_handler(){
 
+    volatile uint32_t *buffer;
+
+    buffer = buffer_id ? buffer_one : buffer_two;
+
     printf("Checksums: ");
     for(uint i=0; i<TRANSFER_SIZE; i++){
-        if(checksum(buffer_one[i])) printf("Invalid ");
+        if(checksum(buffer[i])) printf("Invalid ");
         else printf("Valid ");
     }
     printf("\n");
 
     printf("Received: ");
     for(uint i=0; i<TRANSFER_SIZE; i++){
-        printf("%X ", buffer_one[i]);
+        printf("%X ", buffer[i]);
     }
     printf("\n");
+
+    draw();
 
     // Clear the interrupt request.
     dma_hw->ints0 = 1u << dma_chan;
     // re-trigger it
-    if(first){
-        if(buffer_id){
-            buffer_id = 0;
-            dma_channel_set_read_addr(dma_chan, &pio->rxf[sm], false);
-            dma_channel_set_write_addr(dma_chan, buffer_two, true);
-        } else {
-            buffer_id = 1;
-            dma_channel_set_read_addr(dma_chan, &pio->rxf[sm], false);
-            dma_channel_set_write_addr(dma_chan, buffer_one, true);
-        }
+    if(buffer_id){
+        buffer_id = 0;
+        dma_channel_set_read_addr(dma_chan, &pio->rxf[sm], false);
+        dma_channel_set_write_addr(dma_chan, buffer_two, true);
+    } else {
+        buffer_id = 1;
+        dma_channel_set_read_addr(dma_chan, &pio->rxf[sm], false);
+        dma_channel_set_write_addr(dma_chan, buffer_one, true);
     }
-    
-    first = false;
 
     printf("Interrupt cleared\n");
 }
@@ -268,6 +297,16 @@ void dma_handler(){
 void serialReceiver(){
 
     printf("Initializing Core 1...\n");
+
+    pwm_set_clkdiv(PWM_SLICE_ONE, PWM_CLOCK_DIV);
+    pwm_set_wrap(PWM_SLICE_ONE, PWM_DEPTH); 
+    pwm_set_enabled(PWM_SLICE_ONE, true);
+
+    pwm_set_clkdiv(PWM_SLICE_TWO, PWM_CLOCK_DIV);
+    pwm_set_wrap(PWM_SLICE_TWO, PWM_DEPTH); 
+    pwm_set_enabled(PWM_SLICE_TWO, true);
+
+    printf("PWM configured\n");
 
     pio = pio1;
     uint offset = pio_add_program(pio, &clocked_input_program);
@@ -345,16 +384,17 @@ int main() {
     set_stepper_values();
     init_gpio();
 
-    home_steppers();
+    //home_steppers();
     set_stepper_values();
 
     //set_home();
 
+    picostepper_set_acceleration(XAxis, ACCELERATION);
+    picostepper_set_acceleration(YAxis, ACCELERATION);
+
     while(true){
-        
-        picostepper_set_acceleration(XAxis, ACCELERATION);
-        picostepper_set_acceleration(YAxis, ACCELERATION);
 
+        /*
         positions[0] = MAX_X;
         positions[1] = 0;
         gpio_put(BLUE, false);
@@ -378,6 +418,7 @@ int main() {
         gpio_put(BLUE, true);
         picostepper_move_to_positions(devices, positions, 2);
         //sleep_ms(1000);
+        */
     }
 
   return -1;
