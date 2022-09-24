@@ -1,15 +1,19 @@
 #ifndef HALLOWEEN_LASER_H
 #define HALLOWEEN_LASER_H
 
+#define DEBUG false
+
 #define delay sleep_ms
 #define MAXSPEED 60000
 #define MINSPEED 15000
 #define HOMINGSPEED 2000
 #define SLOWHOMESPEED 500
 #define ACCELERATION 200000
+#define Y_HOME_POS 600
+#define X_HOME_POS 300
 #define MAX_X 300
 #define MAX_Y 300
-#define TRANSFER_SIZE 3
+#define TRANSFER_SIZE 5
 #define PROJECTOR_ID 1
 
 #define PWM_SLICE_ONE 5
@@ -29,6 +33,10 @@
 #define ID_SHIFT 28
 #define COUNT_MASK 0x0FF00000
 #define COUNT_SHIFT 20
+#define HOME_MASK 0x00080000
+#define HOME_SHIFT 19
+#define ENABLE_MASK 0x00040000
+#define ENABLE_SHIFT 18
 #define X_MASK 0xFF800000
 #define X_SHIFT 23
 #define Y_MASK 0x007FC000
@@ -36,7 +44,7 @@
 #define RED_MASK 0x00003800
 #define RED_SHIFT 11
 #define GREEN_MASK 0x00000700
-#define GREN_SHIFT 8
+#define GREEN_SHIFT 8
 #define BLUE_MASK 0x000000E0
 #define BLUE_SHIFT 5
 
