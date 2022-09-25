@@ -42,16 +42,13 @@ void draw(){
 
     if(checksum(buffer[0])) return;
     if(retrieve(buffer[0], ID_MASK, ID_SHIFT) != PROJECTOR_ID) return;
-    if(!retrieve(buffer[0], ENABLE_MASK, ENABLE_SHIFT)){
-        gpio_put(ENABLE, false ^ DRIVER);
-        return;
-    } else gpio_put(ENABLE, true ^ DRIVER);
+    gpio_put(ENABLE, DRIVER == retrieve(buffer[0], ENABLE_MASK, ENABLE_SHIFT));
     if(retrieve(buffer[0], HOME_MASK, HOME_SHIFT)){
         if(DEBUG) printf("Homing\n");
         home_steppers();
-        buffer[0] = buffer[0] ^ HOME_MASK;
         if(DEBUG) printf("Homing complete\n");
         set_stepper_values();
+        sleep_ms(500);
     }
 
     uint8_t pointCount = retrieve(buffer[0], COUNT_MASK, COUNT_SHIFT);
@@ -62,9 +59,7 @@ void draw(){
         printf("xfrReceived: %d\n", xfrReceived);
     }
 
-    while(true){
-
-        if(xfrReceived) break;
+    while(!xfrReceived){
 
         for(uint8_t idx = 0; idx < pointCount; idx++){
 
@@ -88,9 +83,8 @@ void draw(){
 
             positions[0] = xPos > MAX_X ? MAX_X : xPos;
             positions[1] = yPos > MAX_Y ? MAX_Y : yPos;
-            picostepper_move_to_positions(devices, positions, 2);
 
-            sleep_us(1);
+            picostepper_move_to_positions(devices, positions, 2);
 
             if(DEBUG) printf("R: %X\nG: %X\nB: %X\nX: %X\nY: %X\n", red, green, blue, xPos, yPos);
 
@@ -152,7 +146,7 @@ void init_gpio(){
     gpio_pull_down(CLOCK);
     gpio_pull_down(DATA);
 
-    gpio_put(ENABLE, true ^ DRIVER);
+    gpio_put(ENABLE, true == DRIVER);
 }
 
 void init_steppers(){
@@ -320,6 +314,8 @@ volatile bool first = true;
 
 void dma_handler(){
 
+    xfrReceived = true;
+
     if(true){
 
         volatile uint32_t *buffer;
@@ -343,6 +339,8 @@ void dma_handler(){
 
     // Clear the interrupt request.
     dma_hw->ints0 = 1u << dma_chan;
+    //Clear the fifo queue incase we lost sync
+    pio_sm_clear_fifos(pio, sm);
     // re-trigger it
     if(buffer_id){
         buffer_id = 0;
@@ -353,8 +351,6 @@ void dma_handler(){
         dma_channel_set_read_addr(dma_chan, &pio->rxf[sm], false);
         dma_channel_set_write_addr(dma_chan, buffer_one, true);
     }
-
-    xfrReceived = true;
 
     if(DEBUG) printf("Received: %d\n", xfrReceived);
 
@@ -375,6 +371,8 @@ void serialReceiver(){
 
     printf("PWM configured\n");
 
+    lasers_off();
+
     pio = pio1;
     uint offset = pio_add_program(pio, &clocked_input_program);
     sm = pio_claim_unused_sm(pio, true);
@@ -385,6 +383,8 @@ void serialReceiver(){
     clocked_input_program_init(pio, sm, offset, DATA);
 
     printf("PIO clocked input configured\n");
+
+    bus_ctrl_hw->priority = BUSCTRL_BUS_PRIORITY_DMA_W_BITS | BUSCTRL_BUS_PRIORITY_DMA_R_BITS;
 
     dma_chan = dma_claim_unused_channel(true);
     dma_channel_config c = dma_channel_get_default_config(dma_chan);
@@ -431,6 +431,7 @@ void serialReceiver(){
 
     while(true){
 
+        draw();
         sleep_ms(100);
 
     }
@@ -445,6 +446,7 @@ int main() {
     printf("Initializing...\n");
     sleep_ms(5000);
     printf("%d\n", NUMSTEPS);
+    bus_ctrl_hw->priority = BUSCTRL_BUS_PRIORITY_DMA_W_BITS | BUSCTRL_BUS_PRIORITY_DMA_R_BITS;
 
     init_steppers();
     printf("Steppers intialized\n");
@@ -467,7 +469,7 @@ int main() {
     while(true){
 
         if(!DEBUG){
-            draw();
+            //draw();
         }
         sleep_ms(100);
 

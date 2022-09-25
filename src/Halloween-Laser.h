@@ -9,11 +9,11 @@
 #define HOMINGSPEED 2000
 #define SLOWHOMESPEED 500
 #define ACCELERATION 200000
-#define Y_HOME_POS 600
+#define Y_HOME_POS 440
 #define X_HOME_POS 300
 #define MAX_X 300
 #define MAX_Y 300
-#define TRANSFER_SIZE 5
+#define TRANSFER_SIZE 51
 #define PROJECTOR_ID 1
 
 #define PWM_SLICE_ONE 5
@@ -25,7 +25,7 @@
 #define BLUE_SLICE PWM_SLICE_ONE
 #define BLUE_CHANNEL PWM_CHAN_B
 #define PWM_DEPTH 1023
-#define PWM_CLOCK_DIV 1250
+#define PWM_CLOCK_DIV 125
 #define COLOUR_DEPTH 8
 #define COLOUR_MULTIPLIER 146
 
@@ -70,6 +70,7 @@
 #include "hardware/irq.h"
 #include "hardware/pwm.h"
 #include "hardware/dma.h"
+#include "hardware/structs/bus_ctrl.h"
 
 #include "picostepper.h"
 #include "clocked_input.pio.h"
