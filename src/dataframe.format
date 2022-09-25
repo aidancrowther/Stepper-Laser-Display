@@ -1,5 +1,13 @@
 n = TRANSFER_SIZE
 
+Data is transmitted in 32-bit frames. The first frame is a header specifying special control parameters and 
+the device to which it is addressed. Since all devices share a single communication channel, the ID is required
+for control. Following the header are TRANSFER_SIZE-1 number of data packets, each describing a point and colour.
+The receiver will parse points from the first until the point count value transferred, maxing at TRANSFER_SIZE-1.
+
+The total transfer then consists of TRANSFER_SIZE * 32 bits. These can be transmitted in packets of any size, typically
+8 with standard settings, as long as there is a complete transmission, otherwise the packets will be discarded on next transmission.
+
 frame # | Bits & Definition
 0       | 0xF0000000 = Projector ID
         | 0x0FF00000 = Point Count
