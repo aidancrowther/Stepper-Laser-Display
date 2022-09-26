@@ -6,14 +6,16 @@ int positions[2];
 PicoStepper YAxis;
 PicoStepper XAxis;
 
-volatile int dma_chan;
+volatile uint8_t dma_chan;
 volatile PIO pio;
-volatile uint sm;
+volatile uint8_t sm;
 
 volatile bool xfrReceived = false;
 volatile uint8_t buffer_id = 0;
-volatile uint32_t buffer_one[TRANSFER_SIZE];
-volatile uint32_t buffer_two[TRANSFER_SIZE];
+
+uint32_t projector_buffer[TRANSFER_SIZE];
+uint32_t buffer_one[TRANSFER_SIZE];
+uint32_t buffer_two[TRANSFER_SIZE];
 
 bool checksum(uint message){
 
@@ -34,16 +36,15 @@ uint16_t retrieve(uint32_t frame, uint32_t mask, uint32_t shift){
 
 void draw(){
 
-    volatile uint32_t *buffer;
-
-    buffer = buffer_id ? buffer_two : buffer_one;
-
     if(DEBUG) sleep_ms(2000);
 
-    if(checksum(buffer[0])) return;
-    if(retrieve(buffer[0], ID_MASK, ID_SHIFT) != PROJECTOR_ID) return;
-    gpio_put(ENABLE, DRIVER == retrieve(buffer[0], ENABLE_MASK, ENABLE_SHIFT));
-    if(retrieve(buffer[0], HOME_MASK, HOME_SHIFT)){
+    if(retrieve(projector_buffer[0], ENABLE_MASK, ENABLE_SHIFT)){
+        gpio_put(ENABLE, true == ENABLE_LOGIC);
+    } else {
+        gpio_put(ENABLE, false == ENABLE_LOGIC);
+        return;
+    }
+    if(retrieve(projector_buffer[0], HOME_MASK, HOME_SHIFT)){
         if(DEBUG) printf("Homing\n");
         home_steppers();
         if(DEBUG) printf("Homing complete\n");
@@ -51,7 +52,7 @@ void draw(){
         sleep_ms(500);
     }
 
-    uint8_t pointCount = retrieve(buffer[0], COUNT_MASK, COUNT_SHIFT);
+    uint8_t pointCount = retrieve(projector_buffer[0], COUNT_MASK, COUNT_SHIFT);
     xfrReceived = false;
 
     if(DEBUG){
@@ -63,13 +64,13 @@ void draw(){
 
         for(uint8_t idx = 0; idx < pointCount; idx++){
 
-            bool sum = checksum(buffer[idx+1]);
+            bool sum = checksum(projector_buffer[idx+1]);
 
-            uint16_t xPos = retrieve(buffer[idx+1], X_MASK, X_SHIFT);
-            uint16_t yPos = retrieve(buffer[idx+1], Y_MASK, Y_SHIFT);
-            uint8_t red = retrieve(buffer[idx+1], RED_MASK, RED_SHIFT);
-            uint8_t green = retrieve(buffer[idx+1], GREEN_MASK, GREEN_SHIFT);
-            uint8_t blue = retrieve(buffer[idx+1], BLUE_MASK, BLUE_SHIFT);
+            uint16_t xPos = retrieve(projector_buffer[idx+1], X_MASK, X_SHIFT);
+            uint16_t yPos = retrieve(projector_buffer[idx+1], Y_MASK, Y_SHIFT);
+            uint8_t red = retrieve(projector_buffer[idx+1], RED_MASK, RED_SHIFT);
+            uint8_t green = retrieve(projector_buffer[idx+1], GREEN_MASK, GREEN_SHIFT);
+            uint8_t blue = retrieve(projector_buffer[idx+1], BLUE_MASK, BLUE_SHIFT);
 
             if(sum){
                 lasers_off();
@@ -146,7 +147,7 @@ void init_gpio(){
     gpio_pull_down(CLOCK);
     gpio_pull_down(DATA);
 
-    gpio_put(ENABLE, true == DRIVER);
+    gpio_put(ENABLE, true == ENABLE_LOGIC);
 }
 
 void init_steppers(){
@@ -314,12 +315,10 @@ volatile bool first = true;
 
 void dma_handler(){
 
-    xfrReceived = true;
+    uint32_t *buffer;
+    buffer = buffer_id ? buffer_one : buffer_two;
 
     if(true){
-
-        volatile uint32_t *buffer;
-        buffer = buffer_id ? buffer_one : buffer_two;
 
         printf("Checksums: ");
         for(uint i=0; i<TRANSFER_SIZE; i++){
@@ -334,11 +333,20 @@ void dma_handler(){
         }
         printf("\n");
 
-        //draw();
+    }
+
+    if(!checksum(buffer[0])){
+        if(retrieve(buffer[0], ID_MASK, ID_SHIFT) == PROJECTOR_ID){
+            memcpy(projector_buffer, buffer, TRANSFER_SIZE * sizeof(uint32_t));
+            xfrReceived = true;
+        } else if(retrieve(buffer[0], ID_MASK, ID_SHIFT) == ALL_PROJECTORS){
+            memcpy(projector_buffer, buffer, TRANSFER_SIZE * sizeof(uint32_t));
+            xfrReceived = true;
+        }
     }
 
     // Clear the interrupt request.
-    dma_hw->ints0 = 1u << dma_chan;
+    dma_hw->ints1 = 1u << dma_chan;
     //Clear the fifo queue incase we lost sync
     pio_sm_clear_fifos(pio, sm);
     // re-trigger it
@@ -431,7 +439,7 @@ void serialReceiver(){
 
     while(true){
 
-        draw();
+        //draw();
         sleep_ms(100);
 
     }
@@ -469,35 +477,10 @@ int main() {
     while(true){
 
         if(!DEBUG){
-            //draw();
+            draw();
         }
         sleep_ms(100);
 
-        /*
-        positions[0] = MAX_X;
-        positions[1] = 0;
-        gpio_put(BLUE, false);
-        picostepper_move_to_positions(devices, positions, 2);
-        //sleep_ms(1000);
-
-        positions[0] = MAX_X;
-        positions[1] = MAX_Y;
-        gpio_put(BLUE, true);
-        picostepper_move_to_positions(devices, positions, 2);
-        //sleep_ms(1000);
-
-        positions[0] = 0;
-        positions[1] = MAX_Y;
-        gpio_put(BLUE, false);
-        picostepper_move_to_positions(devices, positions, 2);
-        //sleep_ms(1000);
-
-        positions[0] = 0;
-        positions[1] = 0;
-        gpio_put(BLUE, true);
-        picostepper_move_to_positions(devices, positions, 2);
-        //sleep_ms(1000);
-        */
     }
 
   return -1;

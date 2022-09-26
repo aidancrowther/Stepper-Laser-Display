@@ -9,12 +9,13 @@
 #define HOMINGSPEED 2000
 #define SLOWHOMESPEED 500
 #define ACCELERATION 200000
-#define Y_HOME_POS 440
+#define Y_HOME_POS 300
 #define X_HOME_POS 300
-#define MAX_X 300
 #define MAX_Y 300
+#define MAX_X 300
 #define TRANSFER_SIZE 51
-#define PROJECTOR_ID 1
+#define PROJECTOR_ID 0
+#define ALL_PROJECTORS 0xF
 
 #define PWM_SLICE_ONE 5
 #define PWM_SLICE_TWO 6
@@ -53,13 +54,14 @@
 #define BLUE 11
 #define GREEN 12
 #define RED 13
-#define HOME_Y 14
-#define HOME_X 15
+#define HOME_X 14
+#define HOME_Y 15
 #define ENABLE 16
-#define DIR_X 18
-#define DIR_Y 21
-#define STEP_X 19
-#define STEP_Y 20
+#define ENABLE_LOGIC false
+#define DIR_Y 18
+#define DIR_X 21
+#define STEP_Y 19
+#define STEP_X 20
 
 #include <stdio.h>
 #include <string.h>
