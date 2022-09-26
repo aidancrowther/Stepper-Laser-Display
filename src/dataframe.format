@@ -14,7 +14,7 @@ frame # | Bits & Definition
         | 0x00080000 = Home
         | 0x00040000 = Enable
         | 0x00000001 = Checksum
-1 -> n-1| 0xFF800000 = X coordinate
+1 -> n  | 0xFF800000 = X coordinate
         | 0x007FC000 = Y coordinate
         | 0x00003800 = Red 3-bit colour
         | 0x00000700 = Green 3-bit colour
