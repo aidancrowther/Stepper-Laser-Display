@@ -1,25 +1,36 @@
 n = TRANSFER_SIZE
 
-Data is transmitted in 32-bit frames. The first frame is a header specifying special control parameters and 
-the device to which it is addressed. Since all devices share a single communication channel, the ID is required
-for control. Following the header are TRANSFER_SIZE-1 number of data packets, each describing a point and colour.
-The receiver will parse points from the first until the point count value transferred, maxing at TRANSFER_SIZE-1.
+Data is transmitted in 32-bit frames. The first frame is a header specifying
+special control parameters and the device to which it is addressed. Since all
+devices share a single communication channel, the ID is required for control.
+Following the header are TRANSFER_SIZE-1 number of data packets, each describing
+a point and colour. The receiver will parse points from the first until the
+point count value transferred, maxing at TRANSFER_SIZE-1.
 
-The total transfer then consists of TRANSFER_SIZE * 32 bits. These can be transmitted in packets of any size, typically
-8 with standard settings, as long as there is a complete transmission, otherwise the packets will be discarded on next transmission.
+The total transfer then consists of TRANSFER_SIZE * 32 bits. These can be
+transmitted in packets of any size, typically 8 with standard settings, as long
+as there is a complete transmission, otherwise the packets will be discarded on
+next transmission.
 
-When the configuration bit is set, commands instead take the structure of the configure mode frames. Following a configuration transfer,
-if the TRANSER_SIZE has been modified, all future transmissions following the next reset will need to use the new value.
+When the configuration bit is set, commands instead take the structure of the
+configure mode frames. Following a configuration transfer, if the TRANSER_SIZE
+has been modified, all future transmissions following the next reset will need
+to use the new value.
 
-When updating ID, note that all projectors initialize at ID 0. This method thus is meant to update from this intial value. Similarly, ID 0xF
-is a special case meant to address all projectors.
+When updating ID, note that all projectors initialize at ID 0. This method thus
+is meant to update from this intial value. Similarly, ID 0xF is a special case
+meant to address all projectors.
 
-The draw boundary directive will cause the projector to enter a drawing mode that slowly draws the boundary from the home value to MAX_X or MAX_Y.
-This draw loop will be exited upon the next legal drawing transmission, including future draw boundary calls.
+The draw boundary directive will cause the projector to enter a drawing mode
+that slowly draws the boundary from the home value to MAX_X or MAX_Y. This draw
+loop will be exited upon the next legal drawing transmission, including future
+draw boundary calls.
 
-Note that when initiating configuration mode the only bits acknoweldged in the header are the ID, Configuration Mode, and the Checksum.
+Note that when initiating configuration mode the only bits acknoweldged in the
+header are the ID, Configuration Mode, and the Checksum.
 
-For all config values, if you do not wish to write an update to the current saved value, simply send all 1's, and that config component will be ignored.
+For all config values, if you do not wish to write an update to the current
+saved value, simply send all 1's, and that config component will be ignored.
 
 frame # | Bits & Definition
 0       | 0xF0000000 = Projector ID
