@@ -4,18 +4,28 @@
 #define DEBUG false
 
 #define delay sleep_ms
-#define MAXSPEED 60000
+#define MAXSPEED 15000
 #define MINSPEED 15000
 #define HOMINGSPEED 2000
 #define SLOWHOMESPEED 500
-#define ACCELERATION 200000
+#define ACCELERATION 0
 #define Y_HOME_POS 300
-#define X_HOME_POS 300
+#define X_HOME_POS 550
 #define MAX_Y 300
 #define MAX_X 300
 #define TRANSFER_SIZE 51
-#define PROJECTOR_ID 0
+#define PROJECTOR_ID 1
 #define ALL_PROJECTORS 0xF
+
+#define STORAGE_OFFSET PICO_FLASH_SIZE_BYTES - FLASH_SECTOR_SIZE
+#define LOAD_CONFIG 0
+#define ACCELERATION_CONFIG 1
+#define TRANSFER_SIZE_CONFIG 2
+#define MAX_SPEED_CONFIG 3
+#define MIN_SPEED_CONFIG 4
+#define X_HOME_CONFIG 5
+#define Y_HOME_CONFIG 6
+#define PROJECTOR_ID_CONFIG 7
 
 #define PWM_SLICE_ONE 5
 #define PWM_SLICE_TWO 6
@@ -38,6 +48,10 @@
 #define HOME_SHIFT 19
 #define ENABLE_MASK 0x00040000
 #define ENABLE_SHIFT 18
+#define CONFIG_MASK 0x00020000
+#define CONFIG_SHIFT 17
+#define BOUNDARY_MASK 0x00010000
+#define BOUNDARY_SHIFT 16
 #define X_MASK 0xFF800000
 #define X_SHIFT 23
 #define Y_MASK 0x007FC000
@@ -48,6 +62,21 @@
 #define GREEN_SHIFT 8
 #define BLUE_MASK 0x000000E0
 #define BLUE_SHIFT 5
+
+#define ACCELERATION_MASK 0xFFFFF000
+#define ACCELERATION_SHIFT 12
+#define TRANSFER_SIZE_MASK 0x00000FFE
+#define TRANSFER_SIZE_SHIFT 1
+#define MAX_SPEED_MASK 0xFFFFC000
+#define MAX_SPEED_SHIFT 14
+#define MIN_SPEED_MASK 0x00003FFE
+#define MIN_SPEED_SHIFT 1
+#define X_HOME_MASK 0xFFF00000
+#define X_HOME_SHIFT 20
+#define Y_HOME_MASK 0x000FFF00
+#define Y_HOME_SHIFT 8
+#define PROJECTOR_ID_MASK 0x000000F0
+#define PROJECTOR_ID_SHIFT 4
 
 #define CLOCK 1
 #define DATA 0
@@ -73,6 +102,8 @@
 #include "hardware/pwm.h"
 #include "hardware/dma.h"
 #include "hardware/structs/bus_ctrl.h"
+#include "hardware/flash.h"
+#include "hardware/watchdog.h"
 
 #include "picostepper.h"
 #include "clocked_input.pio.h"
@@ -91,5 +122,11 @@ void lasers_off();
 void set_red_pwm(uint8_t pwm);
 void set_green_pwm(uint8_t pwm);
 void set_blue_pwm(uint8_t pwm);
+void init_config();
+void load_default_config();
+void write_config();
+void load_config();
+void init_buffers();
+void free_buffers();
 
 #endif

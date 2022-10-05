@@ -36,6 +36,7 @@ target_link_libraries(Halloween-Laser PRIVATE
         hardware_pio
         hardware_dma
         hardware_pwm
+        hardware_flash
         pico_multicore
 )
 

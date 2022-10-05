@@ -13,9 +13,69 @@ volatile uint8_t sm;
 volatile bool xfrReceived = false;
 volatile uint8_t buffer_id = 0;
 
-uint32_t projector_buffer[TRANSFER_SIZE];
-uint32_t buffer_one[TRANSFER_SIZE];
-uint32_t buffer_two[TRANSFER_SIZE];
+uint32_t *projector_buffer;
+uint32_t *buffer_one;
+uint32_t *buffer_two;
+
+uint32_t config_buffer[FLASH_PAGE_SIZE/sizeof(uint32_t)];
+uint32_t *config_saved = (uint32_t *)(STORAGE_OFFSET + XIP_BASE);
+bool use_config = false;
+
+void init_buffers(){
+    projector_buffer = malloc(config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
+    buffer_one = malloc(config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
+    buffer_two = malloc(config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
+}
+
+void free_buffers(){
+    free(projector_buffer);
+    free(buffer_one);
+    free(buffer_two);
+}
+
+void init_config(){
+    if(config_saved[LOAD_CONFIG] != true){
+        printf("Loading defaults\n");
+        load_default_config();
+        //write_config();
+    }
+
+    //load_config();
+
+    for(uint8_t idx = 0; idx < 8; idx++){
+        printf("Config at %d: %X\n", idx, config_buffer[idx]);
+    }
+}
+
+void load_default_config(){
+    config_buffer[LOAD_CONFIG] = true;
+    config_buffer[ACCELERATION_CONFIG] = ACCELERATION;
+    config_buffer[TRANSFER_SIZE_CONFIG] = TRANSFER_SIZE;
+    config_buffer[MAX_SPEED_CONFIG] = MAXSPEED;
+    config_buffer[MIN_SPEED_CONFIG] = MINSPEED;
+    config_buffer[X_HOME_CONFIG] = X_HOME_POS;
+    config_buffer[Y_HOME_CONFIG] = Y_HOME_POS;
+    config_buffer[PROJECTOR_ID_CONFIG] = PROJECTOR_ID;
+}
+
+void write_config(){
+    uint32_t ints = save_and_disable_interrupts();
+
+    flash_range_erase(STORAGE_OFFSET, FLASH_SECTOR_SIZE);
+    flash_range_program(STORAGE_OFFSET, (uint8_t *)config_buffer, FLASH_PAGE_SIZE);
+
+    restore_interrupts (ints);
+
+    watchdog_reboot (0, SRAM_END, 10);
+
+    sleep_ms(5000);
+}
+
+void load_config(){
+    for(uint8_t idx; idx <= FLASH_PAGE_SIZE/sizeof(uint32_t); idx++){
+        config_buffer[idx] = config_saved[idx];
+    }
+}
 
 bool checksum(uint message){
 
@@ -162,15 +222,15 @@ void init_steppers(){
 
 void set_stepper_values(){
     picostepper_set_async_enabled(XAxis, true);
-    picostepper_set_max_speed(XAxis, MAXSPEED);
-    picostepper_set_min_speed(XAxis, MINSPEED);
+    picostepper_set_max_speed(XAxis, config_buffer[MAX_SPEED_CONFIG]);
+    picostepper_set_min_speed(XAxis, config_buffer[MIN_SPEED_CONFIG]);
 
     picostepper_set_async_enabled(YAxis, true);
-    picostepper_set_max_speed(YAxis, MAXSPEED);
-    picostepper_set_min_speed(YAxis, MINSPEED);
+    picostepper_set_max_speed(YAxis, config_buffer[MAX_SPEED_CONFIG]);
+    picostepper_set_min_speed(YAxis, config_buffer[MIN_SPEED_CONFIG]);
 
-    picostepper_set_acceleration(XAxis, ACCELERATION);
-    picostepper_set_acceleration(YAxis, ACCELERATION);
+    picostepper_set_acceleration(XAxis, config_buffer[ACCELERATION_CONFIG]);
+    picostepper_set_acceleration(YAxis, config_buffer[ACCELERATION_CONFIG]);
 }
 
 void home_steppers(){
@@ -255,10 +315,10 @@ void home_steppers(){
     sleep_ms(500);
 
     picostepper_set_async_enabled(XAxis, true);
-    picostepper_move_blocking(XAxis, X_HOME_POS, true, picostepper_convert_speed_to_delay(HOMINGSPEED), 0);
+    picostepper_move_blocking(XAxis, config_buffer[X_HOME_CONFIG], true, picostepper_convert_speed_to_delay(HOMINGSPEED), 0);
 
     picostepper_set_async_enabled(YAxis, true);
-    picostepper_move_blocking(YAxis, Y_HOME_POS, true, picostepper_convert_speed_to_delay(HOMINGSPEED), 0);
+    picostepper_move_blocking(YAxis, config_buffer[Y_HOME_CONFIG], true, picostepper_convert_speed_to_delay(HOMINGSPEED), 0);
 
     picostepper_set_async_enabled(XAxis, true);
     picostepper_set_position(XAxis, 0);
@@ -311,7 +371,56 @@ void set_home(){
 
 }
 
-volatile bool first = true;
+void update_config(){
+
+    uint32_t *buffer;
+    buffer = buffer_id ? buffer_one : buffer_two;
+
+    for(uint8_t idx = 0; idx < 4; idx++){
+        if(checksum(buffer[idx])){
+            printf("Invalid configuration signature, aborting!\n");
+            return;
+        }
+    }
+
+    uint32_t acceleration = retrieve(buffer[1], ACCELERATION_MASK, ACCELERATION_SHIFT);
+    uint32_t transfer_size = retrieve(buffer[1], TRANSFER_SIZE_MASK, TRANSFER_SIZE_SHIFT);
+    uint32_t max_speed = retrieve(buffer[2], MAX_SPEED_MASK, MAX_SPEED_SHIFT);
+    uint32_t min_speed = retrieve(buffer[2], MIN_SPEED_MASK, MIN_SPEED_SHIFT);
+    uint32_t x_home = retrieve(buffer[3], X_HOME_MASK, X_HOME_SHIFT);
+    uint32_t y_home = retrieve(buffer[3], Y_HOME_MASK, Y_HOME_SHIFT);
+    uint32_t id = retrieve(buffer[3], ID_MASK, ID_SHIFT);
+
+    config_buffer[ACCELERATION_CONFIG] = acceleration == (ACCELERATION_MASK >> ACCELERATION_SHIFT) ? config_buffer[ACCELERATION_CONFIG] : acceleration;
+    config_buffer[TRANSFER_SIZE_CONFIG] = transfer_size == (TRANSFER_SIZE_MASK >> TRANSFER_SIZE_SHIFT) ? config_buffer[TRANSFER_SIZE_CONFIG] : transfer_size;
+    config_buffer[MAX_SPEED_CONFIG] = max_speed == (MAX_SPEED_MASK >> MAX_SPEED_SHIFT) ? config_buffer[MAX_SPEED_CONFIG] : max_speed;
+    config_buffer[MIN_SPEED_CONFIG] = min_speed == (MIN_SPEED_MASK >> MIN_SPEED_SHIFT) ? config_buffer[MIN_SPEED_CONFIG] : min_speed;
+    config_buffer[X_HOME_CONFIG] = x_home == (X_HOME_MASK >> X_HOME_SHIFT) ? config_buffer[X_HOME_CONFIG] : x_home;
+    config_buffer[Y_HOME_CONFIG] = y_home == (Y_HOME_MASK >> Y_HOME_SHIFT) ? config_buffer[Y_HOME_CONFIG] : y_home;
+    config_buffer[PROJECTOR_ID_CONFIG] = id == (PROJECTOR_ID_MASK >> PROJECTOR_ID_SHIFT) ? config_buffer[PROJECTOR_ID_CONFIG] : id;
+
+    bool update_needed = true;
+
+    for(uint8_t idx = 0; idx < 8; idx++){
+        update_needed &= config_buffer[idx] == config_saved[idx];
+    }
+
+    if(update_needed){
+        printf("Updating stored config and resetting...\n");
+        write_config();
+    } else printf("No update detected!\n");
+
+}
+
+void draw_boundary(){
+
+    projector_buffer[0] = 0x004C0001;
+    projector_buffer[1] = 0x00003FE1;
+    projector_buffer[2] = 0x96003FE1;
+    projector_buffer[3] = 0x964B3FE1;
+    projector_buffer[4] = 0x004B3FE1;
+
+}
 
 void dma_handler(){
 
@@ -321,14 +430,14 @@ void dma_handler(){
     if(true){
 
         printf("Checksums: ");
-        for(uint i=0; i<TRANSFER_SIZE; i++){
+        for(uint i=0; i<config_buffer[TRANSFER_SIZE_CONFIG]; i++){
             if(checksum(buffer[i])) printf("Invalid ");
             else printf("Valid ");
         }
         printf("\n");
 
         printf("Received: ");
-        for(uint i=0; i<TRANSFER_SIZE; i++){
+        for(uint i=0; i<config_buffer[TRANSFER_SIZE_CONFIG]; i++){
             printf("%X ", buffer[i]);
         }
         printf("\n");
@@ -336,12 +445,19 @@ void dma_handler(){
     }
 
     if(!checksum(buffer[0])){
-        if(retrieve(buffer[0], ID_MASK, ID_SHIFT) == PROJECTOR_ID){
-            memcpy(projector_buffer, buffer, TRANSFER_SIZE * sizeof(uint32_t));
-            xfrReceived = true;
-        } else if(retrieve(buffer[0], ID_MASK, ID_SHIFT) == ALL_PROJECTORS){
-            memcpy(projector_buffer, buffer, TRANSFER_SIZE * sizeof(uint32_t));
-            xfrReceived = true;
+        if(retrieve(buffer[0], ID_MASK, ID_SHIFT) == config_buffer[PROJECTOR_ID_CONFIG] || retrieve(buffer[0], ID_MASK, ID_SHIFT) == ALL_PROJECTORS){
+            uint8_t header_values = retrieve(buffer[0], CONFIG_MASK + BOUNDARY_MASK, BOUNDARY_SHIFT);
+            
+            if(header_values & 0b10){
+                update_config();
+            } else if(header_values & 0b01){
+                draw_boundary();
+                xfrReceived = true;
+            } else {
+                memcpy(projector_buffer, buffer, config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
+                xfrReceived = true;
+            }
+
         }
     }
 
@@ -406,10 +522,10 @@ void serialReceiver(){
     dma_channel_configure(
         dma_chan,
         &c,
-        buffer_one, // Write address (only need to set this once)
-        NULL,             // Don't provide a read address yet
-        TRANSFER_SIZE, // Write the same value many times, then halt and interrupt
-        false             // Don't start yet
+        buffer_one,
+        NULL,
+        config_buffer[TRANSFER_SIZE_CONFIG],
+        false
     );
 
     printf("DMA configured\n");
@@ -447,11 +563,17 @@ void serialReceiver(){
     printf("Error\n");
 }
 
+
+
 int main() {
 
     stdio_init_all();
     sleep_ms(3000);
     printf("Initializing...\n");
+    init_config();
+    printf("Config loaded\n");
+    init_buffers();
+    printf("Buffers initialized\n");
     sleep_ms(5000);
     printf("%d\n", NUMSTEPS);
     bus_ctrl_hw->priority = BUSCTRL_BUS_PRIORITY_DMA_W_BITS | BUSCTRL_BUS_PRIORITY_DMA_R_BITS;
@@ -473,6 +595,10 @@ int main() {
     multicore_launch_core1(serialReceiver);
 
     sleep_ms(5000);
+
+    printf("Projector %d ready...\n", config_buffer[PROJECTOR_ID_CONFIG]);
+
+    projector_buffer[0] = 0x00000000;
 
     while(true){
 
