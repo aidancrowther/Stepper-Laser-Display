@@ -20,6 +20,7 @@ uint32_t *buffer_two;
 uint32_t config_buffer[FLASH_PAGE_SIZE/sizeof(uint32_t)];
 uint32_t *config_saved = (uint32_t *)(STORAGE_OFFSET + XIP_BASE);
 bool use_config = false;
+uint8_t speed_profile = 0;
 
 void init_buffers(){
     projector_buffer = malloc(config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
@@ -98,6 +99,8 @@ void draw(){
 
     if(DEBUG) sleep_ms(2000);
 
+    set_stepper_values();
+
     if(retrieve(projector_buffer[0], ENABLE_MASK, ENABLE_SHIFT)){
         gpio_put(ENABLE, true == ENABLE_LOGIC);
     } else {
@@ -111,6 +114,8 @@ void draw(){
         set_stepper_values();
         sleep_ms(500);
     }
+
+    bool oneshot = retrieve(projector_buffer[0], ONESHOT_MASK, ONESHOT_SHIFT);
 
     uint8_t pointCount = retrieve(projector_buffer[0], COUNT_MASK, COUNT_SHIFT);
     xfrReceived = false;
@@ -152,6 +157,8 @@ void draw(){
             if(DEBUG) sleep_ms(3000);
 
         }
+
+        if(oneshot) break;
     }
 
     lasers_off();
@@ -221,13 +228,27 @@ void init_steppers(){
 }
 
 void set_stepper_values(){
-    picostepper_set_async_enabled(XAxis, true);
-    picostepper_set_max_speed(XAxis, config_buffer[MAX_SPEED_CONFIG]);
-    picostepper_set_min_speed(XAxis, config_buffer[MIN_SPEED_CONFIG]);
 
+    picostepper_set_async_enabled(XAxis, true);
     picostepper_set_async_enabled(YAxis, true);
-    picostepper_set_max_speed(YAxis, config_buffer[MAX_SPEED_CONFIG]);
-    picostepper_set_min_speed(YAxis, config_buffer[MIN_SPEED_CONFIG]);
+
+    if(!speed_profile){
+        
+        picostepper_set_max_speed(XAxis, config_buffer[MAX_SPEED_CONFIG]);
+        picostepper_set_min_speed(XAxis, config_buffer[MIN_SPEED_CONFIG]);
+
+        picostepper_set_max_speed(YAxis, config_buffer[MAX_SPEED_CONFIG]);
+        picostepper_set_min_speed(YAxis, config_buffer[MIN_SPEED_CONFIG]);
+
+    } else {
+
+        picostepper_set_max_speed(XAxis, speed_profiles[speed_profile-1]);
+        picostepper_set_min_speed(XAxis, speed_profiles[speed_profile-1]);
+
+        picostepper_set_max_speed(YAxis, speed_profiles[speed_profile-1]);
+        picostepper_set_min_speed(YAxis, speed_profiles[speed_profile-1]);
+
+    }
 
     picostepper_set_acceleration(XAxis, config_buffer[ACCELERATION_CONFIG]);
     picostepper_set_acceleration(YAxis, config_buffer[ACCELERATION_CONFIG]);
@@ -454,6 +475,7 @@ void dma_handler(){
                 draw_boundary();
                 xfrReceived = true;
             } else {
+                uint8_t speed_profile = retrieve(buffer[0], SPEED_PROFILE_MASK, SPEED_PROFILE_SHIFT);
                 memcpy(projector_buffer, buffer, config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
                 xfrReceived = true;
             }

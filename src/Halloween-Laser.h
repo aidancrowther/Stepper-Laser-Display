@@ -4,11 +4,11 @@
 #define DEBUG false
 
 #define delay sleep_ms
-#define MAXSPEED 15000
+#define MAXSPEED 60000
 #define MINSPEED 15000
 #define HOMINGSPEED 2000
 #define SLOWHOMESPEED 500
-#define ACCELERATION 0
+#define ACCELERATION 200000
 #define Y_HOME_POS 300
 #define X_HOME_POS 550
 #define MAX_Y 300
@@ -52,6 +52,10 @@
 #define CONFIG_SHIFT 17
 #define BOUNDARY_MASK 0x00010000
 #define BOUNDARY_SHIFT 16
+#define ONESHOT_MASK 0x00008000
+#define ONESHOT_SHIFT 15
+#define SPEED_PROFILE_MASK 0x00007000
+#define SPEED_PROFILE_SHIFT 12
 #define X_MASK 0xFF800000
 #define X_SHIFT 23
 #define Y_MASK 0x007FC000
@@ -92,6 +96,15 @@
 #define STEP_Y 19
 #define STEP_X 20
 
+#define NUM_PROFILES 7
+#define SPEED_0 500
+#define SPEED_1 1000
+#define SPEED_2 2000
+#define SPEED_3 2500
+#define SPEED_4 5000
+#define SPEED_5 10000
+#define SPEED_6 15000
+
 #include <stdio.h>
 #include <string.h>
 #include "pico/stdlib.h"
@@ -107,6 +120,15 @@
 
 #include "picostepper.h"
 #include "clocked_input.pio.h"
+
+static const uint8_t speed_profiles[NUM_PROFILES] = {
+    (uint8_t) SPEED_0, 
+    (uint8_t) SPEED_1, 
+    (uint8_t) SPEED_2, 
+    (uint8_t) SPEED_3, 
+    (uint8_t) SPEED_4, 
+    (uint8_t) SPEED_5, 
+    (uint8_t) SPEED_6};
 
 int main();
 void init_steppers();
