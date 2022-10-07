@@ -22,32 +22,36 @@ uint32_t *config_saved = (uint32_t *)(STORAGE_OFFSET + XIP_BASE);
 bool use_config = false;
 uint8_t speed_profile = 0;
 
+// Initialize buffers by allocating space as needed
 void init_buffers(){
     projector_buffer = malloc(config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
     buffer_one = malloc(config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
     buffer_two = malloc(config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
 }
 
+// Release the memory allocated by buffers
 void free_buffers(){
     free(projector_buffer);
     free(buffer_one);
     free(buffer_two);
 }
 
+// Load the stored config, or initialize it if needed
 void init_config(){
     if(config_saved[LOAD_CONFIG] != true){
         printf("Loading defaults\n");
         load_default_config();
-        //write_config();
+        write_config();
     }
 
-    //load_config();
+    load_config();
 
     for(uint8_t idx = 0; idx < 8; idx++){
         printf("Config at %d: %X\n", idx, config_buffer[idx]);
     }
 }
 
+// Load default config settings from defined values
 void load_default_config(){
     config_buffer[LOAD_CONFIG] = true;
     config_buffer[ACCELERATION_CONFIG] = ACCELERATION;
@@ -59,6 +63,7 @@ void load_default_config(){
     config_buffer[PROJECTOR_ID_CONFIG] = PROJECTOR_ID;
 }
 
+// Write the current config buffer to storage
 void write_config(){
     uint32_t ints = save_and_disable_interrupts();
 
@@ -72,12 +77,14 @@ void write_config(){
     sleep_ms(5000);
 }
 
+// Load the config values into the config buffer from storage
 void load_config(){
     for(uint8_t idx; idx <= FLASH_PAGE_SIZE/sizeof(uint32_t); idx++){
         config_buffer[idx] = config_saved[idx];
     }
 }
 
+// Calculate checksum for a 32-bit value
 bool checksum(uint message){
 
     uint sum = message ^ (message >> 1);
@@ -91,22 +98,31 @@ bool checksum(uint message){
     return sum;
 }
 
+// Retrieve a value from a data frame using a mask and shift value
 uint16_t retrieve(uint32_t frame, uint32_t mask, uint32_t shift){
     return (frame & mask) >> shift;
 }
 
+// Draw the current image loaded into the buffer, or handle tasks as needed
 void draw(){
 
     if(DEBUG) sleep_ms(2000);
 
+    // Set steppers to the correct value based on the current speed profile
     set_stepper_values();
 
+    // Do nothing if the current buffer is not addressed to the projector
+    if(!retrieve(projector_buffer[0], ID_MASK, ID_SHIFT)) return;
+
+    // Enable/Disable motors as needed, exit early if disabled
     if(retrieve(projector_buffer[0], ENABLE_MASK, ENABLE_SHIFT)){
         gpio_put(ENABLE, true == ENABLE_LOGIC);
     } else {
         gpio_put(ENABLE, false == ENABLE_LOGIC);
         return;
     }
+
+    // Home the steppers if required
     if(retrieve(projector_buffer[0], HOME_MASK, HOME_SHIFT)){
         if(DEBUG) printf("Homing\n");
         home_steppers();
@@ -115,8 +131,10 @@ void draw(){
         sleep_ms(500);
     }
 
+    // Determine whether this is a one shot draw command
     bool oneshot = retrieve(projector_buffer[0], ONESHOT_MASK, ONESHOT_SHIFT);
 
+    // Get the number of points to draw
     uint8_t pointCount = retrieve(projector_buffer[0], COUNT_MASK, COUNT_SHIFT);
     xfrReceived = false;
 
@@ -125,17 +143,14 @@ void draw(){
         printf("xfrReceived: %d\n", xfrReceived);
     }
 
+    // While we have not received new data, draw
     while(!xfrReceived){
 
+        // Go over every point in the data
         for(uint8_t idx = 0; idx < pointCount; idx++){
 
+            // Retrieve the checksum, sklipping if invalid
             bool sum = checksum(projector_buffer[idx+1]);
-
-            uint16_t xPos = retrieve(projector_buffer[idx+1], X_MASK, X_SHIFT);
-            uint16_t yPos = retrieve(projector_buffer[idx+1], Y_MASK, Y_SHIFT);
-            uint8_t red = retrieve(projector_buffer[idx+1], RED_MASK, RED_SHIFT);
-            uint8_t green = retrieve(projector_buffer[idx+1], GREEN_MASK, GREEN_SHIFT);
-            uint8_t blue = retrieve(projector_buffer[idx+1], BLUE_MASK, BLUE_SHIFT);
 
             if(sum){
                 lasers_off();
@@ -143,13 +158,23 @@ void draw(){
                 continue;
             }
 
+            // Retrieve the parameters defined by this frame of data
+            uint16_t xPos = retrieve(projector_buffer[idx+1], X_MASK, X_SHIFT);
+            uint16_t yPos = retrieve(projector_buffer[idx+1], Y_MASK, Y_SHIFT);
+            uint8_t red = retrieve(projector_buffer[idx+1], RED_MASK, RED_SHIFT);
+            uint8_t green = retrieve(projector_buffer[idx+1], GREEN_MASK, GREEN_SHIFT);
+            uint8_t blue = retrieve(projector_buffer[idx+1], BLUE_MASK, BLUE_SHIFT);
+
+            // Set lasers as defined
             set_red_pwm(red);
             set_green_pwm(green);
             set_blue_pwm(blue);
 
+            // Prevent movements that would exceed our maximum bounds
             positions[0] = xPos > MAX_X ? MAX_X : xPos;
             positions[1] = yPos > MAX_Y ? MAX_Y : yPos;
 
+            // Move steppers to their appropriate positions
             picostepper_move_to_positions(devices, positions, 2);
 
             if(DEBUG) printf("R: %X\nG: %X\nB: %X\nX: %X\nY: %X\n", red, green, blue, xPos, yPos);
@@ -158,40 +183,50 @@ void draw(){
 
         }
 
-        if(oneshot) break;
+        // If this is a oneshot, clear the header to disable drawing
+        if(oneshot){
+            projector_buffer[0] = 0x00000000;
+            break;
+        }
     }
 
+    // Disable the lasers and exit
     lasers_off();
     xfrReceived = false;
 
 }
 
+// Disable all lasers
 void lasers_off(){
     set_red_pwm(0);
     set_green_pwm(0);
     set_blue_pwm(0);
 }
 
+// Set laser PWM values, mapping from 0-7 to 0-1023
 void set_red_pwm(uint8_t pwm){
-    pwm_set_chan_level(RED_SLICE, RED_CHANNEL, PWM_DEPTH - ((pwm % COLOUR_DEPTH) * COLOUR_MULTIPLIER));
+    pwm_set_chan_level(RED_SLICE, RED_CHANNEL, pwm == 7 ? PWM_DEPTH : PWM_DEPTH - ((pwm % COLOUR_DEPTH) * COLOUR_MULTIPLIER));
 }
 
 void set_green_pwm(uint8_t pwm){
-    pwm_set_chan_level(GREEN_SLICE, GREEN_CHANNEL, PWM_DEPTH - ((pwm % COLOUR_DEPTH) * COLOUR_MULTIPLIER));
+    pwm_set_chan_level(GREEN_SLICE, GREEN_CHANNEL, pwm == 7 ? PWM_DEPTH : PWM_DEPTH - ((pwm % COLOUR_DEPTH) * COLOUR_MULTIPLIER));
 }
 
 void set_blue_pwm(uint8_t pwm){
-    pwm_set_chan_level(BLUE_SLICE, BLUE_CHANNEL, PWM_DEPTH - ((pwm % COLOUR_DEPTH) * COLOUR_MULTIPLIER));
+    pwm_set_chan_level(BLUE_SLICE, BLUE_CHANNEL, pwm == 7 ? PWM_DEPTH : PWM_DEPTH - ((pwm % COLOUR_DEPTH) * COLOUR_MULTIPLIER));
 }
 
+// Homing sequence async callback
 void homing_sequence(PicoStepper device){
     if(picostepper_get_async_enabled(device)) picostepper_move_async(device, 100, &homing_sequence);
 }
 
+// Slow homing sequence async callback
 void slow_home(PicoStepper device){
     if(picostepper_get_async_enabled(device)) picostepper_move_async(device, 10, &homing_sequence);
 }
 
+// Initialize all GPIO as needed
 void init_gpio(){
     gpio_init(HOME_X);
     gpio_init(HOME_Y);
@@ -217,6 +252,7 @@ void init_gpio(){
     gpio_put(ENABLE, true == ENABLE_LOGIC);
 }
 
+// Initialize steppers
 void init_steppers(){
 
     YAxis = picostepper_pindef_init(DIR_Y, STEP_Y, TwoWireDriver);
@@ -227,6 +263,7 @@ void init_steppers(){
 
 }
 
+// Set stepper values, Acceleration, Speed, Enabled
 void set_stepper_values(){
 
     picostepper_set_async_enabled(XAxis, true);
@@ -254,6 +291,7 @@ void set_stepper_values(){
     picostepper_set_acceleration(YAxis, config_buffer[ACCELERATION_CONFIG]);
 }
 
+// Homing sequence for steppers
 void home_steppers(){
     picostepper_set_async_speed(XAxis, HOMINGSPEED);
     picostepper_set_acceleration(XAxis, 0);
@@ -348,6 +386,8 @@ void home_steppers(){
 
 }
 
+// Helper to set home, not used in final build
+/*
 void set_home(){
 
     getchar();
@@ -391,7 +431,9 @@ void set_home(){
     }
 
 }
+*/
 
+// Update configurations as defined by the received config data
 void update_config(){
 
     uint32_t *buffer;
@@ -433,7 +475,15 @@ void update_config(){
 
 }
 
+// Draw a boundary defining the maximum drawing region, useful for calibrating home position
 void draw_boundary(){
+
+    printf("Drawing boundary\n");
+
+    home_steppers();
+
+    speed_profile = 1;
+    set_stepper_values();
 
     projector_buffer[0] = 0x004C0001;
     projector_buffer[1] = 0x00003FE1;
@@ -441,13 +491,18 @@ void draw_boundary(){
     projector_buffer[3] = 0x964B3FE1;
     projector_buffer[4] = 0x004B3FE1;
 
+    speed_profile = 0;
+
 }
 
+// Interrupt handler for DMA transfer completion
 void dma_handler(){
 
+    // Create a temporary buffer pointer using the most recently loaded of the two message buffer
     uint32_t *buffer;
     buffer = buffer_id ? buffer_one : buffer_two;
 
+    // Print message details (will be set to use debug flag)
     if(true){
 
         printf("Checksums: ");
@@ -465,17 +520,24 @@ void dma_handler(){
 
     }
 
+    // If the message header checksum fails, ignore it
     if(!checksum(buffer[0])){
+        // Determine whether this message is addressed to this projector
         if(retrieve(buffer[0], ID_MASK, ID_SHIFT) == config_buffer[PROJECTOR_ID_CONFIG] || retrieve(buffer[0], ID_MASK, ID_SHIFT) == ALL_PROJECTORS){
+            // Retrieve multiple values to save on unneeded calls
             uint8_t header_values = retrieve(buffer[0], CONFIG_MASK + BOUNDARY_MASK, BOUNDARY_SHIFT);
             
             if(header_values & 0b10){
+                // Enter config update mode
                 update_config();
             } else if(header_values & 0b01){
+                // Setup boundary draw buffer and begin drawing
                 draw_boundary();
                 xfrReceived = true;
             } else {
+                // Determine the speed profile for this draw command
                 uint8_t speed_profile = retrieve(buffer[0], SPEED_PROFILE_MASK, SPEED_PROFILE_SHIFT);
+                // Copy the buffer into the projectors buffer
                 memcpy(projector_buffer, buffer, config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
                 xfrReceived = true;
             }
@@ -503,10 +565,12 @@ void dma_handler(){
     if(DEBUG) printf("Interrupt cleared\n");
 }
 
+// Core 1 entry point
 void serialReceiver(){
 
     printf("Initializing Core 1...\n");
 
+    // Configure PWM for the lasers
     pwm_set_clkdiv(PWM_SLICE_ONE, PWM_CLOCK_DIV);
     pwm_set_wrap(PWM_SLICE_ONE, PWM_DEPTH); 
     pwm_set_enabled(PWM_SLICE_ONE, true);
@@ -517,21 +581,26 @@ void serialReceiver(){
 
     printf("PWM configured\n");
 
+    // Disable lasers
     lasers_off();
 
+    // Allocate PIO for serial receiver
     pio = pio1;
     uint offset = pio_add_program(pio, &clocked_input_program);
     sm = pio_claim_unused_sm(pio, true);
 
     printf("PIO allocated\n");
 
+    // Clear PIO FIFO and initialize the input program
     pio_sm_clear_fifos(pio, sm);
     clocked_input_program_init(pio, sm, offset, DATA);
 
     printf("PIO clocked input configured\n");
 
+    // Set DMA bus priority
     bus_ctrl_hw->priority = BUSCTRL_BUS_PRIORITY_DMA_W_BITS | BUSCTRL_BUS_PRIORITY_DMA_R_BITS;
 
+    // Allocate a DMA channel for serial receiver
     dma_chan = dma_claim_unused_channel(true);
     dma_channel_config c = dma_channel_get_default_config(dma_chan);
     channel_config_set_transfer_data_size(&c, DMA_SIZE_32);
@@ -541,6 +610,7 @@ void serialReceiver(){
 
     printf("DMA initialized\n");
 
+    // Configure the initial DMA channel, do not yet set the source
     dma_channel_configure(
         dma_chan,
         &c,
@@ -552,20 +622,22 @@ void serialReceiver(){
 
     printf("DMA configured\n");
 
-    // Tell the DMA to raise IRQ line 0 when the channel finishes a block
+    // Tell the DMA to raise IRQ line 1 when the channel finishes a block
     dma_channel_set_irq1_enabled(dma_chan, true);
 
     printf("DMA interrupt configured\n");
 
-    // Configure the processor to run dma_handler() when DMA IRQ 0 is asserted
+    // Configure the processor to run dma_handler() when DMA IRQ 1 is asserted
     irq_set_exclusive_handler(DMA_IRQ_1, dma_handler);
 
     printf("DMA interrupt handler configured\n");
 
+    // Enable DMA interrupt
     irq_set_enabled(DMA_IRQ_1, true);
 
     printf("DMA interrupts started\n");
 
+    // Clear PIO FIFOs
     pio_sm_clear_fifos(pio, sm);
 
     printf("FIFO cleared\n");
@@ -575,20 +647,17 @@ void serialReceiver(){
 
     if(DEBUG) printf("DMA handler initialized\n");
 
-    while(true){
+    // Busy loop
+    while(true) sleep_ms(100);
 
-        //draw();
-        sleep_ms(100);
-
-    }
-
+    // This should never trigger
     printf("Error\n");
 }
 
-
-
+// Program entry point
 int main() {
 
+    // Initialize stdio and enable serial output
     stdio_init_all();
     sleep_ms(3000);
     printf("Initializing...\n");
@@ -598,6 +667,8 @@ int main() {
     printf("Buffers initialized\n");
     sleep_ms(5000);
     printf("%d\n", NUMSTEPS);
+
+    // Set DMA interrupt priority
     bus_ctrl_hw->priority = BUSCTRL_BUS_PRIORITY_DMA_W_BITS | BUSCTRL_BUS_PRIORITY_DMA_R_BITS;
 
     init_steppers();
@@ -614,14 +685,17 @@ int main() {
 
     //set_home();
 
+    // Start Core 1
     multicore_launch_core1(serialReceiver);
 
     sleep_ms(5000);
 
     printf("Projector %d ready...\n", config_buffer[PROJECTOR_ID_CONFIG]);
 
+    // Clear buffer header as malloc does not clear it on itialization
     projector_buffer[0] = 0x00000000;
 
+    // Call the draw function regularly
     while(true){
 
         if(!DEBUG){
@@ -631,5 +705,6 @@ int main() {
 
     }
 
-  return -1;
+    // This should never be reached
+    return -1;
 }
