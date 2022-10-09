@@ -1,0 +1,27 @@
+Pi pin assignments
+
+There exist logic level shifters on pins that re not listed as they have not been assigned use cases.
+7 of these outputs are wired such that they can also be used as inputs. Audio reserved pins are used in
+the groups of 12/13 or 18/19, the pins of the unused group are available to be used. Audio groups are 
+seleted using jumpers on the board.
+
+                                01 | 02
+                                03 | 04
+                                05 | 06
+                                07 | 08    Puppet Light
+                                09 | 10    Puppet Light
+                                11 | 12    PWM Audio Reserved
+                                13 | 14
+                                15 | 16    Puppet Light
+                                17 | 18    Puppet Light
+ Laser Projector Serial Out     19 | 20
+                                21 | 22    Puppet Light
+  Laser Projector Clock Out     23 | 24    Puppet Light
+                                25 | 26    Puppet Light
+                                27 | 28
+                                29 | 30
+                                31 | 32    PWM Audio Reserved
+         PWM Audio Reserved     33 | 34
+         PWM Audio Reserved     35 | 36
+                                37 | 38
+                                39 | 40
