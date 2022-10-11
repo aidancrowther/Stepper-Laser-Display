@@ -20,7 +20,7 @@ uint32_t *buffer_two;
 uint32_t config_buffer[FLASH_PAGE_SIZE/sizeof(uint32_t)];
 uint32_t *config_saved = (uint32_t *)(STORAGE_OFFSET + XIP_BASE);
 bool use_config = false;
-uint8_t speed_profile = 0;
+volatile uint8_t speed_profile = 0;
 
 // Initialize buffers by allocating space as needed
 void init_buffers(){
@@ -30,6 +30,7 @@ void init_buffers(){
 }
 
 // Release the memory allocated by buffers
+// Realistically this will never be needed, but is here for completeness
 void free_buffers(){
     free(projector_buffer);
     free(buffer_one);
@@ -73,8 +74,6 @@ void write_config(){
     restore_interrupts (ints);
 
     watchdog_reboot (0, SRAM_END, 10);
-
-    sleep_ms(5000);
 }
 
 // Load the config values into the config buffer from storage
@@ -149,6 +148,8 @@ void draw(){
         // Go over every point in the data
         for(uint8_t idx = 0; idx < pointCount; idx++){
 
+            if(xfrReceived) break;
+
             // Retrieve the checksum, sklipping if invalid
             bool sum = checksum(projector_buffer[idx+1]);
 
@@ -205,15 +206,15 @@ void lasers_off(){
 
 // Set laser PWM values, mapping from 0-7 to 0-1023
 void set_red_pwm(uint8_t pwm){
-    pwm_set_chan_level(RED_SLICE, RED_CHANNEL, pwm == 7 ? PWM_DEPTH : PWM_DEPTH - ((pwm % COLOUR_DEPTH) * COLOUR_MULTIPLIER));
+    pwm_set_chan_level(RED_SLICE, RED_CHANNEL, pwm == 7 ? 0 : PWM_DEPTH - ((pwm % COLOUR_DEPTH) * COLOUR_MULTIPLIER));
 }
 
 void set_green_pwm(uint8_t pwm){
-    pwm_set_chan_level(GREEN_SLICE, GREEN_CHANNEL, pwm == 7 ? PWM_DEPTH : PWM_DEPTH - ((pwm % COLOUR_DEPTH) * COLOUR_MULTIPLIER));
+    pwm_set_chan_level(GREEN_SLICE, GREEN_CHANNEL, pwm == 7 ? 0 : PWM_DEPTH - ((pwm % COLOUR_DEPTH) * COLOUR_MULTIPLIER));
 }
 
 void set_blue_pwm(uint8_t pwm){
-    pwm_set_chan_level(BLUE_SLICE, BLUE_CHANNEL, pwm == 7 ? PWM_DEPTH : PWM_DEPTH - ((pwm % COLOUR_DEPTH) * COLOUR_MULTIPLIER));
+    pwm_set_chan_level(BLUE_SLICE, BLUE_CHANNEL, pwm == 7 ? 0 : PWM_DEPTH - ((pwm % COLOUR_DEPTH) * COLOUR_MULTIPLIER));
 }
 
 // Homing sequence async callback
@@ -436,23 +437,20 @@ void set_home(){
 // Update configurations as defined by the received config data
 void update_config(){
 
-    uint32_t *buffer;
-    buffer = buffer_id ? buffer_one : buffer_two;
-
     for(uint8_t idx = 0; idx < 4; idx++){
-        if(checksum(buffer[idx])){
+        if(checksum(projector_buffer[idx])){
             printf("Invalid configuration signature, aborting!\n");
             return;
         }
     }
 
-    uint32_t acceleration = retrieve(buffer[1], ACCELERATION_MASK, ACCELERATION_SHIFT);
-    uint32_t transfer_size = retrieve(buffer[1], TRANSFER_SIZE_MASK, TRANSFER_SIZE_SHIFT);
-    uint32_t max_speed = retrieve(buffer[2], MAX_SPEED_MASK, MAX_SPEED_SHIFT);
-    uint32_t min_speed = retrieve(buffer[2], MIN_SPEED_MASK, MIN_SPEED_SHIFT);
-    uint32_t x_home = retrieve(buffer[3], X_HOME_MASK, X_HOME_SHIFT);
-    uint32_t y_home = retrieve(buffer[3], Y_HOME_MASK, Y_HOME_SHIFT);
-    uint32_t id = retrieve(buffer[3], ID_MASK, ID_SHIFT);
+    uint32_t acceleration = retrieve(projector_buffer[1], ACCELERATION_MASK, ACCELERATION_SHIFT);
+    uint32_t transfer_size = retrieve(projector_buffer[1], TRANSFER_SIZE_MASK, TRANSFER_SIZE_SHIFT);
+    uint32_t max_speed = retrieve(projector_buffer[2], MAX_SPEED_MASK, MAX_SPEED_SHIFT);
+    uint32_t min_speed = retrieve(projector_buffer[2], MIN_SPEED_MASK, MIN_SPEED_SHIFT);
+    uint32_t x_home = retrieve(projector_buffer[3], X_HOME_MASK, X_HOME_SHIFT);
+    uint32_t y_home = retrieve(projector_buffer[3], Y_HOME_MASK, Y_HOME_SHIFT);
+    uint32_t id = retrieve(projector_buffer[3], PROJECTOR_ID_MASK, PROJECTOR_ID_SHIFT);
 
     config_buffer[ACCELERATION_CONFIG] = acceleration == (ACCELERATION_MASK >> ACCELERATION_SHIFT) ? config_buffer[ACCELERATION_CONFIG] : acceleration;
     config_buffer[TRANSFER_SIZE_CONFIG] = transfer_size == (TRANSFER_SIZE_MASK >> TRANSFER_SIZE_SHIFT) ? config_buffer[TRANSFER_SIZE_CONFIG] : transfer_size;
@@ -465,11 +463,12 @@ void update_config(){
     bool update_needed = true;
 
     for(uint8_t idx = 0; idx < 8; idx++){
-        update_needed &= config_buffer[idx] == config_saved[idx];
+        update_needed |= config_buffer[idx] == config_saved[idx];
     }
 
     if(update_needed){
         printf("Updating stored config and resetting...\n");
+        sleep_ms(1000);
         write_config();
     } else printf("No update detected!\n");
 
@@ -529,6 +528,7 @@ void dma_handler(){
             
             if(header_values & 0b10){
                 // Enter config update mode
+                memcpy(projector_buffer, buffer, config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
                 update_config();
             } else if(header_values & 0b01){
                 // Setup boundary draw buffer and begin drawing
@@ -536,7 +536,7 @@ void dma_handler(){
                 xfrReceived = true;
             } else {
                 // Determine the speed profile for this draw command
-                uint8_t speed_profile = retrieve(buffer[0], SPEED_PROFILE_MASK, SPEED_PROFILE_SHIFT);
+                speed_profile = retrieve(buffer[0], SPEED_PROFILE_MASK, SPEED_PROFILE_SHIFT);
                 // Copy the buffer into the projectors buffer
                 memcpy(projector_buffer, buffer, config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
                 xfrReceived = true;
@@ -664,7 +664,10 @@ int main() {
     init_config();
     printf("Config loaded\n");
     init_buffers();
+    // Clear buffer header as malloc does not clear it on itialization
+    projector_buffer[0] = 0x00000000;
     printf("Buffers initialized\n");
+    
     sleep_ms(5000);
     printf("%d\n", NUMSTEPS);
 
@@ -676,6 +679,7 @@ int main() {
     set_stepper_values();
     printf("Steppers configured\n");
     init_gpio();
+    lasers_off();
     printf("GPIO initialized\n");
 
     home_steppers();
@@ -691,9 +695,6 @@ int main() {
     sleep_ms(5000);
 
     printf("Projector %d ready...\n", config_buffer[PROJECTOR_ID_CONFIG]);
-
-    // Clear buffer header as malloc does not clear it on itialization
-    projector_buffer[0] = 0x00000000;
 
     // Call the draw function regularly
     while(true){

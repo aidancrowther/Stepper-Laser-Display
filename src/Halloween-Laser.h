@@ -4,11 +4,11 @@
 #define DEBUG false
 
 #define delay sleep_ms
-#define MAXSPEED 60000
-#define MINSPEED 15000
+#define MAXSPEED 40000
+#define MINSPEED 10000
 #define HOMINGSPEED 2000
 #define SLOWHOMESPEED 500
-#define ACCELERATION 200000
+#define ACCELERATION 100000
 #define Y_HOME_POS 300
 #define X_HOME_POS 550
 #define MAX_Y 300
@@ -17,7 +17,7 @@
 #define PROJECTOR_ID 1
 #define ALL_PROJECTORS 0xF
 
-#define STORAGE_OFFSET PICO_FLASH_SIZE_BYTES - FLASH_SECTOR_SIZE
+#define STORAGE_OFFSET PICO_FLASH_SIZE_BYTES - (FLASH_SECTOR_SIZE*2)
 #define LOAD_CONFIG 0
 #define ACCELERATION_CONFIG 1
 #define TRANSFER_SIZE_CONFIG 2
@@ -121,14 +121,14 @@
 #include "picostepper.h"
 #include "clocked_input.pio.h"
 
-static const uint8_t speed_profiles[NUM_PROFILES] = {
-    (uint8_t) SPEED_0, 
-    (uint8_t) SPEED_1, 
-    (uint8_t) SPEED_2, 
-    (uint8_t) SPEED_3, 
-    (uint8_t) SPEED_4, 
-    (uint8_t) SPEED_5, 
-    (uint8_t) SPEED_6};
+static const uint16_t speed_profiles[NUM_PROFILES] = {
+    (uint16_t) SPEED_0, 
+    (uint16_t) SPEED_1, 
+    (uint16_t) SPEED_2, 
+    (uint16_t) SPEED_3, 
+    (uint16_t) SPEED_4, 
+    (uint16_t) SPEED_5, 
+    (uint16_t) SPEED_6};
 
 int main();
 void init_steppers();
