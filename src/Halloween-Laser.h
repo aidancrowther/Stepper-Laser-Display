@@ -1,6 +1,8 @@
 #ifndef HALLOWEEN_LASER_H
 #define HALLOWEEN_LASER_H
 
+#define RUST true
+
 #define DEBUG true
 
 #define delay sleep_ms

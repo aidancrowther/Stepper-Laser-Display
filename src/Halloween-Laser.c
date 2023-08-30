@@ -259,9 +259,19 @@ void init_gpio(){
 
     gpio_pull_up(HOME_X);
     gpio_pull_up(HOME_Y);
-
-    gpio_pull_down(CLOCK);
     gpio_pull_down(DATA);
+    gpio_pull_down(CLOCK);
+
+    // Configure PWM for the lasers
+    pwm_set_clkdiv(PWM_SLICE_ONE, PWM_CLOCK_DIV);
+    pwm_set_wrap(PWM_SLICE_ONE, PWM_DEPTH); 
+    pwm_set_enabled(PWM_SLICE_ONE, true);
+
+    pwm_set_clkdiv(PWM_SLICE_TWO, PWM_CLOCK_DIV);
+    pwm_set_wrap(PWM_SLICE_TWO, PWM_DEPTH); 
+    pwm_set_enabled(PWM_SLICE_TWO, true);
+
+    printf("PWM configured\n");
 
     //gpio_set_irq_enabled_with_callback(CLOCK, GPIO_IRQ_EDGE_RISE, 1, clock_ISR);
 
@@ -640,17 +650,6 @@ void serialReceiver(){
 
     printf("Initializing Core 1...\n");
 
-    // Configure PWM for the lasers
-    pwm_set_clkdiv(PWM_SLICE_ONE, PWM_CLOCK_DIV);
-    pwm_set_wrap(PWM_SLICE_ONE, PWM_DEPTH); 
-    pwm_set_enabled(PWM_SLICE_ONE, true);
-
-    pwm_set_clkdiv(PWM_SLICE_TWO, PWM_CLOCK_DIV);
-    pwm_set_wrap(PWM_SLICE_TWO, PWM_DEPTH); 
-    pwm_set_enabled(PWM_SLICE_TWO, true);
-
-    printf("PWM configured\n");
-
     // Disable lasers
     lasers_off();
 
@@ -772,9 +771,19 @@ int main() {
         printf("Steppers homed\n");
         set_stepper_values();
         printf("Steppers configured\n");
+    } else {
+        init_gpio();
+        lasers_off();
+        printf("Bypassing stepper init due to debug\n");
     }
 
+    sleep_ms(1000);
+
     //set_home();
+
+    //printf("Await clock signal to identify host is stable\n");
+
+    //while(!gpio_get(CLOCK));
 
     // Start Core 1
     multicore_launch_core1(serialReceiver);
