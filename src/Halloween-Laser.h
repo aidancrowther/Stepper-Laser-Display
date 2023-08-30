@@ -1,7 +1,7 @@
 #ifndef HALLOWEEN_LASER_H
 #define HALLOWEEN_LASER_H
 
-#define DEBUG false
+#define DEBUG true
 
 #define delay sleep_ms
 #define MAXSPEED 40000
@@ -10,12 +10,13 @@
 #define SLOWHOMESPEED 500
 #define ACCELERATION 100000
 #define Y_HOME_POS 300
-#define X_HOME_POS 550
+#define X_HOME_POS 580
 #define MAX_Y 300
 #define MAX_X 300
 #define TRANSFER_SIZE 51
 #define PROJECTOR_ID 1
 #define ALL_PROJECTORS 0xF
+#define BAUDRATE 9600
 
 #define STORAGE_OFFSET PICO_FLASH_SIZE_BYTES - (FLASH_SECTOR_SIZE*2)
 #define LOAD_CONFIG 0
@@ -120,6 +121,7 @@
 
 #include "picostepper.h"
 #include "clocked_input.pio.h"
+#include "uart.pio.h"
 
 static const uint16_t speed_profiles[NUM_PROFILES] = {
     (uint16_t) SPEED_0, 
@@ -150,5 +152,7 @@ void write_config();
 void load_config();
 void init_buffers();
 void free_buffers();
+int64_t reenableDMA(alarm_id_t id, void *userData);
+//void clock_ISR();
 
 #endif

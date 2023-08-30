@@ -23,6 +23,7 @@
 % c-sdk {
 static inline void clocked_input_program_init(PIO pio, uint sm, uint offset, uint pin) {
     pio_sm_config c = clocked_input_program_get_default_config(offset);
+    sm_config_set_clkdiv(&c, 125);
 
     // Set the IN base pin to the provided `pin` parameter. This is the data
     // pin, and the next-numbered GPIO is used as the clock pin.
