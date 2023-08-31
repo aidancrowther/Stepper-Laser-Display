@@ -527,12 +527,24 @@ void draw_boundary(){
 
 }
 
+uint32_t swap(uint32_t n) {
+    return 
+        (n & 0xFF000000) >> 24 |
+        (n & 0x00FF0000) >> 8  |
+        (n & 0x0000FF00) << 8  |
+        (n & 0x000000FF) << 24;
+}
+
 // Interrupt handler for DMA transfer completion
 void dma_handler(){
 
     // Create a temporary buffer pointer using the most recently loaded of the two message buffers
     uint32_t *buffer;
     buffer = buffer_id ? buffer_one : buffer_two;
+
+    for(uint8_t message_id = 0; message_id < config_buffer[TRANSFER_SIZE_CONFIG]; message_id++){
+        buffer[message_id] = swap(buffer[message_id]);
+    }
 
     // Print message details (will be set to use debug flag)
     if(DEBUG){
@@ -781,9 +793,17 @@ int main() {
 
     //set_home();
 
-    //printf("Await clock signal to identify host is stable\n");
+    // Wait for the old clock pin to be pulled high -> low -> high with a delay between
+    // This will be used a signal from the host to let the projector know that it has booted
+    // This will block the projector from taking input over serial until the software serial host has started
 
-    //while(!gpio_get(CLOCK));
+    printf("Await signal to identify host is stable\n");
+    while(!gpio_get(CLOCK));
+    sleep_ms(1000);
+    while(gpio_get(CLOCK));
+    sleep_ms(1000);
+    while(!gpio_get(CLOCK));
+    sleep_ms(1000);
 
     // Start Core 1
     multicore_launch_core1(serialReceiver);

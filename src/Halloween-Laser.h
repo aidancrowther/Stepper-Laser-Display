@@ -141,6 +141,7 @@ void home_steppers();
 void homing_sequence(PicoStepper device);
 void set_stepper_values();
 void serialReceiver();
+uint32_t swap();
 void dma_handler();
 bool checksum(uint message);
 uint16_t retrieve(uint32_t frame, uint32_t mask, uint32_t shift);
