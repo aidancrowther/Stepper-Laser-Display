@@ -1,5 +1,5 @@
-id = 1
-points = 32
+id = 4
+points = 4
 home = 1
 enable = 1
 

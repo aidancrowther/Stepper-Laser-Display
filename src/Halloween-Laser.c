@@ -657,6 +657,16 @@ void clock_ISR(){
 }
 */
 
+void reset_ISR(){
+
+    printf("Reseting!\n");
+
+    sleep_ms(1000);
+
+    watchdog_reboot (0, SRAM_END, 10);
+
+}
+
 // Core 1 entry point
 void serialReceiver(){
 
@@ -770,7 +780,7 @@ int main() {
     // Set DMA interrupt priority
     bus_ctrl_hw->priority = BUSCTRL_BUS_PRIORITY_DMA_W_BITS | BUSCTRL_BUS_PRIORITY_DMA_R_BITS;
 
-    if(!DEBUG){
+    if(!SOFTWARE_ONLY){
         init_steppers();
         printf("Steppers intialized\n");
         set_stepper_values();
@@ -798,15 +808,19 @@ int main() {
     // This will block the projector from taking input over serial until the software serial host has started
 
     printf("Await signal to identify host is stable\n");
-    while(!gpio_get(CLOCK));
+    while(!gpio_get(CLOCK)) watchdog_update();
     sleep_ms(1000);
-    while(gpio_get(CLOCK));
+    while(gpio_get(CLOCK)) watchdog_update();
     sleep_ms(1000);
-    while(!gpio_get(CLOCK));
+    while(!gpio_get(CLOCK)) watchdog_update();
     sleep_ms(1000);
 
     // Start Core 1
     multicore_launch_core1(serialReceiver);
+
+    //printf("Initialize reset on CLOCK pin\n");
+
+    //gpio_set_irq_enabled_with_callback(CLOCK, GPIO_IRQ_LEVEL_LOW, 1, reset_ISR);
 
     sleep_ms(5000);
 
@@ -819,7 +833,7 @@ int main() {
 
         watchdog_update();
 
-        if(!DEBUG){
+        if(!SOFTWARE_ONLY){
             draw();
         }
         sleep_ms(100);

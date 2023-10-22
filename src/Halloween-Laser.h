@@ -1,9 +1,10 @@
 #ifndef HALLOWEEN_LASER_H
 #define HALLOWEEN_LASER_H
 
-#define RUST true
+#define RUST false
 
-#define DEBUG true
+#define DEBUG false
+#define SOFTWARE_ONLY false
 
 #define delay sleep_ms
 #define MAXSPEED 40000
@@ -16,9 +17,9 @@
 #define MAX_Y 300
 #define MAX_X 300
 #define TRANSFER_SIZE 51
-#define PROJECTOR_ID 1
+#define PROJECTOR_ID 2
 #define ALL_PROJECTORS 0xF
-#define BAUDRATE 9600
+#define BAUDRATE 57600
 
 #define STORAGE_OFFSET PICO_FLASH_SIZE_BYTES - (FLASH_SECTOR_SIZE*2)
 #define LOAD_CONFIG 0
@@ -156,6 +157,7 @@ void load_config();
 void init_buffers();
 void free_buffers();
 int64_t reenableDMA(alarm_id_t id, void *userData);
+void reset_ISR();
 //void clock_ISR();
 
 #endif

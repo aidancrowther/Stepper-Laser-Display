@@ -8,8 +8,8 @@ seleted using jumpers on the board.
                                 01 | 02
                                 03 | 04
                                 05 | 06
-                                07 | 08    Puppet Light
-                                09 | 10    Puppet Light
+                                07 | 08    
+                                09 | 10    
                                 11 | 12    PWM Audio Reserved
                                 13 | 14
                                 15 | 16    Puppet Light
@@ -18,7 +18,7 @@ seleted using jumpers on the board.
                                 21 | 22    Puppet Light
  Laser Projector Clock Out      23 | 24    Puppet Light
                                 25 | 26    Puppet Light
-                                27 | 28
+               Puppet Light     27 | 28    Puppet Light
                                 29 | 30
                                 31 | 32    PWM Audio Reserved
          PWM Audio Reserved     33 | 34
