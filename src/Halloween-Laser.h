@@ -3,8 +3,8 @@
 
 #define RUST false
 
-#define DEBUG false
-#define SOFTWARE_ONLY false
+#define DEBUG true
+#define SOFTWARE_ONLY true
 
 #define delay sleep_ms
 #define MAXSPEED 40000
@@ -16,7 +16,8 @@
 #define X_HOME_POS 580
 #define MAX_Y 300
 #define MAX_X 300
-#define TRANSFER_SIZE 51
+#define TRANSFER_SIZE 2
+#define MAX_POINTS 51
 #define PROJECTOR_ID 2
 #define ALL_PROJECTORS 0xF
 #define BAUDRATE 57600
@@ -70,6 +71,10 @@
 #define GREEN_SHIFT 8
 #define BLUE_MASK 0x000000E0
 #define BLUE_SHIFT 5
+#define PATTERN_MASK 0xFF000000
+#define PATTERN_SHIFT 24
+#define COLOUR_MASK 0x00FF8000
+#define COLOUR_SHIFT 15
 
 #define ACCELERATION_MASK 0xFFFFF000
 #define ACCELERATION_SHIFT 12
@@ -121,6 +126,7 @@
 #include "hardware/structs/bus_ctrl.h"
 #include "hardware/flash.h"
 #include "hardware/watchdog.h"
+#include "patterns.h"
 
 #include "picostepper.h"
 #include "clocked_input.pio.h"

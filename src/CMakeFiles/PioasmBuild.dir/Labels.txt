@@ -1,0 +1,13 @@
+# Target labels
+ PioasmBuild
+# Source files and their labels
+/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/src/CMakeFiles/PioasmBuild
+/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/src/CMakeFiles/PioasmBuild.rule
+/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/src/CMakeFiles/PioasmBuild-complete.rule
+/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-build.rule
+/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-configure.rule
+/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-download.rule
+/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-install.rule
+/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-mkdir.rule
+/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-patch.rule
+/home/aidancrowther/Documents/Projects/pico/Halloween Lasers/src/pioasm/src/PioasmBuild-stamp/PioasmBuild-update.rule

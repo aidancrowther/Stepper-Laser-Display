@@ -16,6 +16,7 @@ volatile uint8_t buffer_id = 0;
 uint32_t *projector_buffer;
 uint32_t *buffer_one;
 uint32_t *buffer_two;
+volatile uint16_t colour_mask = 0;
 
 uint32_t config_buffer[FLASH_PAGE_SIZE/sizeof(uint32_t)];
 uint32_t *config_saved = (uint32_t *)(STORAGE_OFFSET + XIP_BASE);
@@ -26,7 +27,7 @@ volatile bool receiving;
 
 // Initialize buffers by allocating space as needed
 void init_buffers(){
-    projector_buffer = malloc(config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
+    projector_buffer = malloc(config_buffer[MAX_POINTS] * sizeof(uint32_t));
     buffer_one = malloc(config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
     buffer_two = malloc(config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
 
@@ -49,7 +50,7 @@ void init_config(){
     if(config_saved[LOAD_CONFIG] != true && false){
         printf("Loading defaults\n");
         load_default_config();
-        write_config();
+        //write_config();
     }
 
     //load_config();
@@ -132,7 +133,7 @@ void draw(){
     // Home the steppers if required
     if(retrieve(projector_buffer[0], HOME_MASK, HOME_SHIFT)){
         if(DEBUG) printf("Homing\n");
-        home_steppers();
+        if(!SOFTWARE_ONLY) home_steppers();
         if(DEBUG) printf("Homing complete\n");
         set_stepper_values();
         sleep_ms(500);
@@ -502,7 +503,7 @@ void update_config(){
     if(update_needed){
         printf("Updating stored config and resetting...\n");
         sleep_ms(1000);
-        write_config();
+        //write_config();
     } else printf("No update detected!\n");
 
 }
@@ -565,10 +566,13 @@ void dma_handler(){
     }
 
     // If the message header checksum fails, ignore it
-    if(!checksum(buffer[0])){
+    if(!checksum(buffer[0]) && !(checksum(buffer[1]))){
         // Determine whether this message is addressed to this projector
         uint8_t RxID = retrieve(buffer[0], ID_MASK, ID_SHIFT);
-        if(DEBUG) printf("Received ID: %d\n", RxID);
+        if(DEBUG){
+            printf("Received ID: %d\n", RxID);
+            printf("Received data: %x %x\n", buffer[0], buffer[1]);
+        }
         if(RxID == config_buffer[PROJECTOR_ID_CONFIG] || RxID == ALL_PROJECTORS){
             // Retrieve multiple values to save on unneeded calls
             uint8_t header_values = retrieve(buffer[0], CONFIG_MASK + BOUNDARY_MASK, BOUNDARY_SHIFT);
@@ -584,8 +588,17 @@ void dma_handler(){
             } else {
                 // Determine the speed profile for this draw command
                 speed_profile = retrieve(buffer[0], SPEED_PROFILE_MASK, SPEED_PROFILE_SHIFT);
-                // Copy the buffer into the projectors buffer
-                memcpy(projector_buffer, buffer, config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
+                uint8_t pattern_id = retrieve(buffer[1], PATTERN_MASK, PATTERN_SHIFT);
+
+                memcpy(lookup[pattern_id], buffer, sizeof(uint32_t));
+                colour_mask = retrieve(buffer[1], COLOUR_MASK, COLOUR_SHIFT);
+
+                memcpy(projector_buffer, lookup[pattern_id], MAX_POINTS * sizeof(uint32_t));
+
+                if(DEBUG){
+                    printf("Header: %x\nFirst Point: %x\n", projector_buffer[0], projector_buffer[1]);
+                }
+
                 xfrReceived = true;
             }
 
@@ -807,13 +820,15 @@ int main() {
     // This will be used a signal from the host to let the projector know that it has booted
     // This will block the projector from taking input over serial until the software serial host has started
 
-    printf("Await signal to identify host is stable\n");
-    while(!gpio_get(CLOCK)) watchdog_update();
-    sleep_ms(1000);
-    while(gpio_get(CLOCK)) watchdog_update();
-    sleep_ms(1000);
-    while(!gpio_get(CLOCK)) watchdog_update();
-    sleep_ms(1000);
+    if(!DEBUG){
+        printf("Await signal to identify host is stable\n");
+        while(!gpio_get(CLOCK)) watchdog_update();
+        sleep_ms(1000);
+        while(gpio_get(CLOCK)) watchdog_update();
+        sleep_ms(1000);
+        while(!gpio_get(CLOCK)) watchdog_update();
+        sleep_ms(1000);
+    }
 
     // Start Core 1
     multicore_launch_core1(serialReceiver);
@@ -826,16 +841,14 @@ int main() {
 
     printf("Projector %d ready...\n", config_buffer[PROJECTOR_ID_CONFIG]);
 
-    watchdog_enable(5000, 1);
+    if(!SOFTWARE_ONLY) watchdog_enable(5000, 1);
 
     // Call the draw function regularly
     while(true){
 
         watchdog_update();
 
-        if(!SOFTWARE_ONLY){
-            draw();
-        }
+        draw();
         sleep_ms(100);
 
     }
