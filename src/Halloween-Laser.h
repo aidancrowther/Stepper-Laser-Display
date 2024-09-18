@@ -5,6 +5,7 @@
 
 #define DEBUG true
 #define SOFTWARE_ONLY true
+#define DRAW_DISABLE false
 
 #define delay sleep_ms
 #define MAXSPEED 40000

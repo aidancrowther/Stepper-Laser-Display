@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "compare": "c"
+        "compare": "c",
+        "cstdint": "c"
     }
 }

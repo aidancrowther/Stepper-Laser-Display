@@ -12,7 +12,7 @@ with open('points.json') as f:
         converted = "uint32_t " + str(key).replace("-", "_") + "[51] = {"
         src = d[key]
         for i in range(0, 51):
-            chunk = src[i*8 : ((i+1)*8)-1]
+            chunk = src[i*8 : ((i+1)*8)]
             converted += "0x" + chunk + ","
         converted = converted[:-1] + "};"
         print(converted)

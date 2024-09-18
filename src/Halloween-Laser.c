@@ -16,7 +16,6 @@ volatile uint8_t buffer_id = 0;
 uint32_t *projector_buffer;
 uint32_t *buffer_one;
 uint32_t *buffer_two;
-volatile uint16_t colour_mask = 0;
 
 uint32_t config_buffer[FLASH_PAGE_SIZE/sizeof(uint32_t)];
 uint32_t *config_saved = (uint32_t *)(STORAGE_OFFSET + XIP_BASE);
@@ -163,13 +162,14 @@ void draw(){
             if(xfrReceived) break;
 
             // Retrieve the checksum, sklipping if invalid
-            bool sum = checksum(projector_buffer[idx+1]);
+            /*bool sum = checksum(projector_buffer[idx+1]);
 
             if(sum){
                 lasers_off();
                 if(DEBUG) printf("Skipping point\n");
                 continue;
             }
+            */
 
             // Retrieve the parameters defined by this frame of data
             uint16_t xPos = retrieve(projector_buffer[idx+1], X_MASK, X_SHIFT);
@@ -548,6 +548,7 @@ void dma_handler(){
     }
 
     // Print message details (will be set to use debug flag)
+    /*
     if(DEBUG){
 
         printf("Checksums: ");
@@ -564,16 +565,20 @@ void dma_handler(){
         printf("\n");
 
     }
+    */
 
     // If the message header checksum fails, ignore it
     if(!checksum(buffer[0]) && !(checksum(buffer[1]))){
         // Determine whether this message is addressed to this projector
         uint8_t RxID = retrieve(buffer[0], ID_MASK, ID_SHIFT);
         if(DEBUG){
-            printf("Received ID: %d\n", RxID);
-            printf("Received data: %x %x\n", buffer[0], buffer[1]);
+            //printf("Received ID: %d\n", RxID);
+            //printf("Received data: %x %x\n", buffer[0], buffer[1]);
         }
         if(RxID == config_buffer[PROJECTOR_ID_CONFIG] || RxID == ALL_PROJECTORS){
+
+            //if(DEBUG) printf("Address matched, processing data!\n");
+
             // Retrieve multiple values to save on unneeded calls
             uint8_t header_values = retrieve(buffer[0], CONFIG_MASK + BOUNDARY_MASK, BOUNDARY_SHIFT);
             
@@ -591,28 +596,26 @@ void dma_handler(){
                 uint8_t pattern_id = retrieve(buffer[1], PATTERN_MASK, PATTERN_SHIFT);
 
                 memcpy(lookup[pattern_id], buffer, sizeof(uint32_t));
-                colour_mask = retrieve(buffer[1], COLOUR_MASK, COLOUR_SHIFT);
+                uint16_t colour_mask = retrieve(buffer[1], COLOUR_MASK, COLOUR_SHIFT);
+
+                //if(DEBUG) printf("Colour Mask: %x %x\n", colour_mask, ((uint32_t) colour_mask) << 5);
 
                 memcpy(projector_buffer, lookup[pattern_id], MAX_POINTS * sizeof(uint32_t));
 
+                for(uint8_t idx=1; idx<MAX_POINTS; idx++){
+                    projector_buffer[idx] &= 0xFFFFC000 + (((uint32_t) colour_mask) << 5) + 0x1F;
+                }
+
                 if(DEBUG){
-                    printf("Header: %x\nFirst Point: %x\n", projector_buffer[0], projector_buffer[1]);
+                    //printf("Header: %x\nFirst Point: %x\n", projector_buffer[0], projector_buffer[1]);
                 }
 
                 xfrReceived = true;
             }
 
             // Call alarm_callback in 0.2 seconds
-            add_alarm_in_ms(10, reenableDMA, NULL, false);
+            //add_alarm_in_ms(10, reenableDMA, NULL, false);
 
-            if(DEBUG) printf("Received: %d\n", xfrReceived);
-
-            if(DEBUG) printf("Interrupt cleared\n");
-
-            // Clear the interrupt request.
-            dma_hw->ints1 = 1u << dma_chan;
-
-        } else {
             //Clear the fifo queue incase we lost sync
             pio_sm_clear_fifos(pio, sm);
             // re-trigger it
@@ -626,13 +629,66 @@ void dma_handler(){
                 dma_channel_set_write_addr(dma_chan, buffer_one, true);
             }
 
-            if(DEBUG) printf("Received: %d\n", xfrReceived);
+            //if(DEBUG) printf("Received: %d\n", xfrReceived);
 
-            if(DEBUG) printf("Interrupt cleared\n");
+            //if(DEBUG) printf("Interrupt cleared\n");
+
+            // Clear the interrupt request.
+            dma_hw->ints1 = 1u << dma_chan;
+
+        } else {
+
+            //if(DEBUG) printf("Handling wrong address\n");
+
+            //Clear the fifo queue incase we lost sync
+            pio_sm_clear_fifos(pio, sm);
+            // re-trigger it
+            if(buffer_id){
+                buffer_id = 0;
+                dma_channel_set_read_addr(dma_chan, &pio->rxf[sm], false);
+                dma_channel_set_write_addr(dma_chan, buffer_two, true);
+            } else {
+                buffer_id = 1;
+                dma_channel_set_read_addr(dma_chan, &pio->rxf[sm], false);
+                dma_channel_set_write_addr(dma_chan, buffer_one, true);
+            }
+
+            xfrReceived = true;
+
+            //if(DEBUG) printf("Received: %d\n", xfrReceived);
+
+            //if(DEBUG) printf("Interrupt cleared\n");
+
+            //if(DEBUG) printf("Buffer State: %x %x\n", projector_buffer[0], projector_buffer[1]);
 
             // Clear the interrupt request.
             dma_hw->ints1 = 1u << dma_chan;
         }
+    } else {
+
+        //if(DEBUG) printf("Handling bad checksum\n");
+
+        //Clear the fifo queue incase we lost sync
+        pio_sm_clear_fifos(pio, sm);
+        // re-trigger it
+        if(buffer_id){
+            buffer_id = 0;
+            dma_channel_set_read_addr(dma_chan, &pio->rxf[sm], false);
+            dma_channel_set_write_addr(dma_chan, buffer_two, true);
+        } else {
+            buffer_id = 1;
+            dma_channel_set_read_addr(dma_chan, &pio->rxf[sm], false);
+            dma_channel_set_write_addr(dma_chan, buffer_one, true);
+        }
+
+        xfrReceived = true;
+
+        //if(DEBUG) printf("Received: %d\n", xfrReceived);
+
+        //if(DEBUG) printf("Interrupt cleared\n");
+
+        // Clear the interrupt request.
+        dma_hw->ints1 = 1u << dma_chan;
     }
 }
 
@@ -848,8 +904,8 @@ int main() {
 
         watchdog_update();
 
-        draw();
-        sleep_ms(100);
+        if(!DRAW_DISABLE) draw();
+        sleep_ms(10);
 
     }
 
