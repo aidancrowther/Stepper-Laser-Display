@@ -1,2 +1,9 @@
 build/
 backup.sh
+CMakeFiles/
+.vscode/
+elf2uf2
+generated/
+pico-sdk/
+pioasm/
+CMake*
