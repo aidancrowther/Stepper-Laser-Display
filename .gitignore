@@ -7,3 +7,5 @@ generated/
 pico-sdk/
 pioasm/
 CMake*
+*.bin
+*.uf2
