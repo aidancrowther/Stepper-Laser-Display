@@ -136,7 +136,7 @@ void draw(){
         if(DEBUG) printf("Homing complete\n");
         set_stepper_values();
         sleep_ms(500);
-        watchdog_enable(5000, 1);
+        if(!DEBUG) watchdog_enable(5000, 1);
     }
 
     // Determine whether this is a one shot draw command
@@ -147,14 +147,22 @@ void draw(){
     xfrReceived = false;
 
     if(DEBUG){
+        printf("Speed profile: %d\n", speed_profile);
         printf("Point count: %d\n", pointCount);
         printf("xfrReceived: %d\n", xfrReceived);
     }
 
+    bool firstLoop = true;
+
     // While we have not received new data, draw
     while(!xfrReceived){
 
-        watchdog_update();
+        if(firstLoop){
+            firstLoop = false;
+            printf("Entering loop!\n");
+        }
+
+        if(!DEBUG) watchdog_update();
 
         // Go over every point in the data
         for(uint8_t idx = 0; idx < pointCount; idx++){
@@ -190,11 +198,11 @@ void draw(){
             // Move steppers to their appropriate positions
             picostepper_move_to_positions(devices, positions, 2, false);
 
-            watchdog_update();
+            if(!DEBUG) watchdog_update();
 
             if(DEBUG) printf("R: %X\nG: %X\nB: %X\nX: %X\nY: %X\n", red, green, blue, xPos, yPos);
 
-            if(DEBUG) sleep_ms(3000);
+            if(SOFTWARE_ONLY) sleep_ms(3000);
 
         }
 
@@ -324,7 +332,7 @@ void set_stepper_values(){
 // Homing sequence for steppers
 void home_steppers(){
 
-    watchdog_enable(40000, 1);
+    if(!DEBUG) watchdog_enable(40000, 1);
 
     picostepper_set_async_speed(XAxis, HOMINGSPEED);
     picostepper_set_acceleration(XAxis, 0);
@@ -417,7 +425,7 @@ void home_steppers(){
     picostepper_set_async_enabled(YAxis, true);
     picostepper_set_position(YAxis, 0);
 
-    watchdog_update();
+    if(!DEBUG) watchdog_update();
 
 }
 
@@ -653,7 +661,7 @@ void dma_handler(){
                 dma_channel_set_write_addr(dma_chan, buffer_one, true);
             }
 
-            xfrReceived = true;
+            xfrReceived = false;
 
             //if(DEBUG) printf("Received: %d\n", xfrReceived);
 
@@ -681,7 +689,7 @@ void dma_handler(){
             dma_channel_set_write_addr(dma_chan, buffer_one, true);
         }
 
-        xfrReceived = true;
+        xfrReceived = false;
 
         //if(DEBUG) printf("Received: %d\n", xfrReceived);
 
@@ -897,12 +905,12 @@ int main() {
 
     printf("Projector %d ready...\n", config_buffer[PROJECTOR_ID_CONFIG]);
 
-    if(!SOFTWARE_ONLY) watchdog_enable(5000, 1);
+    if(!SOFTWARE_ONLY && !DEBUG) watchdog_enable(5000, 1);
 
     // Call the draw function regularly
     while(true){
 
-        watchdog_update();
+        if(!DEBUG) watchdog_update();
 
         if(!DRAW_DISABLE) draw();
         sleep_ms(10);
