@@ -152,15 +152,8 @@ void draw(){
         printf("xfrReceived: %d\n", xfrReceived);
     }
 
-    bool firstLoop = true;
-
     // While we have not received new data, draw
     while(!xfrReceived){
-
-        if(firstLoop){
-            firstLoop = false;
-            printf("Entering loop!\n");
-        }
 
         if(!DEBUG) watchdog_update();
 
