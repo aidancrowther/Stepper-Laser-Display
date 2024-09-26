@@ -11,14 +11,9 @@ volatile PIO pio;
 volatile uint8_t sm;
 
 volatile bool xfrReceived = false;
-volatile uint8_t buffer_id = 0;
-
 RingBuffer UARTBuffer;
-
 uint32_t *projector_buffer;
 uint32_t *PIOBuffer;
-uint32_t *buffer_one;
-uint32_t *buffer_two;
 
 uint32_t config_buffer[FLASH_PAGE_SIZE/sizeof(uint32_t)];
 uint32_t *config_saved = (uint32_t *)(STORAGE_OFFSET + XIP_BASE);
@@ -30,16 +25,12 @@ volatile bool receiving;
 // Initialize buffers by allocating space as needed
 void init_buffers(){
     projector_buffer = malloc(config_buffer[MAX_POINTS] * sizeof(uint32_t));
-    buffer_one = malloc(config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
-    buffer_two = malloc(config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
     PIOBuffer = malloc(config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
 
     ringBufferInit(&UARTBuffer);
 
     // Clear buffer header as malloc does not clear it on itialization
     projector_buffer[0] = 0;
-    buffer_one[0] = 0;
-    buffer_two[0] = 0;
     PIOBuffer[0] = 0;
 }
 
@@ -47,8 +38,6 @@ void init_buffers(){
 // Realistically this will never be needed, but is here for completeness
 void free_buffers(){
     free(projector_buffer);
-    free(buffer_one);
-    free(buffer_two);
     free(PIOBuffer);
 }
 
