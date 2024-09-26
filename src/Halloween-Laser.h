@@ -19,7 +19,7 @@
 #define MAX_X 300
 #define TRANSFER_SIZE 2
 #define MAX_POINTS 51
-#define PROJECTOR_ID 2
+#define PROJECTOR_ID 3
 #define ALL_PROJECTORS 0xF
 #define BAUDRATE 57600
 

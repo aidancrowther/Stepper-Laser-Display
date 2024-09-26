@@ -708,7 +708,6 @@ void serialReceiver(){
     // Read the buffer state when not receiving data
     while(true){
         if(!ringIsEmpty(&UARTBuffer)) parseData();
-        delay(10);
     }
 
     // This should never trigger
