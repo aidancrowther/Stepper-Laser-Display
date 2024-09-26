@@ -13,7 +13,10 @@ volatile uint8_t sm;
 volatile bool xfrReceived = false;
 volatile uint8_t buffer_id = 0;
 
+RingBuffer UARTBuffer;
+
 uint32_t *projector_buffer;
+uint32_t *PIOBuffer;
 uint32_t *buffer_one;
 uint32_t *buffer_two;
 
@@ -29,11 +32,15 @@ void init_buffers(){
     projector_buffer = malloc(config_buffer[MAX_POINTS] * sizeof(uint32_t));
     buffer_one = malloc(config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
     buffer_two = malloc(config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
+    PIOBuffer = malloc(config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
+
+    ringBufferInit(&UARTBuffer);
 
     // Clear buffer header as malloc does not clear it on itialization
     projector_buffer[0] = 0;
     buffer_one[0] = 0;
     buffer_two[0] = 0;
+    PIOBuffer[0] = 0;
 }
 
 // Release the memory allocated by buffers
@@ -42,6 +49,7 @@ void free_buffers(){
     free(projector_buffer);
     free(buffer_one);
     free(buffer_two);
+    free(PIOBuffer);
 }
 
 // Load the stored config, or initialize it if needed
@@ -161,16 +169,6 @@ void draw(){
         for(uint8_t idx = 0; idx < pointCount; idx++){
 
             if(xfrReceived) break;
-
-            // Retrieve the checksum, sklipping if invalid
-            /*bool sum = checksum(projector_buffer[idx+1]);
-
-            if(sum){
-                lasers_off();
-                if(DEBUG) printf("Skipping point\n");
-                continue;
-            }
-            */
 
             // Retrieve the parameters defined by this frame of data
             uint16_t xPos = retrieve(projector_buffer[idx+1], X_MASK, X_SHIFT);
@@ -540,192 +538,36 @@ uint32_t swap(uint32_t n) {
 // Interrupt handler for DMA transfer completion
 void dma_handler(){
 
-    // Create a temporary buffer pointer using the most recently loaded of the two message buffers
-    uint32_t *buffer;
-    buffer = buffer_id ? buffer_one : buffer_two;
-
     for(uint8_t message_id = 0; message_id < config_buffer[TRANSFER_SIZE_CONFIG]; message_id++){
-        buffer[message_id] = swap(buffer[message_id]);
+        PIOBuffer[message_id] = swap(PIOBuffer[message_id]);
     }
 
-    // Print message details (will be set to use debug flag)
-    /*
-    if(DEBUG){
-
-        printf("Checksums: ");
-        for(uint i=0; i<config_buffer[TRANSFER_SIZE_CONFIG]; i++){
-            if(checksum(buffer[i])) printf("Invalid ");
-            else printf("Valid ");
-        }
-        printf("\n");
-
-        printf("Received: ");
-        for(uint i=0; i<config_buffer[TRANSFER_SIZE_CONFIG]; i++){
-            printf("%X ", buffer[i]);
-        }
-        printf("\n");
-
+    // Queue up received data for processing
+    if(!ringIsFull(&UARTBuffer)){
+        ringEnQueue(&UARTBuffer, PIOBuffer[0]);
+        ringEnQueue(&UARTBuffer, PIOBuffer[1]);
     }
-    */
 
-    // If the message header checksum fails, ignore it
-    if(!checksum(buffer[0]) && !(checksum(buffer[1]))){
-        // Determine whether this message is addressed to this projector
-        uint8_t RxID = retrieve(buffer[0], ID_MASK, ID_SHIFT);
-        if(DEBUG){
-            //printf("Received ID: %d\n", RxID);
-            //printf("Received data: %x %x\n", buffer[0], buffer[1]);
-        }
-        if(RxID == config_buffer[PROJECTOR_ID_CONFIG] || RxID == ALL_PROJECTORS){
+    // Clear the fifo queue incase we lost sync
+    pio_sm_clear_fifos(pio, sm);
+    // re-trigger it
+    dma_channel_set_read_addr(dma_chan, &pio->rxf[sm], false);
+    dma_channel_set_write_addr(dma_chan, PIOBuffer, true);
 
-            //if(DEBUG) printf("Address matched, processing data!\n");
-
-            // Retrieve multiple values to save on unneeded calls
-            uint8_t header_values = retrieve(buffer[0], CONFIG_MASK + BOUNDARY_MASK, BOUNDARY_SHIFT);
-            
-            if(header_values & 0b10){
-                // Enter config update mode
-                //memcpy(projector_buffer, buffer, config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
-                //update_config();
-            } else if(header_values & 0b01){
-                // Setup boundary draw buffer and begin drawing
-                //draw_boundary();
-                //xfrReceived = true;
-            } else {
-                // Determine the speed profile for this draw command
-                speed_profile = retrieve(buffer[0], SPEED_PROFILE_MASK, SPEED_PROFILE_SHIFT);
-                uint8_t pattern_id = retrieve(buffer[1], PATTERN_MASK, PATTERN_SHIFT);
-
-                memcpy(lookup[pattern_id], buffer, sizeof(uint32_t));
-                uint16_t colour_mask = retrieve(buffer[1], COLOUR_MASK, COLOUR_SHIFT);
-
-                //if(DEBUG) printf("Colour Mask: %x %x\n", colour_mask, ((uint32_t) colour_mask) << 5);
-
-                memcpy(projector_buffer, lookup[pattern_id], MAX_POINTS * sizeof(uint32_t));
-
-                for(uint8_t idx=1; idx<MAX_POINTS; idx++){
-                    projector_buffer[idx] &= 0xFFFFC000 + (((uint32_t) colour_mask) << 5) + 0x1F;
-                }
-
-                if(DEBUG){
-                    //printf("Header: %x\nFirst Point: %x\n", projector_buffer[0], projector_buffer[1]);
-                }
-
-                xfrReceived = true;
-            }
-
-            // Call alarm_callback in 0.2 seconds
-            //add_alarm_in_ms(10, reenableDMA, NULL, false);
-
-            //Clear the fifo queue incase we lost sync
-            pio_sm_clear_fifos(pio, sm);
-            // re-trigger it
-            if(buffer_id){
-                buffer_id = 0;
-                dma_channel_set_read_addr(dma_chan, &pio->rxf[sm], false);
-                dma_channel_set_write_addr(dma_chan, buffer_two, true);
-            } else {
-                buffer_id = 1;
-                dma_channel_set_read_addr(dma_chan, &pio->rxf[sm], false);
-                dma_channel_set_write_addr(dma_chan, buffer_one, true);
-            }
-
-            //if(DEBUG) printf("Received: %d\n", xfrReceived);
-
-            //if(DEBUG) printf("Interrupt cleared\n");
-
-            // Clear the interrupt request.
-            dma_hw->ints1 = 1u << dma_chan;
-
-        } else {
-
-            //if(DEBUG) printf("Handling wrong address\n");
-
-            //Clear the fifo queue incase we lost sync
-            pio_sm_clear_fifos(pio, sm);
-            // re-trigger it
-            if(buffer_id){
-                buffer_id = 0;
-                dma_channel_set_read_addr(dma_chan, &pio->rxf[sm], false);
-                dma_channel_set_write_addr(dma_chan, buffer_two, true);
-            } else {
-                buffer_id = 1;
-                dma_channel_set_read_addr(dma_chan, &pio->rxf[sm], false);
-                dma_channel_set_write_addr(dma_chan, buffer_one, true);
-            }
-
-            xfrReceived = false;
-
-            //if(DEBUG) printf("Received: %d\n", xfrReceived);
-
-            //if(DEBUG) printf("Interrupt cleared\n");
-
-            //if(DEBUG) printf("Buffer State: %x %x\n", projector_buffer[0], projector_buffer[1]);
-
-            // Clear the interrupt request.
-            dma_hw->ints1 = 1u << dma_chan;
-        }
-    } else {
-
-        //if(DEBUG) printf("Handling bad checksum\n");
-
-        //Clear the fifo queue incase we lost sync
-        pio_sm_clear_fifos(pio, sm);
-        // re-trigger it
-        if(buffer_id){
-            buffer_id = 0;
-            dma_channel_set_read_addr(dma_chan, &pio->rxf[sm], false);
-            dma_channel_set_write_addr(dma_chan, buffer_two, true);
-        } else {
-            buffer_id = 1;
-            dma_channel_set_read_addr(dma_chan, &pio->rxf[sm], false);
-            dma_channel_set_write_addr(dma_chan, buffer_one, true);
-        }
-
-        xfrReceived = false;
-
-        //if(DEBUG) printf("Received: %d\n", xfrReceived);
-
-        //if(DEBUG) printf("Interrupt cleared\n");
-
-        // Clear the interrupt request.
-        dma_hw->ints1 = 1u << dma_chan;
-    }
+    // Clear the interrupt request.
+    dma_hw->ints1 = 1u << dma_chan;
 }
 
 int64_t reenableDMA(alarm_id_t id, void *userData){
 
-    /*
-    if(receiving){
-        receiving = false;
-        add_alarm_in_ms(10, reenableDMA, NULL, false);
-        return 0;
-    }
-    */
-
     //Clear the fifo queue incase we lost sync
     pio_sm_clear_fifos(pio, sm);
     // re-trigger it
-    if(buffer_id){
-        buffer_id = 0;
-        dma_channel_set_read_addr(dma_chan, &pio->rxf[sm], false);
-        dma_channel_set_write_addr(dma_chan, buffer_two, true);
-    } else {
-        buffer_id = 1;
-        dma_channel_set_read_addr(dma_chan, &pio->rxf[sm], false);
-        dma_channel_set_write_addr(dma_chan, buffer_one, true);
-    }
+    dma_channel_set_read_addr(dma_chan, &pio->rxf[sm], false);
+    dma_channel_set_write_addr(dma_chan, PIOBuffer, true);
 
     return 0;
 }
-
-/*
-void clock_ISR(){
-
-    receiving = true;
-
-}
-*/
 
 void reset_ISR(){
 
@@ -737,6 +579,72 @@ void reset_ISR(){
 
 }
 
+void parseData(){
+
+    if(DEBUG) printf("Parsing data\n");
+
+    size_t length = ringBufferLen(&UARTBuffer);
+
+    if(DEBUG) printf("Buffer length: %d\n", length);
+
+    // Clear the buffer if it somehow entered an invalid state
+    if((length%2) || length < 2){
+        ringClear(&UARTBuffer);
+        return;
+    }
+
+    if(DEBUG) printf("Buffer length validated\n");
+
+    uint32_t header = ringDeQueue(&UARTBuffer);
+    uint32_t body = ringDeQueue(&UARTBuffer);
+
+    if(DEBUG) printf("Header: %x\nBody: %x\n", header, body);
+
+    if(!checksum(header) && !checksum(body)){
+        if(DEBUG) printf("Checksum valid\n");
+
+        uint8_t RxID = retrieve(header, ID_MASK, ID_SHIFT);
+        if(RxID == config_buffer[PROJECTOR_ID_CONFIG] || RxID == ALL_PROJECTORS){
+
+            if(DEBUG) printf("ID matched!\n");
+
+            // Retrieve multiple values to save on unneeded calls
+            uint8_t header_values = retrieve(header, CONFIG_MASK + BOUNDARY_MASK, BOUNDARY_SHIFT);
+            
+            if(header_values & 0b10){
+                // Enter config update mode
+                //memcpy(projector_buffer, buffer, config_buffer[TRANSFER_SIZE_CONFIG] * sizeof(uint32_t));
+                //update_config();
+            } else if(header_values & 0b01){
+                // Setup boundary draw buffer and begin drawing
+                //draw_boundary();
+                //xfrReceived = true;
+            } else {
+
+                xfrReceived = true;
+
+                speed_profile = retrieve(header, SPEED_PROFILE_MASK, SPEED_PROFILE_SHIFT);
+                uint8_t pattern_id = retrieve(body, PATTERN_MASK, PATTERN_SHIFT);
+                uint16_t colour_mask = retrieve(body, COLOUR_MASK, COLOUR_SHIFT);
+
+                if(DEBUG) printf("Speed profile: %x\nPattern ID: %d\nColour mask: %x\n", speed_profile, pattern_id, colour_mask);
+
+                lookup[pattern_id][0] = header;
+
+                memcpy(projector_buffer, lookup[pattern_id], MAX_POINTS * sizeof(uint32_t));
+
+                for(uint8_t idx=1; idx<MAX_POINTS; idx++){
+                    projector_buffer[idx] &= 0xFFFFC000 + (((uint32_t) colour_mask) << 5) + 0x1F;
+                }
+
+                if(DEBUG) printf("Projector buffer written!\n");
+
+            }
+        }
+    }
+
+}
+
 // Core 1 entry point
 void serialReceiver(){
 
@@ -744,23 +652,6 @@ void serialReceiver(){
 
     // Disable lasers
     lasers_off();
-
-    /*
-
-    // Allocate PIO for serial receiver
-    pio = pio1;
-    uint offset = pio_add_program(pio, &clocked_input_program);
-    sm = pio_claim_unused_sm(pio, true);
-
-    printf("PIO allocated\n");
-
-    // Clear PIO FIFO and initialize the input program
-    pio_sm_clear_fifos(pio, sm);
-    clocked_input_program_init(pio, sm, offset, DATA);
-
-    printf("PIO clocked input configured\n");
-
-    */
 
     // Allocate PIO for UART RX
     pio = pio1;
@@ -792,7 +683,7 @@ void serialReceiver(){
     dma_channel_configure(
         dma_chan,
         &c,
-        buffer_one,
+        PIOBuffer,
         NULL,
         config_buffer[TRANSFER_SIZE_CONFIG],
         false
@@ -825,8 +716,11 @@ void serialReceiver(){
 
     if(DEBUG) printf("DMA handler initialized\n");
 
-    // Busy loop
-    while(true) sleep_ms(100);
+    // Read the buffer state when not receiving data
+    while(true){
+        if(!ringIsEmpty(&UARTBuffer)) parseData();
+        delay(10);
+    }
 
     // This should never trigger
     printf("Error\n");
@@ -905,7 +799,7 @@ int main() {
 
         if(!DEBUG) watchdog_update();
 
-        if(!DRAW_DISABLE) draw();
+        if(!DRAW_DISABLE && ringIsEmpty(&UARTBuffer)) draw();
         sleep_ms(10);
 
     }

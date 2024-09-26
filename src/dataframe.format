@@ -37,8 +37,8 @@ Frame # | Bits & Definition
 Header Mode (32bit packet):
 0       | 0xF0000000 = Projector ID (Projectors reserve addresses 0x0 - 0x9, 0xF is reserved to index all projectors)
         | 0x0FF00000 = Point Count
-        | 0x00080000 = Home
         | 0x00040000 = Enable
+        | 0x00080000 = Home
         | 0x00020000 = Configuration Mode
         | 0x00010000 = Draw Boundary
         | 0x00008000 = Oneshot

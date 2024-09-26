@@ -19,7 +19,7 @@
 #define MAX_X 300
 #define TRANSFER_SIZE 2
 #define MAX_POINTS 51
-#define PROJECTOR_ID 3
+#define PROJECTOR_ID 2
 #define ALL_PROJECTORS 0xF
 #define BAUDRATE 57600
 
@@ -133,6 +133,8 @@
 #include "clocked_input.pio.h"
 #include "uart.pio.h"
 
+#include "queue.h"
+
 static const uint16_t speed_profiles[NUM_PROFILES] = {
     (uint16_t) SPEED_0, 
     (uint16_t) SPEED_1, 
@@ -148,6 +150,7 @@ void init_gpio();
 void home_steppers();
 void homing_sequence(PicoStepper device);
 void set_stepper_values();
+void parseData();
 void serialReceiver();
 uint32_t swap();
 void dma_handler();
